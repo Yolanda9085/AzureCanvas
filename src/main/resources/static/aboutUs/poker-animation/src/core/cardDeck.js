@@ -43,31 +43,31 @@ var CardDeck = class {
             {
                 nickname: "Azure Explorer",
                 avatarUrl: "team/222498847.jpg",
-                philosophy: "探索未知的蔚蓝，代码编织梦想。",
+                philosophy: "Exploring the unknown blue, weaving dreams through code.",
                 github: "AzureCanvas"
             },
             {
                 nickname: "Canvas Master",
                 avatarUrl: "team/257989705.jpg",
-                philosophy: "画布之上，皆为世界，逻辑之下，尽是灵魂。",
+                philosophy: "Everything above the canvas is a world, everything below is a soul.",
                 github: "AzureCanvas"
             },
             {
                 nickname: "Void Architect",
                 avatarUrl: "team/184054109.jpg",
-                philosophy: "在虚无中构建秩序，于代码间寻觅真理。",
+                philosophy: "Building order in the void, searching for truth in code.",
                 github: "AzureCanvas"
             },
             {
                 nickname: "Pixel Wizard",
                 avatarUrl: "team/184193429.png",
-                philosophy: "像素虽小，可纳乾坤；代码无形，力拔千钧。",
+                philosophy: "Pixels are small, but can hold the universe; code is invisible, but has power.",
                 github: "AzureCanvas"
             },
             {
                 nickname: "Logic Weaver",
                 avatarUrl: "team/258174284.png",
-                philosophy: "织就逻辑的长河，跨越算法的山巅。",
+                philosophy: "Weaving logic through code, crossing the peak of algorithms.",
                 github: "AzureCanvas"
             }
         ];
@@ -111,7 +111,7 @@ var CardDeck = class {
                     text-transform: lowercase;
                 }
             </style>
-            <div class="title-cn">核心开发者</div>
+            <div class="title-cn">STAFF</div>
             <div class="title-en">CORE DEVELOPER</div>
         `;
         
