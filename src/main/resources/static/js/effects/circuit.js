@@ -49,7 +49,7 @@
         try {
             audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             audioEnabled = true;
-            showToast('⚡ 电路激活！下次试试在加载时点击，手速越快音效越清晰~', true);
+            showToast('⚡ Circuit Activated! Try clicking faster during loading for clearer sound effects next time.', true);
         } catch(e) { console.log('Audio not supported'); }
     }
 
@@ -94,8 +94,8 @@
             osc3.start();
             osc3.stop(now + 1.5);
             
-            console.log('[Circuit] 通电音效已播放');
-        } catch(e) { console.log('音效播放失败', e); }
+            console.log('[Circuit] Power-up sound effect played');
+        } catch(e) { console.log('Sound effect failed to play', e); }
     }
 
     function init() {
@@ -428,7 +428,7 @@
             if (audioEnabled && audioCtx) {
                 playPowerUpSound();
             } else {
-                showToast('🔊 点击页面任意位置，解锁电路音效！电路正在从四角生长~⚡', true);
+                showToast('🔊 Click anywhere to unlock circuit sound effects! Growth initiated from corners~⚡', true);
             }
             
             let opacity = 1;
@@ -486,7 +486,7 @@
         
         setTimeout(() => {
             if (!audioEnabled) {
-                showToast('⚡ 下次试试在加载时点击，手速越快音效越清晰~', true);
+                showToast('⚡ Try clicking faster during loading for clearer sound effects next time.', true);
             }
         }, 1500);
         
@@ -497,6 +497,6 @@
             }
         }, 12000);
         
-        console.log('[Circuit] PCB风格电路动画已启动，从四角生长，横竖折线');
+        console.log('[Circuit] PCB style animation started, growing from corners with orthogonal lines');
     }
 })();
