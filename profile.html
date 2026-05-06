@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - AzureTrade</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/js/notifications.js" type="module"></script>
+    <style>
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+    <style>
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        body {
+            background-image: linear-gradient(to top, #9795f0 0%, #fbc8d4 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen text-gray-800">
+
+    <nav class="bg-white shadow-sm h-14 flex items-center px-6 sticky top-0 z-50">
+        <div class="flex items-center space-x-2 text-purple-600 font-black text-xl">
+            <span>Trade</span><span class="text-purple-700">AzureTrade</span>
+        </div>
+    </nav>
+
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-6 pt-6 px-4 pb-10">
+
+        <aside class="w-full md:w-56 flex-shrink-0">
+            <div class="bg-white rounded-2xl p-5 shadow-sm sticky top-20">
+                <nav class="space-y-0.5 text-sm">
+                    <a href="profile.html" class="flex items-center space-x-3 px-4 py-2.5 bg-purple-50 text-purple-600 font-bold rounded-lg">
+                        <span>🏠</span><span>My Profile</span>
+                    </a>
+
+                    <div>
+                        <div class="flex items-center justify-between px-4 py-2.5 text-gray-800 font-bold cursor-pointer hover:bg-gray-50 rounded-lg transition" id="trade-toggle">
+                            <div class="flex items-center space-x-3"><span>📋</span><span>My Trades</span></div>
+                            <svg class="w-3.5 h-3.5 text-gray-400 transition-transform rotate-180" id="trade-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </div>
+                        <div id="trade-sub" class="ml-6 space-y-0.5">
+                            <a href="mypublish.html" class="flex items-center justify-between px-4 py-2 text-gray-500 hover:text-purple-600 hover:bg-gray-50 rounded-lg transition">
+                                <span>My Listings</span>
+                                <span id="sidebar-publish-count" class="text-xs text-purple-600 font-bold bg-purple-50 px-2 py-0.5 rounded-full">0</span>
+                            </a>
+                            <a href="sales.html" class="flex items-center justify-between px-4 py-2 text-gray-500 hover:text-purple-600 hover:bg-gray-50 rounded-lg transition">
+                                <span>My Sales</span>
+                                <span id="sidebar-sell-count" class="text-xs text-purple-600 font-bold bg-purple-50 px-2 py-0.5 rounded-full">0</span>
+                            </a>
+                            <a href="purchases.html" class="flex items-center justify-between px-4 py-2 text-gray-500 hover:text-purple-600 hover:bg-gray-50 rounded-lg transition">
+                                <span>My Purchases</span>
+                                <span id="sidebar-buy-count" class="text-xs text-purple-600 font-bold bg-purple-50 px-2 py-0.5 rounded-full">0</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <a href="favorites.html" class="flex items-center justify-between px-4 py-2.5 text-gray-600 hover:bg-gray-50 rounded-lg transition">
+                        <div class="flex items-center space-x-3"><span>⭐</span><span>My Favorites</span></div>
+                        <span id="sidebar-fav-count" class="text-xs text-purple-600 font-bold bg-purple-50 px-2 py-0.5 rounded-full">0</span>
+                    </a>
+
+                    <!-- My Posts -->
+                    <div>
+                        <div class="flex items-center justify-between px-4 py-2.5 text-gray-800 font-bold cursor-pointer hover:bg-gray-50 rounded-lg transition" id="contribution-toggle">
+                            <div class="flex items-center space-x-3"><span>📝</span><span>My Posts</span></div>
+                            <svg class="w-3.5 h-3.5 text-gray-400 transition-transform rotate-180" id="contribution-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </div>
+                        <div id="contribution-sub" class="ml-6 space-y-0.5">
+                            <a href="/treehole/index.html" class="flex items-center justify-between px-4 py-2 text-gray-500 hover:text-purple-600 hover:bg-gray-50 rounded-lg transition">
+                                <span>My Articles</span>
+                                <span id="sidebar-article-count" class="text-xs text-purple-600 font-bold bg-purple-50 px-2 py-0.5 rounded-full">0</span>
+                            </a>
+                            <a href="/storymap/index.html" class="flex items-center justify-between px-4 py-2 text-gray-500 hover:text-purple-600 hover:bg-gray-50 rounded-lg transition">
+                                <span>My Maps</span>
+                                <span id="sidebar-map-count" class="text-xs text-purple-600 font-bold bg-purple-50 px-2 py-0.5 rounded-full">1</span>
+                            </a>
+                            <a href="my-moments.html" class="flex items-center justify-between px-4 py-2 text-gray-500 hover:text-purple-600 hover:bg-gray-50 rounded-lg transition">
+                                <span>My Moments</span>
+                                <span id="sidebar-moment-count" class="text-xs text-purple-600 font-bold bg-purple-50 px-2 py-0.5 rounded-full">0</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </nav>
+                <div class="mt-6 pt-4 border-t border-gray-100 space-y-2">
+                    <a href="trade.html" class="flex items-center justify-center space-x-2 px-4 py-2.5 bg-gray-50 text-gray-500 hover:text-purple-600 hover:bg-purple-50 rounded-xl transition font-medium text-sm">
+                        <span>&larr;</span>
+                        <span>Back to Market</span>
+                    </a>
+                    <button id="logout-btn" class="w-full flex items-center justify-center space-x-2 px-4 py-2.5 bg-purple-100 text-purple-700 hover:bg-purple-200 rounded-xl transition font-medium text-sm">
+                        <span>🚪</span>
+                        <span>Log Out</span>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <main class="flex-1 max-w-4xl">
+            <div class="bg-white rounded-2xl shadow-sm overflow-hidden min-h-[80vh]">
+                
+                <div id="profile-banner" class="h-48 bg-gradient-to-r from-purple-400 via-pink-300 to-yellow-300 relative cursor-pointer group" title="Click to change background">
+                    <input type="file" id="banner-input" accept="image/*" class="hidden">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition flex items-center justify-center pointer-events-none">
+                        <span class="text-white text-sm bg-black/30 px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition backdrop-blur-sm">Click to change background</span>
+                    </div>
+                    <button id="edit-profile-btn" class="absolute top-4 right-4 bg-black/20 text-white px-4 py-1.5 rounded-full text-sm backdrop-blur-sm hover:bg-black/30 transition z-10">
+                        Edit Profile
+                    </button>
+                </div>
+
+                <div class="px-6 pb-4 relative mt-[-40px]">
+                    <div class="flex justify-between items-end mb-3">
+                        <div id="profile-avatar" class="w-20 h-20 rounded-full border-4 border-white bg-gradient-to-br from-purple-400 to-pink-400 shadow-md flex items-center justify-center text-white font-bold text-3xl z-10 relative">
+                            A
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <div class="flex items-center gap-2 flex-wrap mb-1">
+                            <h2 id="profile-username" class="text-xl font-black text-gray-900">Azure User</h2>
+                            <span id="gender-icon" class="text-base hidden"></span>
+                            <span class="bg-yellow-100 text-yellow-700 text-[10px] px-2 py-0.5 rounded-full font-bold">Excellent Buyer Credit</span>
+                            <span class="bg-green-100 text-green-700 text-[10px] px-2 py-0.5 rounded-full font-bold">Excellent Seller Credit</span>
+                        </div>
+                        <p id="profile-bio" class="text-xs text-gray-400">No bio yet~</p>
+                        <p id="profile-email" class="text-xs text-gray-400 mt-1 hidden">📧 <span></span></p>
+                        <p id="profile-join-date" class="text-xs text-gray-400 mt-1">📅 Joined: <span></span></p>
+                    </div>
+
+                    <div class="flex items-center gap-6 text-sm mt-4 mb-2">
+                        <a href="#" id="followers-link" class="flex items-baseline gap-1 hover:text-purple-600 transition">
+                            <span id="profile-followers" class="font-black text-gray-900 text-lg">0</span>
+                            <span class="text-gray-500">Followers</span>
+                        </a>
+                        <a href="#" id="following-link" class="flex items-baseline gap-1 hover:text-purple-600 transition">
+                            <span id="profile-following" class="font-black text-gray-900 text-lg">0</span>
+                            <span class="text-gray-500">Following</span>
+                        </a>
+                        <a href="sales.html" class="flex items-baseline gap-1 hover:text-purple-600 transition">
+                            <span id="profile-sell" class="font-black text-gray-900 text-lg">0</span>
+                            <span class="text-gray-500">Sold</span>
+                        </a>
+                        <a href="purchases.html" class="flex items-baseline gap-1 hover:text-purple-600 transition">
+                            <span id="profile-buy" class="font-black text-gray-900 text-lg">0</span>
+                            <span class="text-gray-500">Bought</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-8 px-6 h-12 border-t border-b border-gray-100 sticky top-14 bg-white z-40">
+                    <div class="seller-tab relative h-full flex items-center cursor-pointer text-sm font-bold text-purple-600 transition-all" data-tab="items">
+                        <span>Items <span class="text-gray-400 font-normal ml-0.5" id="items-count">0</span></span>
+                        <div class="tab-bar absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 bg-purple-600 rounded-full transition-all duration-300 opacity-100 scale-100"></div>
+                    </div>
+                    <div class="seller-tab relative h-full flex items-center cursor-pointer text-sm text-gray-500 hover:text-purple-600 transition-all" data-tab="reviews">
+                        <span>Credit & Reviews <span class="text-gray-400 font-normal ml-0.5" id="reviews-count-tab">0</span></span>
+                        <div class="tab-bar absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 bg-purple-600 rounded-full transition-all duration-300 opacity-0 scale-0"></div>
+                    </div>
+                </div>
+
+                <div class="p-4 bg-gray-50/50 min-h-[50vh]">
+                    
+                    <div id="profile-grid" class="grid grid-cols-2 md:grid-cols-3 gap-4"></div>
+                    
+                    <div id="reviews-panel" class="hidden">
+                        
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="review_filter" value="all" class="peer hidden" checked>
+                                <div class="px-4 py-1.5 bg-white text-gray-600 border border-gray-200 rounded-full text-xs peer-checked:bg-purple-100 peer-checked:text-purple-700 peer-checked:border-purple-200 peer-checked:font-bold transition shadow-sm">
+                                    All <span id="count-all" class="ml-0.5 opacity-80"></span>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="review_filter" value="good" class="peer hidden">
+                                <div class="px-4 py-1.5 bg-white text-gray-600 border border-gray-200 rounded-full text-xs peer-checked:bg-purple-100 peer-checked:text-purple-700 peer-checked:border-purple-200 peer-checked:font-bold transition shadow-sm">
+                                    Positive <span id="count-good" class="ml-0.5 opacity-80"></span>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="review_filter" value="buyer" class="peer hidden">
+                                <div class="px-4 py-1.5 bg-white text-gray-600 border border-gray-200 rounded-full text-xs peer-checked:bg-purple-100 peer-checked:text-purple-700 peer-checked:border-purple-200 peer-checked:font-bold transition shadow-sm">
+                                    From Buyers <span id="count-buyer" class="ml-0.5 opacity-80"></span>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="review_filter" value="seller" class="peer hidden">
+                                <div class="px-4 py-1.5 bg-white text-gray-600 border border-gray-200 rounded-full text-xs peer-checked:bg-purple-100 peer-checked:text-purple-700 peer-checked:border-purple-200 peer-checked:font-bold transition shadow-sm">
+                                    From Sellers <span id="count-seller" class="ml-0.5 opacity-80"></span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div id="reviews-list" class="space-y-3"></div>
+                    </div>
+
+                </div>
+
+                
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ===== Edit Profile Modal ===== -->
+    <div id="edit-modal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center">
+        <div class="bg-white rounded-2xl w-full max-w-lg mx-4 overflow-hidden shadow-2xl max-h-[90vh] flex flex-col">
+            <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100 shrink-0">
+                <h2 class="text-lg font-black text-gray-900">Edit Profile</h2>
+                <button id="edit-close-btn" class="text-gray-400 hover:text-gray-600 text-2xl leading-none">&times;</button>
+            </div>
+            <form id="edit-profile-form" class="px-6 py-5 space-y-5 overflow-y-auto flex-1">
+                <div>
+                    <label class="block text-sm text-gray-600 mb-1.5">Nickname</label>
+                    <input type="text" name="username" placeholder="Enter nickname"
+                        class="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-purple-400 outline-none transition">
+                </div>
+
+                <div>
+                    <label class="block text-sm text-gray-600 mb-1.5">Avatar</label>
+                    <div class="flex items-center gap-4">
+                        <div id="edit-avatar-preview" class="w-16 h-16 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center text-white text-2xl font-bold shadow-md overflow-hidden">A</div>
+                        <label class="px-4 py-2 bg-purple-50 text-purple-600 rounded-lg text-sm font-medium cursor-pointer hover:bg-purple-100 transition">
+                            Change Avatar
+                            <input type="file" name="avatar" accept="image/*" class="hidden" id="edit-avatar-input">
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm text-gray-600 mb-1.5">Bio</label>
+                    <textarea name="bio" rows="3" placeholder="Tell us about yourself..."
+                        class="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-purple-400 outline-none resize-none transition"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-sm text-gray-600 mb-1.5">Email</label>
+                    <input type="email" name="email" placeholder="Enter email"
+                        class="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-purple-400 outline-none transition">
+                </div>
+
+                <div>
+                    <label class="block text-sm text-gray-600 mb-1.5">Gender</label>
+                    <div class="flex gap-3">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="gender" value="male" class="peer hidden">
+                            <div class="px-5 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm peer-checked:bg-purple-100 peer-checked:text-purple-700 peer-checked:border-purple-200 peer-checked:font-bold transition">Male</div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="gender" value="female" class="peer hidden">
+                            <div class="px-5 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm peer-checked:bg-purple-100 peer-checked:text-purple-700 peer-checked:border-purple-200 peer-checked:font-bold transition">Female</div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="gender" value="secret" class="peer hidden" checked>
+                            <div class="px-5 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm peer-checked:bg-purple-100 peer-checked:text-purple-700 peer-checked:border-purple-200 peer-checked:font-bold transition">Private</div>
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm text-gray-600 mb-1.5">Birthday</label>
+                    <input type="date" name="birthday"
+                        class="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-purple-400 outline-none transition">
+                </div>
+
+                <div>
+                    <label class="block text-sm text-gray-600 mb-1.5">Interests</label>
+                    <div id="interest-tags" class="flex flex-wrap gap-2 mb-3">
+                        <label class="cursor-pointer"><input type="checkbox" name="interest_tag" value="Photography" class="peer hidden"><div class="px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full text-xs peer-checked:bg-purple-100 peer-checked:text-purple-700 peer-checked:border-purple-200 peer-checked:font-bold transition">Photography</div></label>
+                        <label class="cursor-pointer"><input type="checkbox" name="interest_tag" value="Music" class="peer hidden"><div class="px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full text-xs peer-checked:bg-purple-100 peer-checked:text-purple-700 peer-checked:border-purple-200 peer-checked:font-bold transition">Music</div></label>
+                        <label class="cursor-pointer"><input type="checkbox" name="interest_tag" value="Programming" class="peer hidden"><div class="px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full text-xs peer-checked:bg-purple-100 peer-checked:text-purple-700 peer-checked:border-purple-200 peer-checked:font-bold transition">Programming</div></label>
+                        <label class="cursor-pointer"><input type="checkbox" name="interest_tag" value="Travel" class="peer hidden"><div class="px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full text-xs peer-checked:bg-purple-100 peer-checked:text-purple-700 peer-checked:border-purple-200 peer-checked:font-bold transition">Travel</div></label>
+                        <label class="cursor-pointer"><input type="checkbox" name="interest_tag" value="Plants" class="peer hidden"><div class="px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full text-xs peer-checked:bg-purple-100 peer-checked:text-purple-700 peer-checked:border-purple-200 peer-checked:font-bold transition">Plants</div></label>
+                        <label class="cursor-pointer"><input type="checkbox" name="interest_tag" value="Pets" class="peer hidden"><div class="px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full text-xs peer-checked:bg-purple-100 peer-checked:text-purple-700 peer-checked:border-purple-200 peer-checked:font-bold transition">Pets</div></label>
+                        <label class="cursor-pointer"><input type="checkbox" name="interest_tag" value="Food" class="peer hidden"><div class="px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full text-xs peer-checked:bg-purple-100 peer-checked:text-purple-700 peer-checked:border-purple-200 peer-checked:font-bold transition">Food</div></label>
+                        <label class="cursor-pointer"><input type="checkbox" name="interest_tag" value="Sports" class="peer hidden"><div class="px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full text-xs peer-checked:bg-purple-100 peer-checked:text-purple-700 peer-checked:border-purple-200 peer-checked:font-bold transition">Sports</div></label>
+                        <label class="cursor-pointer"><input type="checkbox" name="interest_tag" value="Reading" class="peer hidden"><div class="px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full text-xs peer-checked:bg-purple-100 peer-checked:text-purple-700 peer-checked:border-purple-200 peer-checked:font-bold transition">Reading</div></label>
+                        <label class="cursor-pointer"><input type="checkbox" name="interest_tag" value="Gaming" class="peer hidden"><div class="px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full text-xs peer-checked:bg-purple-100 peer-checked:text-purple-700 peer-checked:border-purple-200 peer-checked:font-bold transition">Gaming</div></label>
+                        <label class="cursor-pointer"><input type="checkbox" name="interest_tag" value="Crafts" class="peer hidden"><div class="px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full text-xs peer-checked:bg-purple-100 peer-checked:text-purple-700 peer-checked:border-purple-200 peer-checked:font-bold transition">Crafts</div></label>
+                        <label class="cursor-pointer"><input type="checkbox" name="interest_tag" value="TV Shows" class="peer hidden"><div class="px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full text-xs peer-checked:bg-purple-100 peer-checked:text-purple-700 peer-checked:border-purple-200 peer-checked:font-bold transition">TV Shows</div></label>
+                    </div>
+                    <div class="flex gap-2">
+                        <input type="text" id="custom-interest-input" placeholder="Custom interest, press Enter to add"
+                            class="flex-1 border border-gray-200 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-purple-400 outline-none transition">
+                        <button type="button" id="add-interest-btn" class="px-4 py-2 bg-purple-50 text-purple-600 rounded-lg text-sm font-medium hover:bg-purple-100 transition">Add</button>
+                    </div>
+                    <div id="custom-interests" class="flex flex-wrap gap-2 mt-2"></div>
+                </div>
+
+                <div class="pt-2 pb-1">
+                    <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 rounded-xl transition shadow-lg transform active:scale-[0.98]">
+                        Save
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Followers Modal -->
+    <div id="followers-modal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center">
+        <div class="bg-white rounded-2xl w-full max-w-lg mx-4 overflow-hidden shadow-2xl max-h-[90vh] flex flex-col">
+            <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100 shrink-0">
+                <h2 class="text-lg font-black text-gray-900">All Followers (<span id="followers-total">0</span>)</h2>
+                <button id="followers-close-btn" class="text-gray-400 hover:text-gray-600 text-2xl leading-none">&times;</button>
+            </div>
+            <div id="followers-list" class="px-6 py-4 overflow-y-auto flex-1 space-y-3"></div>
+        </div>
+    </div>
+
+    <!-- Following Modal -->
+    <div id="following-modal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center">
+        <div class="bg-white rounded-2xl w-full max-w-lg mx-4 overflow-hidden shadow-2xl max-h-[90vh] flex flex-col">
+            <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100 shrink-0">
+                <h2 class="text-lg font-black text-gray-900">All Following (<span id="following-total">0</span>)</h2>
+                <button id="following-close-btn" class="text-gray-400 hover:text-gray-600 text-2xl leading-none">&times;</button>
+            </div>
+            <div id="following-list" class="px-6 py-4 overflow-y-auto flex-1 space-y-3"></div>
+        </div>
+    </div>
+
+<script src="api-config.js"></script>
+<script>
+var API = window.API_BASE || '';
+var myItems = [
+    { title: 'Paper Airplane Origami Set - 10 Premium Designs (Free Shipping)', price: 280, wants: 11, emoji: '✈️', bg: 'from-sky-200 to-blue-300' },
+    { title: 'Instant Camera - Brand New Sealed (Free Shipping)', price: 1100, wants: 3, emoji: '📷', bg: 'from-amber-200 to-orange-300' },
+    { title: 'Malaysia Railway Travel Pass - 60 Min Route (Free Shipping)', price: 200, wants: 1, emoji: '🚂', bg: 'from-green-200 to-emerald-300' },
+    { title: 'Premium Perfume Collection - 60ml Bottles', price: 358, wants: 0, emoji: '🧴', bg: 'from-pink-200 to-rose-300' },
+    { title: 'Apple Original Earphones - 50% Off Retail + Phone Case', price: 230, wants: 0, emoji: '🎧', bg: 'from-violet-200 to-purple-300' },
+    { title: 'Mechanical Keyboard Cherry Red - 90% New with RGB', price: 180, wants: 5, emoji: '⌨️', bg: 'from-red-200 to-rose-300' }
+];
+
+var demoReviews = [
+    { name: 'HappyStudent', avatar: 'H', text: 'Fast shipping, item matches the description perfectly. Great communication! The seller packed it really well. Will buy again!', time: '2026-04-08 14:30', rating: 'good', role: 'buyer' },
+    { name: 'StudyShop', avatar: 'S', text: 'Well packaged, no damage. Very satisfied.', time: '2026-04-06 09:15', rating: 'good', role: 'buyer' },
+    { name: 'ChillSeller', avatar: 'C', text: 'Nice buyer, showed up on time for meetup.', time: '2026-04-04 18:45', rating: 'good', role: 'seller' },
+    { name: 'PickyFish', avatar: 'P', text: 'Minor flaw, but considering the second-hand price it is acceptable overall.', time: '2026-03-28 11:20', rating: 'medium', role: 'buyer' }
+];
+
+var reviews = [];
+
+var grid = document.getElementById('profile-grid');
+var reviewsPanel = document.getElementById('reviews-panel');
+var reviewsList = document.getElementById('reviews-list');
+var tabs = document.querySelectorAll('.seller-tab');
+
+// Load reviews from API, fallback to demo data
+async function loadReviews(filter) {
+    try {
+        var response = await fetch(API + '/api/users/me', { credentials: API ? 'omit' : 'include' });
+        if (!response.ok) { useDemoReviews(filter); return; }
+        var user = await response.json();
+        var userId = user.userId;
+
+        var url = '/api/market/users/' + userId + '/reviews';
+        if (filter && filter !== 'all') url += '?filter=' + filter;
+
+        var reviewRes = await fetch(url, { credentials: API ? 'omit' : 'include' });
+        if (reviewRes.ok) {
+            var data = await reviewRes.json();
+            var apiReviews = (data.reviews || []).map(function(r) {
+                return {
+                    name: r.reviewerName || 'Anonymous',
+                    avatar: r.reviewerAvatar ? '<img src="/resources/' + r.reviewerAvatar + '" class="w-12 h-12 rounded-full object-cover">' : (r.reviewerName || 'A').charAt(0).toUpperCase(),
+                    text: r.content || '',
+                    time: r.createdAt ? new Date(r.createdAt).toLocaleString('en-US') : '',
+                    rating: r.rating || 'good',
+                    role: r.role || 'buyer'
+                };
+            });
+            if (apiReviews.length > 0) {
+                reviews = apiReviews;
+                document.getElementById('count-all').textContent = data.countAll || 0;
+                document.getElementById('count-good').textContent = data.countGood || 0;
+                document.getElementById('count-buyer').textContent = data.countBuyer || 0;
+                document.getElementById('count-seller').textContent = data.countSeller || 0;
+                document.getElementById('reviews-count-tab').textContent = data.countAll || 0;
+                renderReviews(reviews);
+            } else {
+                useDemoReviews(filter);
+            }
+        } else {
+            useDemoReviews(filter);
+        }
+    } catch (err) {
+        console.error('Failed to load reviews:', err);
+        useDemoReviews(filter);
+    }
+}
+
+function useDemoReviews(filter) {
+    var filtered = demoReviews;
+    if (filter && filter !== 'all') {
+        if (filter === 'good' || filter === 'medium' || filter === 'bad') {
+            filtered = demoReviews.filter(function(r) { return r.rating === filter; });
+        } else {
+            filtered = demoReviews.filter(function(r) { return r.role === filter; });
+        }
+    }
+    reviews = filtered;
+    var countAll = demoReviews.length;
+    var countGood = demoReviews.filter(function(r) { return r.rating === 'good'; }).length;
+    var countBuyer = demoReviews.filter(function(r) { return r.role === 'buyer'; }).length;
+    var countSeller = demoReviews.filter(function(r) { return r.role === 'seller'; }).length;
+    document.getElementById('count-all').textContent = countAll;
+    document.getElementById('count-good').textContent = countGood;
+    document.getElementById('count-buyer').textContent = countBuyer;
+    document.getElementById('count-seller').textContent = countSeller;
+    document.getElementById('reviews-count-tab').textContent = countAll;
+    renderReviews(filtered);
+}
+
+function renderItems() {
+    grid.innerHTML = '';
+    myItems.forEach(function(item) {
+        var card = document.createElement('div');
+        card.className = 'bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition cursor-pointer';
+
+        var imageContent;
+        if (item.images && item.images.length > 0) {
+            imageContent = '<img src="' + item.images[0] + '" class="w-full h-full object-cover" alt="' + item.title + '">';
+        } else {
+            imageContent = '<div class="h-40 bg-gradient-to-br ' + item.bg + ' flex items-center justify-center text-5xl relative">' + item.emoji + '</div>';
+        }
+
+        card.innerHTML =
+            '<div class="h-40 relative overflow-hidden">' + imageContent + '</div>' +
+            '<div class="p-3">' +
+                '<p class="text-sm text-gray-800 leading-snug line-clamp-2">' + item.title + '</p>' +
+                '<div class="flex items-center justify-between mt-2">' +
+                    '<span class="text-purple-600 font-black">$' + item.price + '</span>' +
+                    '<span class="text-xs text-gray-400">' + (item.wants || 0) + ' wants</span>' +
+                '</div>' +
+            '</div>';
+
+        card.addEventListener('click', function() {
+            if (item.id) {
+                window.location.href = 'product.html?id=' + item.id;
+            } else {
+                window.location.href = 'product.html';
+            }
+        });
+
+        grid.appendChild(card);
+    });
+}
+
+function updateFilterCounts() {
+    var countGood = reviews.filter(r => r.rating === 'good').length;
+    var countBuyer = reviews.filter(r => r.role === 'buyer').length;
+    var countSeller = reviews.filter(r => r.role === 'seller').length;
+
+    document.getElementById('count-all').textContent = reviews.length;
+    document.getElementById('count-good').textContent = countGood;
+    document.getElementById('count-buyer').textContent = countBuyer;
+    document.getElementById('count-seller').textContent = countSeller;
+    document.getElementById('reviews-count-tab').textContent = reviews.length;
+}
+
+function renderReviews(dataToRender) {
+    reviewsList.innerHTML = '';
+
+    if (dataToRender.length === 0) {
+        reviewsList.innerHTML = '<div class="text-center py-8 text-gray-400 text-sm">No reviews matching this filter</div>';
+        return;
+    }
+
+    dataToRender.forEach(function(r) {
+        var ratingTag = '';
+        if (r.rating === 'good') {
+            ratingTag = '<span class="inline-block bg-orange-50 text-orange-500 px-2 py-1 rounded text-xs font-medium">👍 Positive</span>';
+        } else if (r.rating === 'medium') {
+            ratingTag = '<span class="inline-block bg-blue-50 text-blue-500 px-2 py-1 rounded text-xs font-medium">😐 Neutral</span>';
+        } else if (r.rating === 'bad') {
+            ratingTag = '<span class="inline-block bg-red-50 text-red-500 px-2 py-1 rounded text-xs font-medium">👎 Negative</span>';
+        }
+
+        var userType = r.role === 'buyer' ? 'Buyer' : 'Seller';
+
+        var div = document.createElement('div');
+        div.className = 'bg-white rounded-xl p-4 shadow-sm border border-gray-100';
+
+        div.innerHTML =
+            '<div class="flex items-start gap-3 mb-3">' +
+                '<div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center text-lg text-purple-600 font-bold flex-shrink-0">' + r.avatar + '</div>' +
+                '<div class="flex-1">' +
+                    '<div class="flex items-center gap-2 mb-1">' +
+                        '<span class="text-sm font-bold text-gray-800">' + r.name + '</span>' +
+                        '<span class="text-xs text-blue-500 bg-blue-50 px-2 py-0.5 rounded">' + userType + '</span>' +
+                    '</div>' +
+                    '<div class="mb-2">' + ratingTag + '</div>' +
+                    '<p class="text-sm text-gray-600 leading-relaxed">' + r.text + '</p>' +
+                    '<div class="text-xs text-gray-400 mt-2">' + r.time + '</div>' +
+                '</div>' +
+            '</div>';
+
+        reviewsList.appendChild(div);
+    });
+}
+
+// Filter logic
+var filterRadios = document.querySelectorAll('input[name="review_filter"]');
+filterRadios.forEach(function(radio) {
+    radio.addEventListener('change', function(e) {
+        loadReviews(e.target.value);
+    });
+});
+
+// Tab switch logic
+tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+        tabs.forEach(function(t) {
+            t.classList.remove('font-bold', 'text-purple-600');
+            t.classList.add('text-gray-500');
+            var bar = t.querySelector('.tab-bar');
+            if (bar) {
+                bar.classList.remove('opacity-100', 'scale-100');
+                bar.classList.add('opacity-0', 'scale-0');
+            }
+        });
+        
+        tab.classList.remove('text-gray-500');
+        tab.classList.add('font-bold', 'text-purple-600');
+        var activeBar = tab.querySelector('.tab-bar');
+        if (activeBar) {
+            activeBar.classList.remove('opacity-0', 'scale-0');
+            activeBar.classList.add('opacity-100', 'scale-100');
+        }
+
+        if (tab.dataset.tab === 'items') {
+            grid.classList.remove('hidden');
+            reviewsPanel.classList.add('hidden');
+        } else {
+            grid.classList.add('hidden');
+            reviewsPanel.classList.remove('hidden');
+        }
+    });
+});
+
+// Sidebar menu toggle
+var toggle = document.getElementById('trade-toggle');
+var sub = document.getElementById('trade-sub');
+var arrow = document.getElementById('trade-arrow');
+if(toggle && sub && arrow) {
+    toggle.addEventListener('click', function() {
+        var hidden = sub.style.display === 'none';
+        sub.style.display = hidden ? '' : 'none';
+        arrow.classList.toggle('rotate-180', hidden);
+    });
+}
+
+// Contributions toggle
+var contributionToggle = document.getElementById('contribution-toggle');
+var contributionSub = document.getElementById('contribution-sub');
+var contributionArrow = document.getElementById('contribution-arrow');
+if(contributionToggle && contributionSub && contributionArrow) {
+    contributionToggle.addEventListener('click', function() {
+        var hidden = contributionSub.style.display === 'none';
+        contributionSub.style.display = hidden ? '' : 'none';
+        contributionArrow.classList.toggle('rotate-180', hidden);
+    });
+}
+
+
+// Initialize
+renderItems();
+loadReviews('all');
+
+// Followers list data
+var followers = [
+    { name: 'PQQDJT', avatar: 'P', fans: 14400 },
+    { name: 'CrispyWings', avatar: 'C', fans: 1580 },
+    { name: 'znziaoedsbakise87172', avatar: 'Z', fans: 1065 },
+    { name: 'NoFish_0527', avatar: 'N', fans: 406 },
+    { name: 'Ttthua0318', avatar: 'T', fans: 342 }
+];
+
+// Following list data
+var followingList = [
+    { name: 'DormShop', avatar: 'D', fans: 2300 },
+    { name: 'CampusDigital', avatar: 'C', fans: 890 },
+    { name: 'StudyShop', avatar: 'S', fans: 560 }
+];
+
+// Followers modal
+var followersModal = document.getElementById('followers-modal');
+var followersLink = document.getElementById('followers-link');
+var followersCloseBtn = document.getElementById('followers-close-btn');
+var followersList = document.getElementById('followers-list');
+
+function renderUserList(container, data) {
+    container.innerHTML = '';
+    data.forEach(function(f) {
+        var div = document.createElement('div');
+        div.className = 'flex items-center gap-3 cursor-pointer hover:bg-gray-50 rounded-lg p-2 -mx-2 transition';
+        div.innerHTML =
+            '<div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-sm text-purple-600 font-bold flex-shrink-0">' + f.avatar + '</div>' +
+            '<div class="flex flex-col">' +
+                '<span class="text-sm font-bold text-gray-800">' + f.name + '</span>' +
+                '<span class="text-[11px] text-gray-400">Followers: ' + f.fans + '</span>' +
+            '</div>';
+        div.addEventListener('click', function() {
+            window.location.href = 'seller-profile.html?seller=' + encodeURIComponent(f.name);
+        });
+        container.appendChild(div);
+    });
+}
+
+if (followersLink) {
+    followersLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        followersModal.classList.remove('hidden');
+        followersModal.classList.add('flex');
+        document.getElementById('followers-total').textContent = followers.length;
+        renderUserList(followersList, followers);
+    });
+}
+
+if (followersCloseBtn) {
+    followersCloseBtn.addEventListener('click', function() {
+        followersModal.classList.add('hidden');
+        followersModal.classList.remove('flex');
+    });
+}
+
+if (followersModal) {
+    followersModal.addEventListener('click', function(e) {
+        if (e.target === followersModal) {
+            followersModal.classList.add('hidden');
+            followersModal.classList.remove('flex');
+        }
+    });
+}
+
+// Following modal
+var followingModal = document.getElementById('following-modal');
+var followingLink = document.getElementById('following-link');
+var followingCloseBtn = document.getElementById('following-close-btn');
+var followingListEl = document.getElementById('following-list');
+
+if (followingLink) {
+    followingLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        followingModal.classList.remove('hidden');
+        followingModal.classList.add('flex');
+        document.getElementById('following-total').textContent = followingList.length;
+        renderUserList(followingListEl, followingList);
+    });
+}
+
+if (followingCloseBtn) {
+    followingCloseBtn.addEventListener('click', function() {
+        followingModal.classList.add('hidden');
+        followingModal.classList.remove('flex');
+    });
+}
+
+if (followingModal) {
+    followingModal.addEventListener('click', function(e) {
+        if (e.target === followingModal) {
+            followingModal.classList.add('hidden');
+            followingModal.classList.remove('flex');
+        }
+    });
+}
+
+// localStorage persistence + API calls
+function loadProfileFromStorage() {
+    var saved = localStorage.getItem('userProfile');
+    if (!saved) return null;
+    try { return JSON.parse(saved); } catch (e) { return null; }
+}
+
+function saveProfileToStorage(data) {
+    var existing = loadProfileFromStorage() || {};
+    Object.keys(data).forEach(function (k) { existing[k] = data[k]; });
+    localStorage.setItem('userProfile', JSON.stringify(existing));
+}
+
+function applyProfileToPage(data) {
+    var profileUsername = document.getElementById('profile-username');
+    var profileAvatar = document.getElementById('profile-avatar');
+    var profileBio = document.getElementById('profile-bio');
+    var profileFollowers = document.getElementById('profile-followers');
+    var profileFollowing = document.getElementById('profile-following');
+    var profilePosts = document.getElementById('profile-posts');
+    var sidebarFav = document.getElementById('sidebar-fav-count');
+
+    if (profileUsername && data.username) profileUsername.textContent = data.username;
+
+    // Display gender icon
+    var genderIcon = document.getElementById('gender-icon');
+    if (genderIcon && data.gender) {
+        if (data.gender === 'MALE') {
+            genderIcon.textContent = '♂';
+            genderIcon.style.color = '#3b82f6';
+            genderIcon.classList.remove('hidden');
+        } else if (data.gender === 'FEMALE') {
+            genderIcon.textContent = '♀';
+            genderIcon.style.color = '#ec4899';
+            genderIcon.classList.remove('hidden');
+        } else {
+            genderIcon.classList.add('hidden');
+        }
+    }
+
+    if (profileAvatar) {
+        // Unified avatar display logic
+        const defaultClasses = 'w-20 h-20 rounded-full border-4 border-white bg-gradient-to-br from-purple-400 to-pink-400 shadow-md flex items-center justify-center text-white font-bold text-3xl z-10 relative';
+        const imgClasses = 'w-20 h-20 rounded-full border-4 border-white shadow-md overflow-hidden z-10 relative';
+
+        if (data.avatar) {
+            const avatarUrl = data.avatar.startsWith('http') ? data.avatar : `/resources/${data.avatar}`;
+            profileAvatar.className = imgClasses;
+            profileAvatar.innerHTML = `<img src="${avatarUrl}" class="w-full h-full object-cover" alt="${data.username || ''}" onerror="this.parentElement.innerHTML='${(data.username || 'A').charAt(0).toUpperCase()}'; this.parentElement.className='${defaultClasses}'">`;
+        } else {
+            profileAvatar.className = defaultClasses;
+            profileAvatar.textContent = (data.username || 'A').charAt(0).toUpperCase();
+        }
+    }
+
+    if (profileBio) profileBio.textContent = data.bio || 'This user hasn\'t written a bio yet.';
+
+    var profileEmail = document.getElementById('profile-email');
+    if (profileEmail && data.email) {
+        profileEmail.querySelector('span').textContent = data.email;
+        profileEmail.classList.remove('hidden');
+    }
+
+    // Display join date
+    var profileJoinDate = document.getElementById('profile-join-date');
+    if (profileJoinDate && data.createdAt) {
+        var joinDate = new Date(data.createdAt);
+        var formattedDate = (joinDate.getMonth() + 1) + '/' + joinDate.getDate() + '/' + joinDate.getFullYear();
+        profileJoinDate.querySelector('span').textContent = formattedDate;
+    } else if (profileJoinDate && data.joinedAt) {
+        var joinDate = new Date(data.joinedAt);
+        var formattedDate = (joinDate.getMonth() + 1) + '/' + joinDate.getDate() + '/' + joinDate.getFullYear();
+        profileJoinDate.querySelector('span').textContent = formattedDate;
+    }
+
+    if (profileFollowers) profileFollowers.textContent = data.followers || 0;
+    if (profileFollowing) profileFollowing.textContent = data.followings || data.following || 0;
+
+    // Count items from localStorage
+    var publishedItems = JSON.parse(localStorage.getItem('publishedItems') || '[]');
+    var soldItems = JSON.parse(localStorage.getItem('soldItems') || '[]');
+    var boughtItems = JSON.parse(localStorage.getItem('boughtItems') || '[]');
+    var favoriteItems = JSON.parse(localStorage.getItem('favoriteItems') || '[]');
+
+    var postsCount = data.posts || publishedItems.length;
+    var sellCount = data.sell || soldItems.length;
+    var buyCount = data.buy || boughtItems.length;
+    var favCount = data.favorites || favoriteItems.length;
+
+    if (profilePosts) profilePosts.textContent = postsCount;
+    if (document.getElementById('items-count')) document.getElementById('items-count').textContent = postsCount;
+
+    var profileSell = document.getElementById('profile-sell');
+    var profileBuy = document.getElementById('profile-buy');
+    if (profileSell) profileSell.textContent = sellCount;
+    if (profileBuy) profileBuy.textContent = buyCount;
+
+    // Sidebar badges
+    var sidebarPublish = document.getElementById('sidebar-publish-count');
+    var sidebarSell = document.getElementById('sidebar-sell-count');
+    var sidebarBuy = document.getElementById('sidebar-buy-count');
+
+    if (sidebarPublish) sidebarPublish.textContent = postsCount;
+    if (sidebarSell) sidebarSell.textContent = sellCount;
+    if (sidebarBuy) sidebarBuy.textContent = buyCount;
+
+    var panelSell = document.getElementById('panel-sell-count');
+    if (panelSell) panelSell.textContent = sellCount;
+
+    if (sidebarFav) {
+        sidebarFav.textContent = favCount;
+    }
+}
+
+// Load from localStorage first (instant display)
+var cachedProfile = loadProfileFromStorage();
+if (cachedProfile) applyProfileToPage(cachedProfile);
+
+// Then fetch latest data from API
+(async function () {
+    try {
+        var response = await fetch(API + '/api/users/me', {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: API ? 'omit' : 'include'
+        });
+
+        if (response.ok) {
+            var user = await response.json();
+            saveProfileToStorage(user);
+            applyProfileToPage(user);
+
+            // Load user's published items
+            try {
+                var itemsRes = await fetch(API + '/api/market/users/me/items', { credentials: API ? 'omit' : 'include' });
+                if (itemsRes.ok) {
+                    var items = await itemsRes.json();
+                    if (items && items.length > 0) {
+                        myItems = items.map(function(item) {
+                            return {
+                                id: item.itemId,
+                                title: item.title,
+                                price: item.price,
+                                wants: item.wants || 0,
+                                emoji: '📦',
+                                bg: 'from-purple-200 to-pink-300',
+                                images: item.images || []
+                            };
+                        });
+                        document.getElementById('items-count').textContent = items.length;
+                        renderItems();
+                    }
+                }
+            } catch (e) {
+                console.error('Failed to load items:', e);
+            }
+        } else if (response.status === 401) {
+            window.location.href = '/login?redirect=/azure_trade/trade';
+        }
+    } catch (err) {
+        console.error('Failed to load user info:', err);
+    }
+})();
+
+// ========== Logout ==========
+var logoutBtn = document.getElementById('logout-btn');
+if (logoutBtn) {
+    logoutBtn.addEventListener('click', async function () {
+        try {
+            await fetch(API + '/api/auth/logout', {
+                method: 'POST',
+                credentials: API ? 'omit' : 'include'
+            });
+        } catch (e) {}
+        window.location.href = '/login?redirect=/azure_trade/trade';
+    });
+}
+
+// ========== Banner Change ==========
+var banner = document.getElementById('profile-banner');
+var bannerInput = document.getElementById('banner-input');
+
+// Load saved banner
+var savedBanner = localStorage.getItem('profileBanner');
+if (savedBanner && banner) {
+    banner.style.backgroundImage = 'url(' + savedBanner + ')';
+    banner.style.backgroundSize = 'cover';
+    banner.style.backgroundPosition = 'center';
+    banner.className = banner.className.replace(/bg-gradient-to-r\s+from-\S+\s+via-\S+\s+to-\S+/, '');
+}
+
+if (banner && bannerInput) {
+    banner.addEventListener('click', function (e) {
+        if (e.target.closest('#edit-profile-btn')) return;
+        bannerInput.click();
+    });
+
+    bannerInput.addEventListener('change', function () {
+        var file = bannerInput.files[0];
+        if (!file) return;
+        var reader = new FileReader();
+        reader.onload = function (ev) {
+            var dataUrl = ev.target.result;
+            banner.style.backgroundImage = 'url(' + dataUrl + ')';
+            banner.style.backgroundSize = 'cover';
+            banner.style.backgroundPosition = 'center';
+            banner.className = banner.className.replace(/bg-gradient-to-r\s+from-\S+\s+via-\S+\s+to-\S+/, '');
+            localStorage.setItem('profileBanner', dataUrl);
+        };
+        reader.readAsDataURL(file);
+    });
+}
+
+// ========== Edit Profile Modal ==========
+var editModal = document.getElementById('edit-modal');
+var editBtn = document.getElementById('edit-profile-btn');
+var editCloseBtn = document.getElementById('edit-close-btn');
+var editForm = document.getElementById('edit-profile-form');
+var editAvatarInput = document.getElementById('edit-avatar-input');
+var editAvatarPreview = document.getElementById('edit-avatar-preview');
+var customInterests = [];
+
+function openEditModal() {
+    var usernameEl = document.getElementById('profile-username');
+    var bioEl = document.getElementById('profile-bio');
+    if (usernameEl) editForm.username.value = usernameEl.textContent;
+    if (bioEl) editForm.bio.value = bioEl.textContent === 'This user hasn\'t written a bio yet.' ? '' : bioEl.textContent;
+
+    // Refill email, gender, birthday, interests from localStorage
+    var saved = loadProfileFromStorage() || {};
+    if (saved.email) editForm.email.value = saved.email;
+    if (saved.gender) {
+        var genderRadio = editForm.querySelector('input[name="gender"][value="' + saved.gender + '"]');
+        if (genderRadio) genderRadio.checked = true;
+    }
+    if (saved.birthday) editForm.birthday.value = saved.birthday;
+    if (saved.interests) {
+        var interests = saved.interests;
+        var presetTags = document.querySelectorAll('input[name="interest_tag"]');
+        presetTags.forEach(function(cb) { cb.checked = interests.indexOf(cb.value) !== -1; });
+        customInterests = [];
+        interests.forEach(function(tag) {
+            var isPreset = false;
+            presetTags.forEach(function(cb) { if (cb.value === tag) isPreset = true; });
+            if (!isPreset && tag.trim()) customInterests.push(tag.trim());
+        });
+        renderCustomInterests();
+    }
+
+    var avatarEl = document.getElementById('profile-avatar');
+    if (avatarEl) {
+        var img = avatarEl.querySelector('img');
+        if (img) {
+            editAvatarPreview.innerHTML = '<img src="' + img.src + '" class="w-16 h-16 rounded-full object-cover">';
+        } else {
+            editAvatarPreview.textContent = avatarEl.textContent;
+        }
+    }
+
+    editModal.classList.remove('hidden');
+    editModal.classList.add('flex');
+}
+
+function closeEditModal() {
+    editModal.classList.add('hidden');
+    editModal.classList.remove('flex');
+}
+
+if (editBtn) editBtn.addEventListener('click', openEditModal);
+if (editCloseBtn) editCloseBtn.addEventListener('click', closeEditModal);
+editModal.addEventListener('click', function (e) {
+    if (e.target === editModal) closeEditModal();
+});
+
+// Avatar preview
+if (editAvatarInput) {
+    editAvatarInput.addEventListener('change', function () {
+        var file = editAvatarInput.files[0];
+        if (!file) return;
+        var reader = new FileReader();
+        reader.onload = function (ev) {
+            editAvatarPreview.innerHTML = '<img src="' + ev.target.result + '" class="w-16 h-16 rounded-full object-cover">';
+        };
+        reader.readAsDataURL(file);
+    });
+}
+
+// ========== Custom Interest Tags ==========
+var customInterestInput = document.getElementById('custom-interest-input');
+var addInterestBtn = document.getElementById('add-interest-btn');
+var customInterestsContainer = document.getElementById('custom-interests');
+
+function addCustomInterest(text) {
+    text = text.trim();
+    if (!text || customInterests.indexOf(text) !== -1) return;
+    customInterests.push(text);
+    renderCustomInterests();
+}
+
+function renderCustomInterests() {
+    customInterestsContainer.innerHTML = '';
+    customInterests.forEach(function (tag, idx) {
+        var span = document.createElement('span');
+        span.className = 'inline-flex items-center gap-1 px-3 py-1.5 bg-purple-100 text-purple-700 rounded-full text-xs font-bold';
+        span.innerHTML = tag + '<button type="button" class="ml-1 text-purple-400 hover:text-purple-700 text-sm leading-none">&times;</button>';
+        span.querySelector('button').addEventListener('click', function () {
+            customInterests.splice(idx, 1);
+            renderCustomInterests();
+        });
+        customInterestsContainer.appendChild(span);
+    });
+}
+
+if (addInterestBtn) {
+    addInterestBtn.addEventListener('click', function () {
+        addCustomInterest(customInterestInput.value);
+        customInterestInput.value = '';
+    });
+}
+if (customInterestInput) {
+    customInterestInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            addCustomInterest(customInterestInput.value);
+            customInterestInput.value = '';
+        }
+    });
+}
+
+// ========== Save Profile ==========
+editForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const submitBtn = editForm.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.textContent;
+    
+    // Disable button and show loading state
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Saving...';
+    submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+
+    try {
+        var formData = new FormData(editForm);
+        var username = formData.get('username') || '';
+        var bio = formData.get('bio') || '';
+        var email = formData.get('email') || '';
+        var gender = formData.get('gender') || 'secret';
+        var birthday = formData.get('birthday') || '';
+
+        // Collect interests: preset tags + custom
+        var selectedTags = [];
+        document.querySelectorAll('input[name="interest_tag"]:checked').forEach(function (cb) {
+            selectedTags.push(cb.value);
+        });
+        var allInterests = selectedTags.concat(customInterests).join(',');
+
+        // 1. Avatar: upload new file if selected
+        var avatarFile = editAvatarInput.files[0];
+        var avatarUuid = null;
+        
+        if (avatarFile) {
+            const imageData = new FormData();
+            imageData.append('files', avatarFile);
+            
+            const uploadRes = await fetch(API + '/api/v1/images/upload', {
+                method: 'POST',
+                body: imageData
+            });
+
+            if (!uploadRes.ok) {
+                throw new Error('Avatar upload failed, please try again');
+            }
+            const uuids = await uploadRes.json();
+            avatarUuid = uuids[0];
+        }
+
+        // 2. Build data and send PUT request
+        const updateData = {
+            username: username,
+            bio: bio,
+            email: email,
+            gender: gender,
+            birthday: birthday,
+            interests: allInterests
+        };
+        if (avatarUuid) {
+            updateData.avatar = avatarUuid;
+        }
+
+        const response = await fetch(API + '/api/users/me', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: API ? 'omit' : 'include',
+            body: JSON.stringify(updateData)
+        });
+
+        if (response.ok) {
+            const updatedUser = await response.json();
+            saveProfileToStorage(updatedUser);
+            applyProfileToPage(updatedUser);
+            window.notify.show('Profile updated successfully!', 'success');
+            closeEditModal();
+        } else if (response.status === 422) {
+            const error = await response.json();
+            if (error.code === 'DUPLICATE_FIELD') {
+                const input = editForm.querySelector(`input[name="${error.field}"]`);
+                if (input && window.notify.showInputError) {
+                    window.notify.showInputError(input, error.message);
+                } else {
+                    window.notify.show(`${error.field} ${error.message}`, 'error');
+                }
+            } else {
+                window.notify.show(error.message || 'Update failed', 'error');
+            }
+        } else {
+            const error = await response.json().catch(() => ({ message: 'Update failed' }));
+            window.notify.show(error.message || 'Update failed', 'error');
+        }
+
+    } catch (err) {
+        console.error('Failed to save profile:', err);
+        window.notify.show(err.message || 'Failed to save profile', 'error');
+    } finally {
+        // Restore button state
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalBtnText;
+        submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+    }
+});
+</script>
+
+</body>
+</html>

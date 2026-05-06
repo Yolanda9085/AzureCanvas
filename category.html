@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories - AzureTrade</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { brand: '#7c3aed' } } }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+    <!-- ===== Top Navigation ===== -->
+    <header class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
+            <div class="flex items-center space-x-1 shrink-0">
+                <div class="bg-purple-600 text-white text-2xl font-black px-3 py-1 rounded-lg">Trade</div>
+                <span class="text-purple-700 text-xl font-bold tracking-wide">AzureTrade</span>
+            </div>
+            <div class="flex-1 max-w-xl mx-8">
+                <div class="flex">
+                    <input id="search-input" type="text" placeholder="Search campus second-hand items..."
+                           class="flex-1 border-2 border-purple-400 rounded-l-full px-5 py-2 text-sm focus:outline-none focus:border-purple-600">
+                    <button class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-r-full text-sm font-semibold transition">
+                        🔍 Search
+                    </button>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4 shrink-0">
+                <a href="trade.html" class="text-sm text-gray-500 hover:text-purple-600">Back to Market</a>
+                <span class="text-gray-300">|</span>
+                <a href="../index.html" class="text-sm text-gray-500 hover:text-purple-600">Back to Home</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== Notification Banner ===== -->
+    <div class="bg-purple-50 border-b border-purple-100">
+        <div class="max-w-7xl mx-auto px-4 py-1.5 text-xs text-purple-700 flex items-center space-x-2">
+            <span class="bg-purple-600 text-white px-1.5 py-0.5 rounded text-[10px] font-bold">Notice</span>
+            <span>Campus second-hand trading has been upgraded! Escrow transactions supported for safer buying and selling.</span>
+        </div>
+    </div>
+<!-- CATEGORY_BODY -->
+
+    <!-- ===== Category Title ===== -->
+    <main class="max-w-7xl mx-auto px-4 py-5">
+        <div class="bg-white rounded-xl p-5 shadow-sm mb-5">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 id="cat-title" class="text-xl font-black text-gray-800">Categories</h1>
+                    <p id="cat-desc" class="text-sm text-gray-400 mt-1">Great deals at low prices</p>
+                </div>
+                <span id="cat-count" class="text-sm text-gray-400"></span>
+            </div>
+        </div>
+
+        <!-- ===== Product List ===== -->
+        <div id="product-grid" class="grid grid-cols-4 gap-4">
+        </div>
+    </main>
+
+    <script src="../js/app/category.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="../js/effects/mouse-ripple.js"></script>
+</body>
+
+</html>

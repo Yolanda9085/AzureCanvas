@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages - AzureTrade</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .chat-item.active { background: #f3f0ff; border-left: 3px solid #7c3aed; }
+        .chat-item { border-left: 3px solid transparent; cursor: pointer; transition: background 0.15s; }
+        .chat-item:hover { background: #f9fafb; }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen text-gray-800">
+
+    <div class="h-screen flex flex-col">
+        <!-- Top bar -->
+        <nav class="bg-white shadow-sm h-14 flex items-center justify-between px-6 flex-shrink-0">
+            <div class="flex items-center space-x-2 text-purple-600 font-black text-xl">
+                <span>Trade</span><span class="text-purple-700">AzureTrade</span>
+            </div>
+            <div class="flex items-center gap-4 text-sm">
+                <a href="trade.html" class="text-gray-500 hover:text-purple-600 transition">Back to Market</a>
+            </div>
+        </nav>
+
+        <div class="flex flex-col md:flex-row flex-1 overflow-hidden">
+            <!-- Left: Conversation list -->
+            <div class="w-full md:w-80 max-h-[35vh] md:max-h-none bg-white border-r border-gray-200 flex flex-col flex-shrink-0">
+                <div class="px-4 py-3 border-b border-gray-100">
+                    <h2 class="font-black text-lg">Messages</h2>
+                </div>
+                <div id="chat-list" class="flex-1 overflow-y-auto hide-scrollbar"></div>
+            </div>
+
+            <!-- Right: Chat area -->
+            <div class="flex-1 flex flex-col bg-gray-50">
+                <div class="bg-white px-6 py-3 border-b border-gray-200 flex-shrink-0">
+                    <span class="font-bold text-gray-800" id="chat-name">Select a conversation</span>
+                </div>
+                <div class="flex-1 overflow-y-auto p-6 hide-scrollbar" id="chat-messages">
+                    <div class="flex flex-col items-center justify-center h-full text-gray-300">
+                        <span class="text-5xl mb-3">💬</span>
+                        <p class="text-sm">Select a conversation on the left to start chatting</p>
+                    </div>
+                </div>
+                <div class="bg-white border-t border-gray-200 px-4 py-3 flex-shrink-0">
+                    <div class="flex items-center gap-2 mb-2 text-gray-400 text-xs">
+                        <label class="cursor-pointer hover:text-purple-600">
+                            <span>📎 File</span>
+                            <input type="file" id="file-input" class="hidden" accept="image/*">
+                        </label>
+                        <span class="cursor-pointer hover:text-purple-600 relative" id="emoji-btn">😊 Emoji</span>
+                    </div>
+                    <div id="emoji-panel" style="display:none;position:absolute;bottom:60px;left:20px;background:white;border:1px solid #e5e7eb;border-radius:12px;padding:10px;z-index:50;width:300px;grid-template-columns:repeat(8,1fr);gap:4px;">
+                        <span style="cursor:pointer;text-align:center;font-size:18px;">😀</span><span style="cursor:pointer;text-align:center;font-size:18px;">😂</span><span style="cursor:pointer;text-align:center;font-size:18px;">🤣</span><span style="cursor:pointer;text-align:center;font-size:18px;">😍</span><span style="cursor:pointer;text-align:center;font-size:18px;">🥰</span><span style="cursor:pointer;text-align:center;font-size:18px;">😘</span><span style="cursor:pointer;text-align:center;font-size:18px;">😋</span><span style="cursor:pointer;text-align:center;font-size:18px;">😛</span><span style="cursor:pointer;text-align:center;font-size:18px;">🤔</span><span style="cursor:pointer;text-align:center;font-size:18px;">😏</span><span style="cursor:pointer;text-align:center;font-size:18px;">😌</span><span style="cursor:pointer;text-align:center;font-size:18px;">😴</span><span style="cursor:pointer;text-align:center;font-size:18px;">😎</span><span style="cursor:pointer;text-align:center;font-size:18px;">🤓</span><span style="cursor:pointer;text-align:center;font-size:18px;">😱</span><span style="cursor:pointer;text-align:center;font-size:18px;">😭</span><span style="cursor:pointer;text-align:center;font-size:18px;">😤</span><span style="cursor:pointer;text-align:center;font-size:18px;">😡</span><span style="cursor:pointer;text-align:center;font-size:18px;">🤬</span><span style="cursor:pointer;text-align:center;font-size:18px;">👍</span><span style="cursor:pointer;text-align:center;font-size:18px;">👎</span><span style="cursor:pointer;text-align:center;font-size:18px;">👏</span><span style="cursor:pointer;text-align:center;font-size:18px;">🙌</span><span style="cursor:pointer;text-align:center;font-size:18px;">💪</span><span style="cursor:pointer;text-align:center;font-size:18px;">🤝</span><span style="cursor:pointer;text-align:center;font-size:18px;">🙏</span><span style="cursor:pointer;text-align:center;font-size:18px;">💀</span><span style="cursor:pointer;text-align:center;font-size:18px;">🔥</span><span style="cursor:pointer;text-align:center;font-size:18px;">💯</span><span style="cursor:pointer;text-align:center;font-size:18px;">❤️</span><span style="cursor:pointer;text-align:center;font-size:18px;">🧡</span><span style="cursor:pointer;text-align:center;font-size:18px;">💛</span><span style="cursor:pointer;text-align:center;font-size:18px;">💚</span><span style="cursor:pointer;text-align:center;font-size:18px;">💙</span><span style="cursor:pointer;text-align:center;font-size:18px;">💜</span><span style="cursor:pointer;text-align:center;font-size:18px;">🖤</span><span style="cursor:pointer;text-align:center;font-size:18px;">🤍</span><span style="cursor:pointer;text-align:center;font-size:18px;">✨</span><span style="cursor:pointer;text-align:center;font-size:18px;">🎉</span><span style="cursor:pointer;text-align:center;font-size:18px;">🎁</span><span style="cursor:pointer;text-align:center;font-size:18px;">🎈</span><span style="cursor:pointer;text-align:center;font-size:18px;">🎵</span><span style="cursor:pointer;text-align:center;font-size:18px;">📸</span><span style="cursor:pointer;text-align:center;font-size:18px;">📎</span><span style="cursor:pointer;text-align:center;font-size:18px;">💬</span><span style="cursor:pointer;text-align:center;font-size:18px;">✅</span><span style="cursor:pointer;text-align:center;font-size:18px;">❌</span><span style="cursor:pointer;text-align:center;font-size:18px;">⚠️</span>
+                    </div>
+                    <div class="flex gap-2">
+                        <textarea id="msg-input" rows="2" placeholder="Type a message..." class="flex-1 border border-gray-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-purple-400 resize-none"></textarea>
+                        <button id="send-btn" class="bg-purple-600 text-white px-5 py-2 rounded-lg text-sm font-bold hover:bg-purple-700 transition self-end">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+// ========== 数据 ==========
+var WORKER_URL = 'http://api.szsummer.com:8088';
+var currentUser = 'me';
+
+var conversations = [
+    { id: 'c1', name: 'GlassLover', avatar: '🧡', lastMsg: 'OK, it has been shipped', time: '14:30', unread: 1 },
+    { id: 'c2', name: 'Notifications', avatar: '🔔', lastMsg: 'Your item has been favorited', time: '12:00', unread: 0 },
+    { id: 'c3', name: 'LanCity API Store #3', avatar: '🏪', lastMsg: 'Study hard and come back to pay', time: 'Yesterday', unread: 0 },
+    { id: 'c4', name: 'Music Sharing Club', avatar: '🎵', lastMsg: 'Weekend event cancelled', time: 'Wed', unread: 0 },
+    { id: 'c5', name: 'SuperGreatToday', avatar: '☀️', lastMsg: 'here https://pan-park...', time: 'Tue', unread: 0 },
+    { id: 'c6', name: 'KittyCat Resources', avatar: '🐱', lastMsg: 'Already sent it', time: '4/5', unread: 0 }
+];
+
+var chatHistory = {
+    'c1': [
+        { from: 'them', product: { title: 'Glass Cup Set - Brand New Sealed', price: 1, emoji: '🥛' } },
+        { from: 'me', text: 'I have placed the order, please pay' },
+        { from: 'them', text: 'OK, it has been shipped' }
+    ],
+    'c3': [
+        { from: 'them', product: { title: 'Claude Full Model - Unlimited - Auto Delivery', price: 100, emoji: '💻' } },
+        { from: 'me', text: 'I have placed the order, please pay', tag: 'Pay Now' },
+        { from: 'them', text: 'Study hard and come back to pay' }
+    ]
+};
+
+// ========== DOM ==========
+var chatList = document.getElementById('chat-list');
+var chatMessages = document.getElementById('chat-messages');
+var chatName = document.getElementById('chat-name');
+var msgInput = document.getElementById('msg-input');
+var sendBtn = document.getElementById('send-btn');
+var activeChatId = null;
+var currentUser = 'me';
+
+// ========== Emoji ==========
+var emojiBtn = document.getElementById('emoji-btn');
+var emojiPanel = document.getElementById('emoji-panel');
+
+emojiBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    var isHidden = emojiPanel.style.display === 'none';
+    emojiPanel.style.display = isHidden ? 'grid' : 'none';
+});
+
+document.addEventListener('click', function() {
+    emojiPanel.style.display = 'none';
+});
+
+emojiPanel.addEventListener('click', function(e) {
+    e.stopPropagation();
+    var t = e.target;
+    if (t && t.tagName === 'SPAN' && t.textContent.trim().length >= 1) {
+        msgInput.value += t.textContent.trim();
+        msgInput.focus();
+    }
+});
+
+// ========== File upload ==========
+document.getElementById('file-input').addEventListener('change', function(e) {
+    var file = e.target.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function(event) {
+        appendMessage({ from: 'me', image: event.target.result, text: '' });
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    };
+    reader.readAsDataURL(file);
+});
+
+// ========== Render ==========
+function renderChatList() {
+    chatList.innerHTML = '';
+    conversations.forEach(function(conv) {
+        var div = document.createElement('div');
+        div.className = 'chat-item flex items-center gap-3 px-4 py-3';
+        if (conv.id === activeChatId) div.classList.add('active');
+        div.innerHTML =
+            '<div class="w-11 h-11 rounded-full bg-gradient-to-br from-yellow-300 to-orange-400 flex items-center justify-center text-xl flex-shrink-0">' + conv.avatar + '</div>' +
+            '<div class="flex-1 min-w-0">' +
+                '<div class="flex items-center justify-between"><span class="text-sm font-bold text-gray-800 truncate">' + conv.name + '</span><span class="text-xs text-gray-400 flex-shrink-0 ml-2">' + conv.time + '</span></div>' +
+                '<p class="text-xs text-gray-500 truncate mt-0.5">' + conv.lastMsg + '</p>' +
+            '</div>' +
+            (conv.unread > 0 ? '<span class="w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center flex-shrink-0">' + conv.unread + '</span>' : '');
+        div.addEventListener('click', function() { openChat(conv); });
+        chatList.appendChild(div);
+    });
+}
+
+function openChat(conv) {
+    activeChatId = conv.id;
+    chatName.textContent = conv.name;
+    conv.unread = 0;
+    renderChatList();
+    chatMessages.innerHTML = '';
+    var msgs = chatHistory[conv.id] || [];
+    if (msgs.length === 0) {
+        chatMessages.innerHTML = '<div class="flex flex-col items-center justify-center h-full text-gray-300"><span class="text-5xl mb-3">💬</span><p class="text-sm">Start chatting with ' + conv.name + '</p></div>';
+    } else {
+        msgs.forEach(function(msg) { appendMessage(msg); });
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+}
+
+function appendMessage(msg) {
+    var div = document.createElement('div');
+    if (msg.from === 'me') {
+        div.className = 'flex justify-end mb-4';
+        var c = '';
+        if (msg.tag) c += '<div class="mb-1 text-right"><span class="bg-red-500 text-white text-xs px-2 py-0.5 rounded">' + msg.tag + '</span></div>';
+        if (msg.image) {
+            c += '<div class="bg-yellow-400 text-gray-900 px-4 py-2.5 rounded-2xl rounded-tr-sm max-w-xs"><img src="' + msg.image + '" class="max-w-full rounded-lg" style="max-height:200px;" alt="Sent image"></div>';
+        } else if (msg.text) {
+            c += '<div class="bg-yellow-400 text-gray-900 px-4 py-2.5 rounded-2xl rounded-tr-sm max-w-xs text-sm">' + msg.text + '</div>';
+        }
+        div.innerHTML = '<div class="text-right">' + c + '</div>';
+    } else {
+        div.className = 'flex justify-start mb-4 gap-2';
+        var inner = '';
+        if (msg.product) {
+            inner = '<div class="bg-white border border-gray-200 rounded-xl p-3 max-w-xs shadow-sm"><div class="flex gap-2"><div class="w-14 h-14 bg-gradient-to-br from-yellow-200 to-orange-300 rounded-lg flex items-center justify-center text-2xl flex-shrink-0">' + msg.product.emoji + '</div><div class="flex-1 min-w-0"><p class="text-sm text-gray-800">' + msg.product.title + '</p><p class="text-orange-500 font-black text-sm mt-1">$' + msg.product.price.toFixed(2) + '</p></div></div></div>';
+        } else {
+            inner = '<div class="bg-white px-4 py-2.5 rounded-2xl rounded-tl-sm max-w-xs text-sm shadow-sm border border-gray-100">' + msg.text + '</div>';
+        }
+        div.innerHTML = '<div class="w-8 h-8 rounded-full bg-gradient-to-br from-yellow-300 to-orange-400 flex items-center justify-center text-sm flex-shrink-0 mt-1">👤</div><div>' + inner + '</div>';
+    }
+    chatMessages.appendChild(div);
+}
+
+// ========== Send ==========
+sendBtn.addEventListener('click', sendMessage);
+msgInput.addEventListener('keydown', function(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } });
+
+function sendMessage() {
+    var text = msgInput.value.trim();
+    if (!text || !activeChatId) return;
+
+    // 先显示在界面上
+    appendMessage({ from: 'me', text: text });
+    msgInput.value = '';
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    // 发到服务器
+    var convName = '';
+    var conv = conversations.find(function(c) { return c.id === activeChatId; });
+    if (conv) { convName = conv.name; conv.lastMsg = text; conv.time = 'Just now'; }
+
+    fetch(WORKER_URL + '/api/msg/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ from: currentUser, to: convName, text: text })
+    }).catch(function() {});
+
+    renderChatList();
+}
+
+// ========== Init ==========
+var urlParams = new URLSearchParams(window.location.search);
+var sellerFromProduct = urlParams.get('seller');
+if (sellerFromProduct) {
+    var exists = conversations.find(function(c) { return c.name === sellerFromProduct; });
+    if (!exists) {
+        conversations.unshift({ id: 'new_' + Date.now(), name: sellerFromProduct, avatar: '👤', lastMsg: '', time: 'Just now', unread: 0 });
+    }
+}
+renderChatList();
+</script>
+
+</body>
+</html>

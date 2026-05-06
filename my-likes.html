@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Likes - AzureTrade</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen text-gray-800">
+
+    <nav class="bg-white shadow-sm h-14 flex items-center px-6 sticky top-0 z-50">
+        <div class="flex items-center space-x-2 text-purple-600 font-black text-xl">
+            <span>Trade</span><span class="text-purple-700">AzureTrade</span>
+        </div>
+        <div class="ml-auto flex items-center space-x-4">
+            <a href="profile.html" class="text-sm text-gray-500 hover:text-purple-600">&larr; Back to Profile</a>
+        </div>
+    </nav>
+
+    <div class="max-w-4xl mx-auto pt-6 px-4 pb-10">
+
+        <div class="mb-6">
+            <h1 class="text-xl font-black text-gray-900">My Likes</h1>
+            <p class="text-xs text-gray-400 mt-1">Articles, moments, and map markers you have liked</p>
+        </div>
+
+        <!-- Tab Switch -->
+        <div class="flex gap-2 mb-5 border-b border-gray-200 pb-0">
+            <button class="like-tab px-5 py-2.5 text-sm font-bold text-purple-600 border-b-2 border-purple-600 transition" data-tab="articles">
+                Articles <span id="like-article-num" class="text-gray-400 font-normal ml-0.5"></span>
+            </button>
+            <button class="like-tab px-5 py-2.5 text-sm text-gray-500 hover:text-purple-600 border-b-2 border-transparent transition" data-tab="moments">
+                Moments <span id="like-moment-num" class="text-gray-400 font-normal ml-0.5"></span>
+            </button>
+            <button class="like-tab px-5 py-2.5 text-sm text-gray-500 hover:text-purple-600 border-b-2 border-transparent transition" data-tab="maps">
+                Maps <span id="like-map-num" class="text-gray-400 font-normal ml-0.5"></span>
+            </button>
+        </div>
+
+        <div id="liked-articles" class="space-y-4"></div>
+        <div id="liked-moments" class="space-y-4 hidden"></div>
+        <div id="liked-maps" class="space-y-4 hidden"></div>
+
+        <div id="empty-state" class="hidden text-center py-20">
+            <div class="text-5xl mb-4">👍</div>
+            <p class="text-gray-400 text-sm">No content here yet</p>
+            <p class="text-gray-300 text-xs mt-1">Go discover more interesting content</p>
+        </div>
+    </div>
+
+<script>
+// Sample data
+var likedArticles = JSON.parse(localStorage.getItem('likedArticles') || '[]');
+var likedMoments = JSON.parse(localStorage.getItem('likedMoments') || '[]');
+var likedMaps = JSON.parse(localStorage.getItem('likedMaps') || '[]');
+
+if (likedArticles.length === 0) {
+    likedArticles = [
+        { id: 'la1', title: '10 Super Useful Study Websites Every Student Needs', author: 'Study Diary', category: 'Study Tips', likes: 156, time: '2026-04-23 09:30' },
+        { id: 'la2', title: 'Anti-Scam Guide for Second-Hand Trading', author: 'Safety Guard', category: 'Trading Guide', likes: 89, time: '2026-04-20 14:15' },
+        { id: 'la3', title: 'Graduation Clearance: How to Quickly Sell Your Items', author: 'Graduate Wang', category: 'Trading Guide', likes: 67, time: '2026-04-18 16:40' }
+    ];
+    localStorage.setItem('likedArticles', JSON.stringify(likedArticles));
+}
+if (likedMoments.length === 0) {
+    likedMoments = [
+        { id: 'lm1', author: 'Happy Student', avatar: 'H', text: 'Just got an amazing deal on Bluetooth earbuds on AzureTrade, the sound quality is incredible! Highly recommend checking it out', likes: 34, time: '2026-04-24 11:20' },
+        { id: 'lm2', author: 'Tech Enthusiast', avatar: 'T', text: 'Selling an iPad Air 4, 128G WiFi version, 95% new condition, student-friendly price, DM if interested', likes: 28, time: '2026-04-22 19:45' }
+    ];
+    localStorage.setItem('likedMoments', JSON.stringify(likedMoments));
+}
+if (likedMaps.length === 0) {
+    likedMaps = [
+        { id: 'lp1', name: 'East Gate Pickup Station', author: 'Campus Expert', category: 'Delivery', stars: 5, desc: 'Fastest pickup speed, highly recommended!', likes: 45, time: '2026-04-21 10:00' },
+        { id: 'lp2', name: 'Cafeteria 3F Near Bubble Tea Shop', author: 'Meetup Pro', category: 'Meetup Spot', stars: 4, desc: 'Great for in-person trades, has tables and chairs', likes: 18, time: '2026-04-19 15:30' }
+    ];
+    localStorage.setItem('likedMaps', JSON.stringify(likedMaps));
+}
+
+var articlePanel = document.getElementById('liked-articles');
+var momentPanel = document.getElementById('liked-moments');
+var mapPanel = document.getElementById('liked-maps');
+var emptyState = document.getElementById('empty-state');
+
+function renderLikedArticles() {
+    articlePanel.innerHTML = '';
+    if (likedArticles.length === 0) { emptyState.classList.remove('hidden'); return; }
+    emptyState.classList.add('hidden');
+
+    var categoryColors = { 'Study Tips': 'bg-green-50 text-green-600', 'Trading Guide': 'bg-orange-50 text-orange-600', 'Campus Life': 'bg-blue-50 text-blue-600', 'Product Reviews': 'bg-purple-50 text-purple-600' };
+
+    likedArticles.forEach(function(a, idx) {
+        var catClass = categoryColors[a.category] || 'bg-gray-50 text-gray-600';
+        var div = document.createElement('div');
+        div.className = 'bg-white rounded-xl p-5 shadow-sm border border-gray-100 hover:shadow-md transition';
+        div.innerHTML =
+            '<div class="flex items-start justify-between gap-4">' +
+                '<div class="flex-1 min-w-0">' +
+                    '<div class="flex items-center gap-2 mb-2">' +
+                        '<span class="text-[10px] ' + catClass + ' px-2 py-0.5 rounded-full">' + a.category + '</span>' +
+                    '</div>' +
+                    '<h3 class="text-sm font-bold text-gray-900 mb-1 line-clamp-1">' + a.title + '</h3>' +
+                    '<div class="flex items-center gap-3 text-xs text-gray-400 mt-2">' +
+                        '<span>' + a.author + '</span>' +
+                        '<span>' + a.likes + ' Likes</span>' +
+                        '<span>' + a.time + '</span>' +
+                    '</div>' +
+                '</div>' +
+                '<button class="unlike-article-btn px-3 py-1.5 text-red-400 hover:text-red-600 text-xs transition shrink-0" data-idx="' + idx + '">Unlike</button>' +
+            '</div>';
+        articlePanel.appendChild(div);
+    });
+
+    document.querySelectorAll('.unlike-article-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            likedArticles.splice(parseInt(btn.dataset.idx), 1);
+            localStorage.setItem('likedArticles', JSON.stringify(likedArticles));
+            renderLikedArticles(); updateCounts();
+        });
+    });
+}
+
+function renderLikedMoments() {
+    momentPanel.innerHTML = '';
+    if (likedMoments.length === 0) { emptyState.classList.remove('hidden'); return; }
+    emptyState.classList.add('hidden');
+
+    likedMoments.forEach(function(m, idx) {
+        var div = document.createElement('div');
+        div.className = 'bg-white rounded-xl p-5 shadow-sm border border-gray-100';
+        div.innerHTML =
+            '<div class="flex items-start gap-3">' +
+                '<div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-sm text-purple-600 font-bold shrink-0">' + m.avatar + '</div>' +
+                '<div class="flex-1 min-w-0">' +
+                    '<div class="flex items-center gap-2 mb-1">' +
+                        '<span class="text-sm font-bold text-gray-900">' + m.author + '</span>' +
+                        '<span class="text-xs text-gray-400">' + m.time + '</span>' +
+                    '</div>' +
+                    '<p class="text-sm text-gray-700 leading-relaxed mb-2">' + m.text + '</p>' +
+                    '<div class="flex items-center gap-4 text-xs text-gray-400">' +
+                        '<span>' + m.likes + ' Likes</span>' +
+                        '<button class="unlike-moment-btn text-red-400 hover:text-red-600 transition ml-auto" data-idx="' + idx + '">Unlike</button>' +
+                    '</div>' +
+                '</div>' +
+            '</div>';
+        momentPanel.appendChild(div);
+    });
+
+    document.querySelectorAll('.unlike-moment-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            likedMoments.splice(parseInt(btn.dataset.idx), 1);
+            localStorage.setItem('likedMoments', JSON.stringify(likedMoments));
+            renderLikedMoments(); updateCounts();
+        });
+    });
+}
+
+function renderStars(count) {
+    var s = '';
+    for (var i = 0; i < 5; i++) s += '<span class="' + (i < count ? 'text-yellow-400' : 'text-gray-300') + '">&#9733;</span>';
+    return s;
+}
+
+function renderLikedMaps() {
+    mapPanel.innerHTML = '';
+    if (likedMaps.length === 0) { emptyState.classList.remove('hidden'); return; }
+    emptyState.classList.add('hidden');
+
+    var categoryEmojis = { 'Meetup Spot': '🤝', 'Food': '🍜', 'Study': '📖', 'Leisure': '☕', 'Delivery': '📦', 'Other': '📍' };
+    var categoryColors = { 'Meetup Spot': 'bg-blue-50 text-blue-600', 'Food': 'bg-orange-50 text-orange-600', 'Study': 'bg-green-50 text-green-600', 'Leisure': 'bg-purple-50 text-purple-600', 'Delivery': 'bg-amber-50 text-amber-600' };
+
+    likedMaps.forEach(function(m, idx) {
+        var emoji = categoryEmojis[m.category] || '📍';
+        var catClass = categoryColors[m.category] || 'bg-gray-50 text-gray-600';
+        var div = document.createElement('div');
+        div.className = 'bg-white rounded-xl p-5 shadow-sm border border-gray-100 hover:shadow-md transition';
+        div.innerHTML =
+            '<div class="flex items-start gap-4">' +
+                '<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center text-xl shrink-0">' + emoji + '</div>' +
+                '<div class="flex-1 min-w-0">' +
+                    '<div class="flex items-center gap-2 mb-1">' +
+                        '<h3 class="text-sm font-bold text-gray-900">' + m.name + '</h3>' +
+                        '<span class="text-[10px] ' + catClass + ' px-2 py-0.5 rounded-full">' + m.category + '</span>' +
+                    '</div>' +
+                    '<div class="text-xs mb-1">' + renderStars(m.stars) + '</div>' +
+                    '<p class="text-xs text-gray-500 mb-2">' + m.desc + '</p>' +
+                    '<div class="flex items-center gap-3 text-xs text-gray-400">' +
+                        '<span>' + m.author + '</span>' +
+                        '<span>' + m.likes + ' Likes</span>' +
+                        '<button class="unlike-map-btn text-red-400 hover:text-red-600 transition ml-auto" data-idx="' + idx + '">Unlike</button>' +
+                    '</div>' +
+                '</div>' +
+            '</div>';
+        mapPanel.appendChild(div);
+    });
+
+    document.querySelectorAll('.unlike-map-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            likedMaps.splice(parseInt(btn.dataset.idx), 1);
+            localStorage.setItem('likedMaps', JSON.stringify(likedMaps));
+            renderLikedMaps(); updateCounts();
+        });
+    });
+}
+
+function updateCounts() {
+    document.getElementById('like-article-num').textContent = likedArticles.length;
+    document.getElementById('like-moment-num').textContent = likedMoments.length;
+    document.getElementById('like-map-num').textContent = likedMaps.length;
+}
+
+// Tab switch
+var currentTab = 'articles';
+document.querySelectorAll('.like-tab').forEach(function(tab) {
+    tab.addEventListener('click', function() {
+        currentTab = tab.dataset.tab;
+        document.querySelectorAll('.like-tab').forEach(function(t) {
+            t.classList.remove('font-bold', 'text-purple-600', 'border-purple-600');
+            t.classList.add('text-gray-500', 'border-transparent');
+        });
+        tab.classList.remove('text-gray-500', 'border-transparent');
+        tab.classList.add('font-bold', 'text-purple-600', 'border-purple-600');
+
+        articlePanel.classList.add('hidden');
+        momentPanel.classList.add('hidden');
+        mapPanel.classList.add('hidden');
+        emptyState.classList.add('hidden');
+
+        if (currentTab === 'articles') { articlePanel.classList.remove('hidden'); renderLikedArticles(); }
+        else if (currentTab === 'moments') { momentPanel.classList.remove('hidden'); renderLikedMoments(); }
+        else { mapPanel.classList.remove('hidden'); renderLikedMaps(); }
+    });
+});
+
+// Initialize
+updateCounts();
+renderLikedArticles();
+</script>
+
+</body>
+</html>

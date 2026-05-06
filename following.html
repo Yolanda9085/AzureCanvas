@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Following - AzureTrade</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen text-gray-800">
+
+    <nav class="bg-white shadow-sm h-14 flex items-center px-6 sticky top-0 z-50">
+        <div class="flex items-center space-x-2 text-purple-600 font-black text-xl">
+            <span>Trade</span><span class="text-purple-700">AzureTrade</span>
+        </div>
+        <div class="ml-auto flex items-center space-x-4">
+            <a href="profile.html" class="text-sm text-gray-500 hover:text-purple-600">Back to Profile</a>
+        </div>
+    </nav>
+
+    <div class="max-w-4xl mx-auto px-4 py-6">
+        <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
+            <div class="px-6 py-4 border-b border-gray-100">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-lg font-black text-gray-900">All Following (<span id="following-total">496</span>)</h2>
+                </div>
+            </div>
+
+            <div class="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox" id="batch-manage" class="w-4 h-4 rounded border-gray-300">
+                        <span class="text-sm text-gray-600">Batch Manage</span>
+                    </label>
+                    <select id="sort-select" class="border border-gray-200 rounded px-3 py-1.5 text-sm text-gray-600">
+                        <option value="latest">Newest First</option>
+                        <option value="earliest">Oldest First</option>
+                        <option value="fans">Followers</option>
+                    </select>
+                </div>
+                <div class="relative">
+                    <input type="text" id="search-input" placeholder="Search users"
+                        class="border border-gray-200 rounded-full pl-10 pr-4 py-1.5 text-sm focus:outline-none focus:border-purple-400 w-64">
+                    <svg class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div id="following-list" class="divide-y divide-gray-100"></div>
+
+            <div id="empty-state" class="hidden text-center py-12 text-gray-400">
+                <div class="text-4xl mb-2">🔍</div>
+                <p class="text-sm">No users found</p>
+            </div>
+        </div>
+    </div>
+
+<script src="api-config.js"></script>
+<script>
+var API = window.API_BASE || '';
+var followingData = [
+    { id: '1', name: 'Harbor361', avatar: 'H', bio: 'Behind-the-scenes content creator. YouTube: https://youtube.com/channel/UCH5i2b... #FilmMaking #LightAndShadow', fans: 14400, followTime: '2026-04-20 10:30' },
+    { id: '2', name: 'MatthewHan', avatar: 'M', bio: 'Work email: liurj@eastone100.com', fans: 1580, followTime: '2026-04-19 15:20' },
+    { id: '3', name: 'Marcus Zhang', avatar: 'M', bio: 'Actor. Open for collaborations.', fans: 890, followTime: '2026-04-18 09:10' },
+    { id: '4', name: 'StrawberryMM', avatar: 'S', bio: 'Anime blogger. #MagicSpell# Latest chapter 98 discussion thread...', fans: 2340, followTime: '2026-04-17 18:45' },
+    { id: '5', name: 'HCX_Chris', avatar: 'H', bio: 'Actor, Singer, UNINE member', fans: 5600, followTime: '2026-04-16 12:30' },
+    { id: '6', name: 'PQQDJT', avatar: 'P', bio: 'Entertainment blogger', fans: 14400, followTime: '2026-04-15 10:30' },
+    { id: '7', name: 'ChickenWings', avatar: 'C', bio: 'Entertainment blogger, community moderator', fans: 1580, followTime: '2026-04-14 15:20' },
+    { id: '8', name: 'znziaoedsbakise87172', avatar: 'Z', bio: '', fans: 1065, followTime: '2026-04-13 09:10' },
+    { id: '9', name: 'FishFree_0527', avatar: 'F', bio: 'Shared account. DM Buaichiyu_0527 for inquiries (please state purpose)...', fans: 406, followTime: '2026-04-12 18:45' },
+    { id: '10', name: 'Ttthua0318', avatar: 'T', bio: 'Posting what I want. No DMs please.', fans: 342, followTime: '2026-04-11 12:30' }
+];
+
+var filteredData = followingData.slice();
+
+function renderFollowing(data) {
+    var list = document.getElementById('following-list');
+    var emptyState = document.getElementById('empty-state');
+
+    if (data.length === 0) {
+        list.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+    }
+
+    emptyState.classList.add('hidden');
+    list.innerHTML = '';
+
+    data.forEach(function(user) {
+        var div = document.createElement('div');
+        div.className = 'px-6 py-4 hover:bg-gray-50 transition';
+        div.innerHTML =
+            '<div class="flex items-start justify-between">' +
+                '<div class="flex items-center gap-3 flex-1">' +
+                    '<div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center text-sm text-purple-600 font-bold flex-shrink-0">' + user.avatar + '</div>' +
+                    '<div class="flex flex-col flex-1 min-w-0">' +
+                        '<span class="text-sm font-bold text-gray-800">' + user.name + '</span>' +
+                        (user.bio ? '<p class="text-xs text-gray-500 mt-0.5 line-clamp-2">' + user.bio + '</p>' : '') +
+                        '<span class="text-[11px] text-gray-400 mt-1">Followers ' + user.fans + '</span>' +
+                    '</div>' +
+                '</div>' +
+                '<button class="px-4 py-1.5 bg-purple-50 text-purple-600 rounded-full text-xs font-medium hover:bg-purple-100 transition shrink-0 ml-3">Following</button>' +
+            '</div>';
+        list.appendChild(div);
+    });
+}
+
+function sortData(type) {
+    if (type === 'latest') {
+        filteredData.sort(function(a, b) {
+            return new Date(b.followTime) - new Date(a.followTime);
+        });
+    } else if (type === 'earliest') {
+        filteredData.sort(function(a, b) {
+            return new Date(a.followTime) - new Date(b.followTime);
+        });
+    } else if (type === 'fans') {
+        filteredData.sort(function(a, b) {
+            return b.fans - a.fans;
+        });
+    }
+    renderFollowing(filteredData);
+}
+
+function searchUsers(keyword) {
+    if (!keyword.trim()) {
+        filteredData = followingData.slice();
+    } else {
+        keyword = keyword.toLowerCase();
+        filteredData = followingData.filter(function(user) {
+            return user.name.toLowerCase().indexOf(keyword) !== -1 ||
+                   (user.bio && user.bio.toLowerCase().indexOf(keyword) !== -1);
+        });
+    }
+    sortData(document.getElementById('sort-select').value);
+}
+
+document.getElementById('sort-select').addEventListener('change', function(e) {
+    sortData(e.target.value);
+});
+
+document.getElementById('search-input').addEventListener('input', function(e) {
+    searchUsers(e.target.value);
+});
+
+// Initialize
+document.getElementById('following-total').textContent = followingData.length;
+renderFollowing(followingData);
+
+// Load following list from API
+(async function() {
+    try {
+        var meRes = await fetch(API + '/api/users/me', { credentials: 'include' });
+        if (!meRes.ok) return;
+        var me = await meRes.json();
+        var userId = me.userId || me.id;
+        if (!userId) return;
+
+        var response = await fetch(API + '/api/users/' + userId + '/following?page=1&limit=100', {
+            method: 'GET',
+            credentials: 'include'
+        });
+
+        if (response.ok) {
+            var users = await response.json();
+            if (users && users.length > 0) {
+                followingData = users.map(function(user) {
+                    return {
+                        id: user.userId,
+                        name: user.username,
+                        avatar: (user.username || 'U').charAt(0).toUpperCase(),
+                        bio: user.bio || '',
+                        fans: user.followersCount || 0,
+                        followTime: user.followTime || new Date().toISOString()
+                    };
+                });
+                filteredData = followingData.slice();
+                document.getElementById('following-total').textContent = followingData.length;
+                renderFollowing(followingData);
+            }
+        }
+    } catch (err) {
+        console.error('Failed to load following list:', err);
+    }
+})();
+</script>
+
+</body>
+</html>

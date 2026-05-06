@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Purchases - AzureTrade</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen text-gray-800">
+
+    <nav class="bg-white shadow-sm h-14 flex items-center px-6 sticky top-0 z-50">
+        <div class="flex items-center space-x-2 text-purple-600 font-black text-xl">
+            <span>Trade</span><span class="text-purple-700">AzureTrade</span>
+        </div>
+    </nav>
+
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-6 pt-6 px-4 pb-10">
+
+        <aside class="w-full md:w-56 flex-shrink-0">
+            <div class="bg-white rounded-2xl p-5 shadow-sm sticky top-20">
+                <nav class="space-y-0.5 text-sm">
+                    <a href="profile.html" class="flex items-center space-x-3 px-4 py-2.5 text-gray-600 hover:bg-gray-50 rounded-lg transition">
+                        <span>🏠</span><span>My Space</span>
+                    </a>
+
+                    <div>
+                        <div class="flex items-center justify-between px-4 py-2.5 text-gray-800 font-bold cursor-pointer hover:bg-gray-50 rounded-lg transition" id="trade-toggle">
+                            <div class="flex items-center space-x-3"><span>📋</span><span>My Trades</span></div>
+                            <svg class="w-3.5 h-3.5 text-gray-400 transition-transform rotate-180" id="trade-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </div>
+                        <div id="trade-sub" class="ml-6 space-y-0.5">
+                            <a href="mypublish.html" class="flex items-center justify-between px-4 py-2 text-gray-500 hover:text-purple-600 hover:bg-gray-50 rounded-lg transition">
+                                <span>My Listings</span>
+                                <span id="sidebar-publish-count" class="text-xs text-purple-600 font-bold bg-purple-50 px-2 py-0.5 rounded-full">0</span>
+                            </a>
+                            <a href="sales.html" class="flex items-center justify-between px-4 py-2 text-gray-500 hover:text-purple-600 hover:bg-gray-50 rounded-lg transition">
+                                <span>My Sales</span>
+                                <span id="sidebar-sell-count" class="text-xs text-purple-600 font-bold bg-purple-50 px-2 py-0.5 rounded-full">0</span>
+                            </a>
+                            <a href="purchases.html" class="flex items-center justify-between px-4 py-2 bg-purple-50 text-purple-600 font-bold rounded-lg transition">
+                                <span>My Purchases</span>
+                                <span id="sidebar-buy-count" class="text-xs text-purple-600 font-bold bg-purple-100 px-2 py-0.5 rounded-full">0</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <a href="favorites.html" class="flex items-center justify-between px-4 py-2.5 text-gray-600 hover:bg-gray-50 rounded-lg transition">
+                        <div class="flex items-center space-x-3"><span>⭐</span><span>My Favorites</span></div>
+                        <span id="sidebar-fav-count" class="text-xs text-purple-600 font-bold bg-purple-50 px-2 py-0.5 rounded-full">0</span>
+                    </a>
+
+                    <!-- My Submissions -->
+                    <div>
+                        <div class="flex items-center justify-between px-4 py-2.5 text-gray-800 font-bold cursor-pointer hover:bg-gray-50 rounded-lg transition" id="contribution-toggle">
+                            <div class="flex items-center space-x-3"><span>📝</span><span>My Submissions</span></div>
+                            <svg class="w-3.5 h-3.5 text-gray-400 transition-transform rotate-180" id="contribution-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </div>
+                        <div id="contribution-sub" class="ml-6 space-y-0.5">
+                            <a href="#" class="flex items-center justify-between px-4 py-2 text-gray-500 hover:text-purple-600 hover:bg-gray-50 rounded-lg transition">
+                                <span>My Articles</span>
+                                <span class="text-xs text-purple-600 font-bold bg-purple-50 px-2 py-0.5 rounded-full">0</span>
+                            </a>
+                            <a href="#" class="flex items-center justify-between px-4 py-2 text-gray-500 hover:text-purple-600 hover:bg-gray-50 rounded-lg transition">
+                                <span>My Maps</span>
+                                <span class="text-xs text-purple-600 font-bold bg-purple-50 px-2 py-0.5 rounded-full">1</span>
+                            </a>
+                            <a href="#" class="flex items-center justify-between px-4 py-2 text-gray-500 hover:text-purple-600 hover:bg-gray-50 rounded-lg transition">
+                                <span>My Posts</span>
+                                <span class="text-xs text-purple-600 font-bold bg-purple-50 px-2 py-0.5 rounded-full">0</span>
+                            </a>
+                        </div>
+                    </div>
+
+
+                </nav>
+                <div class="mt-6 pt-4 border-t border-gray-100 space-y-2">
+                    <a href="trade.html" class="flex items-center justify-center space-x-2 px-4 py-2.5 bg-gray-50 text-gray-500 hover:text-purple-600 hover:bg-purple-50 rounded-xl transition font-medium text-sm">
+                        <span>&larr;</span>
+                        <span>Back to Market</span>
+                    </a>
+                    <button id="logout-btn" class="w-full flex items-center justify-center space-x-2 px-4 py-2.5 bg-purple-100 text-purple-700 hover:bg-purple-200 rounded-xl transition font-medium text-sm">
+                        <span>🚪</span>
+                        <span>Log Out</span>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <main class="flex-1 max-w-3xl">
+
+            <div class="bg-white rounded-2xl shadow-sm overflow-hidden mb-4">
+                <div class="flex items-center px-4 py-3 gap-3 border-b border-gray-50">
+                    <div class="flex-1 bg-gray-100 rounded-full flex items-center px-4 py-2">
+                        <span class="text-gray-400 mr-2">🔍</span>
+                        <input type="text" placeholder="Search orders" class="bg-transparent border-none outline-none w-full text-sm text-gray-700 placeholder-gray-400">
+                    </div>
+                    <button class="text-gray-600 font-bold text-sm px-2 hover:text-purple-600 transition">Search</button>
+                </div>
+
+                <div class="flex overflow-x-auto hide-scrollbar border-b border-gray-100 bg-white" id="order-tabs">
+                    <a href="javascript:;" data-target="all" class="order-tab flex-none px-5 py-3.5 text-sm font-bold text-purple-600 relative">
+                        All
+                        <div class="tab-indicator absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-0.5 bg-purple-600 rounded-full"></div>
+                    </a>
+                    <a href="javascript:;" data-target="unpaid" class="order-tab flex-none px-5 py-3.5 text-sm text-gray-600 hover:text-purple-600 transition">Unpaid</a>
+                    <a href="javascript:;" data-target="unshipped" class="order-tab flex-none px-5 py-3.5 text-sm text-gray-600 hover:text-purple-600 transition">To Ship</a>
+                    <a href="javascript:;" data-target="unreceived" class="order-tab flex-none px-5 py-3.5 text-sm text-gray-600 hover:text-purple-600 transition">In Transit</a>
+                    <a href="javascript:;" data-target="unreviewed" class="order-tab flex-none px-5 py-3.5 text-sm text-gray-600 hover:text-purple-600 transition">To Review</a>
+                </div>
+            </div>
+
+            <div class="space-y-4" id="order-list">
+
+                <div class="order-card bg-gradient-to-br from-purple-50 to-white rounded-2xl p-5 shadow-sm hover:shadow-md transition border border-purple-200" data-status="unpaid">
+                    <div class="flex justify-between items-center mb-4">
+                        <a href="seller-profile.html?seller=SakuraDigital" class="flex items-center space-x-2 text-sm font-bold text-gray-800 hover:text-purple-600 cursor-pointer">
+                            <span class="text-purple-400 text-lg">🏠</span>
+                            <span>SakuraDigital</span>
+                            <span class="text-gray-400 font-normal">›</span>
+                        </a>
+                        <span class="text-purple-600 text-sm font-bold">Awaiting Payment</span>
+                    </div>
+                    <a href="order_detail.html?order=1" class="flex gap-4 mb-4 cursor-pointer hover:opacity-80 transition">
+                        <div class="w-24 h-24 bg-gray-50 rounded-xl flex-shrink-0 overflow-hidden border border-purple-100">
+                            <div class="w-full h-full bg-gradient-to-br from-pink-100 to-rose-200 flex items-center justify-center text-3xl">🎧</div>
+                        </div>
+                        <div class="flex-1 flex flex-col justify-between min-w-0 py-1">
+                            <div class="flex justify-between items-start gap-4">
+                                <h3 class="text-sm md:text-base text-gray-800 leading-snug line-clamp-2 hover:text-purple-600 transition">Sony WH-1000XM4 Noise Canceling Headphones Silver 90% New w/ Box</h3>
+                                <div class="text-right flex-shrink-0">
+                                    <p class="text-sm font-bold text-purple-700">$850.00</p>
+                                    <p class="text-xs text-gray-400 mt-1">x1</p>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <span class="inline-block bg-purple-50 text-purple-500 text-[11px] px-2 py-1 rounded truncate">Silver; Free shipping</span>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="flex justify-between items-center pt-3 border-t border-purple-100 mb-4">
+                        <div class="text-[13px] text-purple-600 font-medium">
+                            Payment due in 23h 55m
+                        </div>
+                        <div class="text-sm text-purple-700 font-medium">
+                            Amount due <span class="text-lg font-black text-purple-700 ml-1">$850.00</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-end gap-3">
+                        <a href="messages.html?seller=SakuraDigital" class="px-5 py-1.5 border border-purple-200 text-purple-600 rounded-full text-sm hover:bg-purple-50 transition inline-flex items-center">Contact Seller</a>
+                        <button class="px-5 py-1.5 border border-purple-200 text-purple-600 rounded-full text-sm hover:bg-purple-50 transition">Cancel Order</button>
+                        <a href="order_detail.html?order=1" class="px-6 py-1.5 bg-gradient-to-r from-purple-500 to-indigo-500 text-white rounded-full text-sm font-bold hover:from-purple-600 hover:to-indigo-600 transition shadow-sm inline-flex items-center">Pay Now</a>
+                    </div>
+                </div>
+
+                <div class="order-card bg-white rounded-2xl p-5 shadow-sm hover:shadow-md transition" data-status="unshipped">
+                    <div class="flex justify-between items-center mb-4">
+                        <a href="seller-profile.html?seller=CampusDigitalGeek" class="flex items-center space-x-2 text-sm font-bold text-gray-800 hover:text-purple-600 cursor-pointer">
+                            <span class="text-gray-400 text-lg">🏠</span>
+                            <span>CampusDigitalGeek</span>
+                            <span class="text-gray-400 font-normal">›</span>
+                        </a>
+                        <span class="text-purple-600 text-sm font-bold">Paid, To Ship</span>
+                    </div>
+                    <a href="order_detail.html?order=2" class="flex gap-4 mb-4 cursor-pointer hover:opacity-80 transition">
+                        <div class="w-24 h-24 bg-gray-50 rounded-xl flex-shrink-0 overflow-hidden border border-gray-100">
+                            <div class="w-full h-full bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center text-3xl">🖱️</div>
+                        </div>
+                        <div class="flex-1 flex flex-col justify-between min-w-0 py-1">
+                            <div class="flex justify-between items-start gap-4">
+                                <h3 class="text-sm md:text-base text-gray-800 leading-snug line-clamp-2 hover:text-purple-600 transition">Logitech G304 Wireless Mouse 90% New w/ Receiver</h3>
+                                <div class="text-right flex-shrink-0">
+                                    <p class="text-sm font-bold text-gray-800">$120.00</p>
+                                    <p class="text-xs text-gray-400 mt-1">x1</p>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <span class="inline-block bg-gray-50 text-gray-500 text-[11px] px-2 py-1 rounded truncate">Black; Free shipping</span>
+                            </div>
+                            <div class="mt-2 flex items-center gap-1.5">
+                                <span class="text-[10px] text-purple-600 border border-purple-200 bg-purple-50 px-1 py-0.5 rounded">Fast Refund</span>
+                                <span class="text-[10px] text-gray-500 border border-gray-200 px-1 py-0.5 rounded">7-Day Returns</span>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="text-right text-sm text-gray-800 font-medium mb-4 pt-3 border-t border-gray-50">
+                        Amount paid <span class="text-lg font-black text-gray-900 ml-1">$120.00</span>
+                    </div>
+                    <div class="flex justify-end gap-3">
+                        <a href="messages.html?seller=CampusDigitalGeek" class="px-5 py-1.5 border border-gray-300 text-gray-600 rounded-full text-sm hover:bg-gray-50 transition inline-flex items-center">Contact Seller</a>
+                        <button class="px-5 py-1.5 bg-purple-600 text-white rounded-full text-sm font-bold hover:bg-purple-700 transition shadow-sm" onclick="alert('Shipping reminder sent to seller!')">Remind to Ship</button>
+                    </div>
+                </div>
+
+                <div class="order-card bg-white rounded-2xl p-5 shadow-sm hover:shadow-md transition" data-status="unreviewed">
+                    <div class="flex justify-between items-center mb-4">
+                        <a href="seller-profile.html?seller=BubuShop" class="flex items-center space-x-2 text-sm font-bold text-gray-800 hover:text-purple-600 cursor-pointer">
+                            <span class="text-gray-400 text-lg">🏠</span>
+                            <span>BubuShop</span>
+                            <span class="text-gray-400 font-normal">›</span>
+                        </a>
+                        <span class="text-gray-500 text-sm font-bold">Trade Complete</span>
+                    </div>
+                    <a href="order_detail.html?order=3" class="flex gap-4 mb-4 cursor-pointer hover:opacity-80 transition">
+                        <div class="w-24 h-24 bg-gray-50 rounded-xl flex-shrink-0 overflow-hidden border border-gray-100">
+                            <div class="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center text-3xl">👕</div>
+                        </div>
+                        <div class="flex-1 flex flex-col justify-between min-w-0 py-1">
+                            <h3 class="text-sm md:text-base text-gray-800 leading-snug line-clamp-2 hover:text-purple-600 transition">White Long Sleeve T-Shirt Women's Slim Fit Base Layer</h3>
+                            <div class="mt-2">
+                                <span class="inline-block bg-gray-50 text-gray-500 text-[11px] px-2 py-1 rounded">White; M</span>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="text-right text-sm text-gray-800 font-medium mb-4 pt-3 border-t border-gray-50">
+                        Amount paid <span class="text-lg font-black text-gray-900 ml-1">$22.62</span>
+                    </div>
+                    <div class="flex justify-end gap-3">
+                        <button onclick="deleteOrder(this, 3)" class="px-5 py-1.5 border border-gray-300 text-gray-600 rounded-full text-sm hover:bg-gray-50 transition">Delete Order</button>
+                        <a href="review.html?order=3" class="px-5 py-1.5 border border-purple-600 text-purple-600 rounded-full text-sm font-medium hover:bg-purple-50 transition inline-flex items-center">Leave Review</a>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+    </div>
+
+<script src="api-config.js"></script>
+<script>
+    var API = window.API_BASE || '';
+
+    // Delete order
+    async function deleteOrder(btn, orderId) {
+        if (!confirm('Are you sure you want to delete this order?')) return;
+        try {
+            var res = await fetch(API + '/api/market/items/' + orderId, {
+                method: 'DELETE',
+                credentials: API ? 'omit' : 'include'
+            });
+            if (res.ok) {
+                var card = btn.closest('.order-card');
+                card.style.transition = 'opacity 0.3s, transform 0.3s';
+                card.style.opacity = '0';
+                card.style.transform = 'translateX(20px)';
+                setTimeout(function() { card.remove(); }, 300);
+            } else {
+                alert('Delete failed, please try again');
+            }
+        } catch (e) {
+            alert('Network error');
+        }
+    }
+    // 1. Tab switching and order filter logic
+    var tabs = document.querySelectorAll('.order-tab');
+    var cards = document.querySelectorAll('.order-card');
+
+    tabs.forEach(function(tab) {
+        tab.addEventListener('click', function() {
+            tabs.forEach(function(t) {
+                t.classList.remove('font-bold', 'text-purple-600');
+                t.classList.add('text-gray-600');
+                var indicator = t.querySelector('.tab-indicator');
+                if (indicator) indicator.remove();
+            });
+
+            tab.classList.remove('text-gray-600');
+            tab.classList.add('font-bold', 'text-purple-600');
+            var indicator = document.createElement('div');
+            indicator.className = 'tab-indicator absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-0.5 bg-purple-600 rounded-full';
+            tab.appendChild(indicator);
+
+            var targetStatus = tab.getAttribute('data-target');
+
+            cards.forEach(function(card) {
+                var cardStatus = card.getAttribute('data-status');
+                if (targetStatus === 'all' || targetStatus === cardStatus) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    // 2. Sidebar menu collapse logic
+    var toggle = document.getElementById('trade-toggle');
+    var sub = document.getElementById('trade-sub');
+    var arrow = document.getElementById('trade-arrow');
+    if(toggle && sub && arrow) {
+        toggle.addEventListener('click', function() {
+            var hidden = sub.style.display === 'none';
+            sub.style.display = hidden ? '' : 'none';
+            arrow.classList.toggle('rotate-180', hidden);
+        });
+    }
+
+    // My Submissions expand/collapse
+    var contributionToggle = document.getElementById('contribution-toggle');
+    var contributionSub = document.getElementById('contribution-sub');
+    var contributionArrow = document.getElementById('contribution-arrow');
+    if(contributionToggle && contributionSub && contributionArrow) {
+        contributionToggle.addEventListener('click', function() {
+            var hidden = contributionSub.style.display === 'none';
+            contributionSub.style.display = hidden ? '' : 'none';
+            contributionArrow.classList.toggle('rotate-180', hidden);
+        });
+    }
+
+    // 3. Log out
+    var logoutBtn = document.getElementById('logout-btn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', async function () {
+            try {
+                await fetch(API + '/api/auth/logout', { method: 'POST', credentials: 'include' });
+            } catch (e) {}
+            window.location.href = '/login?redirect=/azure_trade/trade';
+        });
+    }
+
+    // 4. Sidebar badge counts
+    (function() {
+        var profile = {};
+        try { profile = JSON.parse(localStorage.getItem('userProfile') || '{}'); } catch(e) {}
+        var published = JSON.parse(localStorage.getItem('publishedItems') || '[]');
+        var sold = JSON.parse(localStorage.getItem('soldItems') || '[]');
+        var bought = JSON.parse(localStorage.getItem('boughtItems') || '[]');
+
+        var counts = {
+            'sidebar-publish-count': profile.posts || published.length,
+            'sidebar-sell-count': profile.sell || sold.length,
+            'sidebar-buy-count': profile.buy || bought.length,
+            'sidebar-fav-count': profile.favorites || JSON.parse(localStorage.getItem('favoriteItems') || '[]').length
+        };
+        Object.keys(counts).forEach(function(id) {
+            var el = document.getElementById(id);
+            if (el) el.textContent = counts[id];
+        });
+    })();
+</script>
+
+</body>
+</html>

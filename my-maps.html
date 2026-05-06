@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Maps - AzureTrade</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen text-gray-800">
+
+    <nav class="bg-white shadow-sm h-14 flex items-center px-6 sticky top-0 z-50">
+        <div class="flex items-center space-x-2 text-purple-600 font-black text-xl">
+            <span>Trade</span><span class="text-purple-700">AzureTrade</span>
+        </div>
+        <div class="ml-auto flex items-center space-x-4">
+            <a href="profile.html" class="text-sm text-gray-500 hover:text-purple-600">&larr; Back to Profile</a>
+        </div>
+    </nav>
+
+    <div class="max-w-4xl mx-auto pt-6 px-4 pb-10">
+
+        <div class="flex items-center justify-between mb-6">
+            <div>
+                <h1 class="text-xl font-black text-gray-900">My Maps</h1>
+                <p class="text-xs text-gray-400 mt-1">Campus map markers you have created and shared</p>
+            </div>
+            <button id="new-map-btn" class="px-5 py-2.5 bg-purple-600 text-white rounded-xl text-sm font-bold hover:bg-purple-700 transition shadow-lg">
+                New Marker
+            </button>
+        </div>
+
+        <div id="map-list" class="space-y-4"></div>
+
+        <div id="empty-state" class="hidden text-center py-20">
+            <div class="text-5xl mb-4">🗺️</div>
+            <p class="text-gray-400 text-sm">No maps yet</p>
+            <p class="text-gray-300 text-xs mt-1">Mark a great campus spot to share</p>
+        </div>
+    </div>
+
+    <!-- New Marker Modal -->
+    <div id="map-modal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center">
+        <div class="bg-white rounded-2xl w-full max-w-lg mx-4 overflow-hidden shadow-2xl max-h-[90vh] flex flex-col">
+            <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100 shrink-0">
+                <h2 class="text-lg font-black text-gray-900">New Map Marker</h2>
+                <button id="map-close-btn" class="text-gray-400 hover:text-gray-600 text-2xl leading-none">&times;</button>
+            </div>
+            <div class="px-6 py-5 space-y-4 overflow-y-auto flex-1">
+                <div>
+                    <label class="block text-sm text-gray-600 mb-1.5">Location Name</label>
+                    <input type="text" id="map-name-input" placeholder="e.g., Library 2F Study Room" class="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-purple-400 outline-none transition">
+                </div>
+                <div>
+                    <label class="block text-sm text-gray-600 mb-1.5">Category</label>
+                    <select id="map-category" class="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-purple-400 outline-none transition">
+                        <option value="Meetup Spot">Meetup Spot</option>
+                        <option value="Food">Food</option>
+                        <option value="Study">Study</option>
+                        <option value="Leisure">Leisure</option>
+                        <option value="Delivery">Delivery</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm text-gray-600 mb-1.5">Description</label>
+                    <textarea id="map-desc-input" rows="3" placeholder="Describe this location..." class="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-purple-400 outline-none resize-none transition"></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm text-gray-600 mb-1.5">Rating</label>
+                    <div class="flex gap-2" id="star-rating">
+                        <span class="star cursor-pointer text-2xl text-gray-300 hover:text-yellow-400 transition" data-val="1">&#9733;</span>
+                        <span class="star cursor-pointer text-2xl text-gray-300 hover:text-yellow-400 transition" data-val="2">&#9733;</span>
+                        <span class="star cursor-pointer text-2xl text-gray-300 hover:text-yellow-400 transition" data-val="3">&#9733;</span>
+                        <span class="star cursor-pointer text-2xl text-gray-300 hover:text-yellow-400 transition" data-val="4">&#9733;</span>
+                        <span class="star cursor-pointer text-2xl text-gray-300 hover:text-yellow-400 transition" data-val="5">&#9733;</span>
+                    </div>
+                </div>
+                <button id="save-map-btn" class="w-full py-3 bg-purple-600 text-white rounded-xl text-sm font-bold hover:bg-purple-700 transition shadow-lg">Save Marker</button>
+            </div>
+        </div>
+    </div>
+
+<script>
+var mapMarks = JSON.parse(localStorage.getItem('myMapMarks') || '[]');
+
+if (mapMarks.length === 0) {
+    mapMarks = [
+        { id: 'm1', name: 'North Gate Pickup Station', category: 'Delivery', desc: 'Most convenient place for pickups, fewer people and fast service. Recommended to go between 2-4 PM.', stars: 4, likes: 12, createdAt: '2026-04-18 16:30' },
+        { id: 'm2', name: 'Library Building B, 3F', category: 'Study', desc: 'Quiet study area with charging outlets. Gets crowded during exam week, arrive early to get a seat.', stars: 5, likes: 23, createdAt: '2026-04-10 09:00' },
+        { id: 'm3', name: 'Cafeteria 2F Corner Meetup Spot', category: 'Meetup Spot', desc: 'Moderate foot traffic, convenient for in-person trades. Has seating for item inspection. Recommended around noon.', stars: 4, likes: 8, createdAt: '2026-04-05 12:15' }
+    ];
+    localStorage.setItem('myMapMarks', JSON.stringify(mapMarks));
+}
+
+var mapList = document.getElementById('map-list');
+var emptyState = document.getElementById('empty-state');
+
+var categoryEmojis = { 'Meetup Spot': '🤝', 'Food': '🍜', 'Study': '📖', 'Leisure': '☕', 'Delivery': '📦', 'Other': '📍' };
+var categoryColors = { 'Meetup Spot': 'bg-blue-50 text-blue-600', 'Food': 'bg-orange-50 text-orange-600', 'Study': 'bg-green-50 text-green-600', 'Leisure': 'bg-purple-50 text-purple-600', 'Delivery': 'bg-amber-50 text-amber-600', 'Other': 'bg-gray-50 text-gray-600' };
+
+function renderStars(count) {
+    var s = '';
+    for (var i = 0; i < 5; i++) s += '<span class="' + (i < count ? 'text-yellow-400' : 'text-gray-300') + '">&#9733;</span>';
+    return s;
+}
+
+function renderMapList() {
+    mapList.innerHTML = '';
+    if (mapMarks.length === 0) {
+        mapList.classList.add('hidden');
+        emptyState.classList.remove('hidden');
+        return;
+    }
+    mapList.classList.remove('hidden');
+    emptyState.classList.add('hidden');
+
+    mapMarks.forEach(function(m) {
+        var emoji = categoryEmojis[m.category] || '📍';
+        var catClass = categoryColors[m.category] || 'bg-gray-50 text-gray-600';
+        var div = document.createElement('div');
+        div.className = 'bg-white rounded-xl p-5 shadow-sm border border-gray-100 hover:shadow-md transition';
+        div.innerHTML =
+            '<div class="flex items-start gap-4">' +
+                '<div class="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center text-2xl shrink-0">' + emoji + '</div>' +
+                '<div class="flex-1 min-w-0">' +
+                    '<div class="flex items-center gap-2 mb-1">' +
+                        '<h3 class="text-sm font-bold text-gray-900">' + m.name + '</h3>' +
+                        '<span class="text-[10px] ' + catClass + ' px-2 py-0.5 rounded-full">' + m.category + '</span>' +
+                    '</div>' +
+                    '<div class="text-xs mb-2">' + renderStars(m.stars) + '</div>' +
+                    '<p class="text-xs text-gray-500 line-clamp-2 leading-relaxed">' + m.desc + '</p>' +
+                    '<div class="flex items-center gap-4 mt-3 text-xs text-gray-400">' +
+                        '<span>' + m.createdAt + '</span>' +
+                        '<span>' + m.likes + ' Likes</span>' +
+                    '</div>' +
+                '</div>' +
+                '<button class="delete-map-btn px-3 py-1.5 bg-red-50 text-red-500 rounded-lg text-xs font-medium hover:bg-red-100 transition shrink-0" data-id="' + m.id + '">Delete</button>' +
+            '</div>';
+        mapList.appendChild(div);
+    });
+
+    document.querySelectorAll('.delete-map-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            if (confirm('Are you sure you want to delete this map marker?')) {
+                mapMarks = mapMarks.filter(m => m.id !== btn.dataset.id);
+                localStorage.setItem('myMapMarks', JSON.stringify(mapMarks));
+                renderMapList();
+            }
+        });
+    });
+}
+
+// Modal logic
+var mapModal = document.getElementById('map-modal');
+var selectedStars = 3;
+
+document.getElementById('new-map-btn').addEventListener('click', function() {
+    mapModal.classList.remove('hidden'); mapModal.classList.add('flex');
+    document.getElementById('map-name-input').value = '';
+    document.getElementById('map-desc-input').value = '';
+    selectedStars = 3; updateStarUI();
+});
+document.getElementById('map-close-btn').addEventListener('click', function() {
+    mapModal.classList.add('hidden'); mapModal.classList.remove('flex');
+});
+mapModal.addEventListener('click', function(e) {
+    if (e.target === mapModal) { mapModal.classList.add('hidden'); mapModal.classList.remove('flex'); }
+});
+
+function updateStarUI() {
+    document.querySelectorAll('#star-rating .star').forEach(function(s) {
+        s.classList.toggle('text-yellow-400', parseInt(s.dataset.val) <= selectedStars);
+        s.classList.toggle('text-gray-300', parseInt(s.dataset.val) > selectedStars);
+    });
+}
+document.querySelectorAll('#star-rating .star').forEach(function(s) {
+    s.addEventListener('click', function() { selectedStars = parseInt(s.dataset.val); updateStarUI(); });
+});
+
+document.getElementById('save-map-btn').addEventListener('click', function() {
+    var name = document.getElementById('map-name-input').value.trim();
+    var desc = document.getElementById('map-desc-input').value.trim();
+    var category = document.getElementById('map-category').value;
+    if (!name) { alert('Please enter a location name'); return; }
+    var now = new Date();
+    var timeStr = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0') + ' ' + String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
+    mapMarks.unshift({ id: 'm' + Date.now(), name: name, category: category, desc: desc || 'No description', stars: selectedStars, likes: 0, createdAt: timeStr });
+    localStorage.setItem('myMapMarks', JSON.stringify(mapMarks));
+    mapModal.classList.add('hidden'); mapModal.classList.remove('flex');
+    renderMapList();
+});
+
+updateStarUI();
+renderMapList();
+</script>
+
+</body>
+</html>
+

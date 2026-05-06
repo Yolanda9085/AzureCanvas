@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=3.0, user-scalable=yes">
+    <title>Azure Trade - Campus Second-hand Trading</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../js/frameworks/tailwind.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#7c3aed'
+                    }
+                }
+            }
+        }
+    </script>
+
+
+    <link rel="stylesheet" href="../css/trade.module.css">
+   
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        #mini-map { z-index: 10; }
+        /* Ensure map displays correctly in modal without being obscured */
+        #mini-map-container { border: 1px solid #e5e7eb; margin-top: 10px; border-radius: 8px; }
+    </style>
+    <style>
+        /* Publish button loading animation styles */
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin {
+            animation: spin 1s linear infinite;
+        }
+        /* Overlay to prevent user interaction during processing delay */
+        .processing-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 9999;
+            /*cursor: wait;*/
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+    <!-- ===== Top Navigation ===== -->
+    <header class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
+            <!-- Left: Brand Logo -->
+            <div class="flex items-center space-x-1 shrink-0">
+                <div class="bg-gradient-to-br from-purple-600 to-indigo-600 text-white text-xl sm:text-2xl font-black px-2 sm:px-3 py-1 rounded-xl shadow-md">Trade</div>
+                <span class="hidden sm:inline text-purple-700 text-xl font-bold tracking-wide">AzureTrade</span>
+            </div>
+
+            <!-- Middle: Search Bar -->
+            <div class="flex-1 max-w-xl mx-2 sm:mx-8">
+                <div class="flex">
+                    <input type="text" placeholder="Search for campus deals..."
+                           class="flex-1 border-2 border-purple-400 rounded-l-full px-3 sm:px-5 py-2 text-sm focus:outline-none focus:border-purple-600">
+                    <button class="bg-purple-600 hover:bg-purple-700 text-white px-4 sm:px-6 py-2 rounded-r-full text-sm font-semibold transition">
+                        Search
+                    </button>
+                </div>
+                <div class="hot-tags hidden sm:flex space-x-4 mt-1.5 text-xs text-gray-400 pl-2">
+                    <a href="#" class="hover:text-purple-500">Textbook Sales</a>
+                    <a href="#" class="hover:text-purple-500">Digital Devices</a>
+                    <a href="#" class="hover:text-purple-500">Exam Materials</a>
+                    <a href="#" class="hover:text-purple-500">Dorm Essentials</a>
+                </div>
+            </div>
+
+            <!-- Right: User Actions -->
+            <div class="flex items-center space-x-2 sm:space-x-4 shrink-0">
+
+                <a href="../index.html" class="hidden sm:inline text-sm text-gray-500 hover:text-purple-600">Home</a>
+
+                <button onclick="openPublish()" class="bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white font-bold py-1.5 px-3 sm:px-4 rounded-full shadow-md transition transform hover:scale-105 flex items-center space-x-1 mr-2 sm:mr-4">
+                    <span class="text-lg leading-none">+</span>
+                    <span class="hidden sm:inline text-sm">List Item</span>
+                </button>
+                <!-- User Avatar + Dropdown Panel -->
+                <div class="relative" id="user-menu-wrapper">
+                    <button id="user-avatar-btn" class="flex items-center space-x-2 hover:opacity-80 transition">
+                        <div id="header-avatar" class="w-9 h-9 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center text-white text-sm font-bold shadow">Login</div>
+                        <span id="header-username" class="text-sm text-gray-700 font-medium hidden sm:inline">Click to Login</span>
+                        <svg class="w-3.5 h-3.5 text-gray-400 transition-transform" id="avatar-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <!-- Dropdown Panel -->
+                    <div id="user-dropdown" class="hidden absolute right-0 top-full mt-2 w-72 bg-white rounded-2xl shadow-xl border border-gray-100 z-50 overflow-hidden">
+                        <!-- User Info Area -->
+                        <a href="profile.html" class="block px-5 pt-5 pb-4 border-b border-gray-100 hover:bg-gray-50 transition cursor-pointer">
+                            <div class="flex items-center space-x-3">
+                                <div id="dropdown-avatar" class="w-14 h-14 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center text-white text-2xl font-bold shadow-md">Login</div>
+                                <div>
+                                    <p id="dropdown-username" class="text-base font-bold text-gray-800">Click to Login</p>
+                                    <p class="text-xs text-gray-400 mt-0.5"><span id="dropdown-followers">0</span> Followers &nbsp;|&nbsp; <span id="dropdown-following">0</span> Following</p>
+                                </div>
+                            </div>
+                        </a>
+                        <!-- Menu Items -->
+                        <div class="py-2">
+                            <a href="mypublish.html" class="flex items-center justify-between px-5 py-3 hover:bg-purple-50 transition">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-lg">🏷️</span>
+                                    <span class="text-sm text-gray-700">My Listings</span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <span id="dropdown-posts" class="text-xs text-purple-600 font-bold bg-purple-50 px-2 py-0.5 rounded-full">0</span>
+                                    <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                                </div>
+                            </a>
+
+                            <a href="purchases.html" class="flex items-center justify-between px-5 py-3 hover:bg-purple-50 transition">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-lg">📦</span>
+                                    <span class="text-sm text-gray-700">My Purchases</span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <span id="dropdown-buy" class="text-xs text-purple-600 font-bold bg-purple-50 px-2 py-0.5 rounded-full">0</span>
+                                    <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                                </div>
+                            </a>
+
+                            <a href="sales.html" class="flex items-center justify-between px-5 py-3 hover:bg-purple-50 transition">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-lg">💰</span>
+                                    <span class="text-sm text-gray-700">My Sales</span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <span id="dropdown-sell" class="text-xs text-purple-600 font-bold bg-purple-50 px-2 py-0.5 rounded-full">0</span>
+                                    <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                                </div>
+                            </a>
+                            <a href="favorites.html" class="flex items-center justify-between px-5 py-3 hover:bg-purple-50 transition">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-lg">⭐</span>
+                                    <span class="text-sm text-gray-700">My Favorites</span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <span id="dropdown-fav" class="text-xs text-purple-600 font-bold bg-purple-50 px-2 py-0.5 rounded-full">0</span>
+                                    <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- Bottom Action Bar -->
+                        <div class="border-t border-gray-100 px-5 py-3 flex items-center justify-between">
+                            <button id="logout-btn" class="text-sm text-gray-400 hover:text-red-500 transition">Log Out</button>
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <span class="text-xs text-gray-400">Remember Me</span>
+                                <div class="relative">
+                                    <input type="checkbox" id="save-login-toggle" class="sr-only peer" checked>
+                                    <div class="w-9 h-5 bg-gray-200 rounded-full peer-checked:bg-purple-500 transition"></div>
+                                    <div class="absolute left-0.5 top-0.5 w-4 h-4 bg-white rounded-full shadow transition-transform peer-checked:translate-x-4"></div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== Notification Banner ===== -->
+    <div class="bg-purple-50 border-b border-purple-100">
+        <div class="max-w-7xl mx-auto px-4 py-1.5 text-xs text-purple-700 flex items-center space-x-2 overflow-hidden">
+            <span class="bg-purple-600 text-white px-1.5 py-0.5 rounded text-[10px] font-bold shrink-0">Notice</span>
+            <span class="truncate">Campus trading platform upgraded! Secure transactions for worry-free buying and selling.</span>
+        </div>
+    </div>
+
+    <!-- ===== Main Content ===== -->
+    <main class="max-w-7xl mx-auto px-4 py-5">
+        <div class="flex gap-5">
+
+
+
+
+
+
+            <!-- ===== Left Category Sidebar ===== -->
+            <aside class="hidden lg:block w-56 shrink-0 bg-white rounded-xl p-4 shadow-sm self-start relative z-40 overflow-hidden">
+                <ul class="category-list text-xs text-gray-700 space-y-1">
+                    <!-- 1. Phones/Digital/Computers -->
+                    <li class="group flex items-center space-x-1 cursor-pointer hover:text-purple-600 hover:bg-purple-50 rounded-lg px-2 py-2 -mx-2 font-medium overflow-hidden whitespace-nowrap" data-cat="Phones/Digital/Computers">
+                        <span>📱</span><span>Phones</span><span class="text-gray-300">/</span><span>Digital</span><span class="text-gray-300">/</span><span>Computers</span>
+                        <span class="ml-auto text-gray-300 text-xs">›</span>
+                        <div class="hidden group-hover:block absolute left-full top-0 ml-1 w-[520px] bg-white rounded-xl shadow-xl p-5 z-50 border border-gray-100 text-gray-600 font-normal">
+                            <div class="mb-4">
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Phones</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=iPhone" class="hover:text-purple-600">iPhone</a><a href="search.html?keyword=Samsung" class="hover:text-purple-600">Samsung</a><a href="search.html?keyword=Huawei" class="hover:text-purple-600">Huawei</a><a href="search.html?keyword=Xiaomi" class="hover:text-purple-600">Xiaomi</a><a href="search.html?keyword=OnePlus" class="hover:text-purple-600">OnePlus</a><a href="search.html?keyword=Honor" class="hover:text-purple-600">Honor</a><a href="search.html?keyword=OPPO" class="hover:text-purple-600">OPPO</a><a href="search.html?keyword=vivo" class="hover:text-purple-600">vivo</a><a href="search.html?keyword=iQOO" class="hover:text-purple-600">iQOO</a><a href="search.html?keyword=realme" class="hover:text-purple-600">realme</a><a href="search.html?keyword=Redmi" class="hover:text-purple-600">Redmi</a><a href="search.html?keyword=Meizu" class="hover:text-purple-600">Meizu</a><a href="search.html?keyword=ZTE" class="hover:text-purple-600">ZTE</a><a href="search.html?keyword=Nubia" class="hover:text-purple-600">Nubia</a>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Computers</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Laptop" class="hover:text-purple-600">Laptop</a><a href="search.html?keyword=Tablet" class="hover:text-purple-600">Tablet</a><a href="search.html?keyword=Gaming+Laptop" class="hover:text-purple-600">Gaming Laptop</a><a href="search.html?keyword=Desktop" class="hover:text-purple-600">Desktop</a><a href="search.html?keyword=All-in-One" class="hover:text-purple-600">All-in-One</a><a href="search.html?keyword=Business+Laptop" class="hover:text-purple-600">Business Laptop</a><a href="search.html?keyword=2-in-1+Laptop" class="hover:text-purple-600">2-in-1 Laptop</a><a href="search.html?keyword=Mini+PC" class="hover:text-purple-600">Mini PC</a><a href="search.html?keyword=Workstation" class="hover:text-purple-600">Workstation</a>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Audio & Digital</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Bluetooth+Earbuds" class="hover:text-purple-600">Bluetooth Earbuds</a><a href="search.html?keyword=Wired+Earphones" class="hover:text-purple-600">Wired Earphones</a><a href="search.html?keyword=Speaker" class="hover:text-purple-600">Speaker</a><a href="search.html?keyword=Microphone" class="hover:text-purple-600">Microphone</a><a href="search.html?keyword=Projector" class="hover:text-purple-600">Projector</a><a href="search.html?keyword=Power+Bank" class="hover:text-purple-600">Power Bank</a><a href="search.html?keyword=External+HDD" class="hover:text-purple-600">External HDD</a><a href="search.html?keyword=Cable" class="hover:text-purple-600">Cable</a><a href="search.html?keyword=USB+Drive" class="hover:text-purple-600">USB Drive</a><a href="search.html?keyword=Voice+Recorder" class="hover:text-purple-600">Voice Recorder</a><a href="search.html?keyword=MP3/MP4" class="hover:text-purple-600">MP3/MP4</a>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Smart Devices</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Smartwatch" class="hover:text-purple-600">Smartwatch</a><a href="search.html?keyword=Fitness+Band" class="hover:text-purple-600">Fitness Band</a><a href="search.html?keyword=VR/AR+Headset" class="hover:text-purple-600">VR/AR Headset</a><a href="search.html?keyword=Drone" class="hover:text-purple-600">Drone</a><a href="search.html?keyword=E-Reader" class="hover:text-purple-600">E-Reader</a><a href="search.html?keyword=Smart+Speaker" class="hover:text-purple-600">Smart Speaker</a><a href="search.html?keyword=Router" class="hover:text-purple-600">Router</a><a href="search.html?keyword=Smart+Lock" class="hover:text-purple-600">Smart Lock</a>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Photography</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Mirrorless+Camera" class="hover:text-purple-600">Mirrorless Camera</a><a href="search.html?keyword=DSLR" class="hover:text-purple-600">DSLR</a><a href="search.html?keyword=Lens" class="hover:text-purple-600">Lens</a><a href="search.html?keyword=Action+Camera" class="hover:text-purple-600">Action Camera</a><a href="search.html?keyword=CCD" class="hover:text-purple-600">CCD</a><a href="search.html?keyword=Instant+Camera" class="hover:text-purple-600">Instant Camera</a><a href="search.html?keyword=Tripod" class="hover:text-purple-600">Tripod</a><a href="search.html?keyword=Ring+Light" class="hover:text-purple-600">Ring Light</a><a href="search.html?keyword=Gimbal" class="hover:text-purple-600">Gimbal</a><a href="search.html?keyword=Memory+Card" class="hover:text-purple-600">Memory Card</a>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">PC Accessories</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Mechanical+Keyboard" class="hover:text-purple-600">Mechanical Keyboard</a><a href="search.html?keyword=Mouse" class="hover:text-purple-600">Mouse</a><a href="search.html?keyword=Monitor" class="hover:text-purple-600">Monitor</a><a href="search.html?keyword=Graphics+Card" class="hover:text-purple-600">Graphics Card</a><a href="search.html?keyword=RAM" class="hover:text-purple-600">RAM</a><a href="search.html?keyword=SSD" class="hover:text-purple-600">SSD</a><a href="search.html?keyword=Cooler" class="hover:text-purple-600">Cooler</a><a href="search.html?keyword=Laptop+Bag" class="hover:text-purple-600">Laptop Bag</a><a href="search.html?keyword=Docking+Station" class="hover:text-purple-600">Docking Station</a><a href="search.html?keyword=Mouse+Pad" class="hover:text-purple-600">Mouse Pad</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- 2. Fashion/Bags/Sports -->
+                    <li class="group flex items-center space-x-1 cursor-pointer hover:text-purple-600 hover:bg-purple-50 rounded-lg px-2 py-2 -mx-2 overflow-hidden whitespace-nowrap" data-cat="Fashion/Bags/Sports">
+                        <span>👗</span><span>Fashion</span><span class="text-gray-300">/</span><span>Bags</span><span class="text-gray-300">/</span><span>Sports</span>
+                        <span class="ml-auto text-gray-300 text-xs">›</span>
+                        <div class="hidden group-hover:block absolute left-full top-0 ml-1 w-[520px] bg-white rounded-xl shadow-xl p-5 z-50 border border-gray-100 text-gray-600">
+                            <div class="mb-4">
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Women's Clothing</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Dress" class="hover:text-purple-600">Dress</a><a href="search.html?keyword=T-Shirt" class="hover:text-purple-600">T-Shirt</a><a href="search.html?keyword=Hoodie" class="hover:text-purple-600">Hoodie</a><a href="search.html?keyword=Jacket" class="hover:text-purple-600">Jacket</a><a href="search.html?keyword=Jeans" class="hover:text-purple-600">Jeans</a><a href="search.html?keyword=Skirt" class="hover:text-purple-600">Skirt</a><a href="search.html?keyword=Knitwear" class="hover:text-purple-600">Knitwear</a><a href="search.html?keyword=Down+Jacket" class="hover:text-purple-600">Down Jacket</a><a href="search.html?keyword=Coat" class="hover:text-purple-600">Coat</a><a href="search.html?keyword=Blazer" class="hover:text-purple-600">Blazer</a><a href="search.html?keyword=Camisole" class="hover:text-purple-600">Camisole</a><a href="search.html?keyword=Blouse" class="hover:text-purple-600">Blouse</a>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Men's Clothing</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=T-Shirt" class="hover:text-purple-600">T-Shirt</a><a href="search.html?keyword=Shirt" class="hover:text-purple-600">Shirt</a><a href="search.html?keyword=Jacket" class="hover:text-purple-600">Jacket</a><a href="search.html?keyword=Hoodie" class="hover:text-purple-600">Hoodie</a><a href="search.html?keyword=Casual+Pants" class="hover:text-purple-600">Casual Pants</a><a href="search.html?keyword=Sweatpants" class="hover:text-purple-600">Sweatpants</a><a href="search.html?keyword=Down+Jacket" class="hover:text-purple-600">Down Jacket</a><a href="search.html?keyword=Trench+Coat" class="hover:text-purple-600">Trench Coat</a><a href="search.html?keyword=Suit" class="hover:text-purple-600">Suit</a><a href="search.html?keyword=Jeans" class="hover:text-purple-600">Jeans</a><a href="search.html?keyword=Shorts" class="hover:text-purple-600">Shorts</a>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Shoes</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Sneakers" class="hover:text-purple-600">Sneakers</a><a href="search.html?keyword=Canvas+Shoes" class="hover:text-purple-600">Canvas Shoes</a><a href="search.html?keyword=Skate+Shoes" class="hover:text-purple-600">Skate Shoes</a><a href="search.html?keyword=High+Heels" class="hover:text-purple-600">High Heels</a><a href="search.html?keyword=Sandals" class="hover:text-purple-600">Sandals</a><a href="search.html?keyword=Boots" class="hover:text-purple-600">Boots</a><a href="search.html?keyword=Slippers" class="hover:text-purple-600">Slippers</a><a href="search.html?keyword=Leather+Shoes" class="hover:text-purple-600">Leather Shoes</a><a href="search.html?keyword=Combat+Boots" class="hover:text-purple-600">Combat Boots</a><a href="search.html?keyword=Snow+Boots" class="hover:text-purple-600">Snow Boots</a>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Bags</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Backpack" class="hover:text-purple-600">Backpack</a><a href="search.html?keyword=Handbag" class="hover:text-purple-600">Handbag</a><a href="search.html?keyword=Luggage" class="hover:text-purple-600">Luggage</a><a href="search.html?keyword=Wallet" class="hover:text-purple-600">Wallet</a><a href="search.html?keyword=Crossbody+Bag" class="hover:text-purple-600">Crossbody Bag</a><a href="search.html?keyword=Belt+Bag" class="hover:text-purple-600">Belt Bag</a><a href="search.html?keyword=Briefcase" class="hover:text-purple-600">Briefcase</a><a href="search.html?keyword=Makeup+Bag" class="hover:text-purple-600">Makeup Bag</a><a href="search.html?keyword=Storage+Bag" class="hover:text-purple-600">Storage Bag</a>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Accessories</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Watch" class="hover:text-purple-600">Watch</a><a href="search.html?keyword=Necklace" class="hover:text-purple-600">Necklace</a><a href="search.html?keyword=Earrings" class="hover:text-purple-600">Earrings</a><a href="search.html?keyword=Ring" class="hover:text-purple-600">Ring</a><a href="search.html?keyword=Bracelet" class="hover:text-purple-600">Bracelet</a><a href="search.html?keyword=Sunglasses" class="hover:text-purple-600">Sunglasses</a><a href="search.html?keyword=Hat" class="hover:text-purple-600">Hat</a><a href="search.html?keyword=Scarf" class="hover:text-purple-600">Scarf</a><a href="search.html?keyword=Belt" class="hover:text-purple-600">Belt</a><a href="search.html?keyword=Hair+Accessories" class="hover:text-purple-600">Hair Accessories</a>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Sports Gear</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Running+Shoes" class="hover:text-purple-600">Running Shoes</a><a href="search.html?keyword=Basketball+Shoes" class="hover:text-purple-600">Basketball Shoes</a><a href="search.html?keyword=Sportswear+Set" class="hover:text-purple-600">Sportswear Set</a><a href="search.html?keyword=Yoga+Wear" class="hover:text-purple-600">Yoga Wear</a><a href="search.html?keyword=Swimwear" class="hover:text-purple-600">Swimwear</a><a href="search.html?keyword=Quick-Dry+Shirt" class="hover:text-purple-600">Quick-Dry Shirt</a><a href="search.html?keyword=Windbreaker" class="hover:text-purple-600">Windbreaker</a><a href="search.html?keyword=Hiking+Boots" class="hover:text-purple-600">Hiking Boots</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+<!-- ASIDE_CHUNK_2 -->
+                    <!-- 3. Games/Vouchers/Toys -->
+                    <li class="group flex items-center space-x-1 cursor-pointer hover:text-purple-600 hover:bg-purple-50 rounded-lg px-2 py-2 -mx-2 overflow-hidden whitespace-nowrap" data-cat="Games/Vouchers/Toys">
+                        <span>🎮</span><span>Games</span><span class="text-gray-300">/</span><span>Vouchers</span><span class="text-gray-300">/</span><span>Toys</span>
+                        <span class="ml-auto text-gray-300 text-xs">›</span>
+                        <div class="hidden group-hover:block absolute left-full top-0 ml-1 w-[520px] bg-white rounded-xl shadow-xl p-5 z-50 border border-gray-100 text-gray-600">
+                            <div class="mb-4">
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Consoles & Handhelds</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Switch" class="hover:text-purple-600">Switch</a><a href="search.html?keyword=PS5" class="hover:text-purple-600">PS5</a><a href="search.html?keyword=PS4" class="hover:text-purple-600">PS4</a><a href="search.html?keyword=Xbox" class="hover:text-purple-600">Xbox</a><a href="search.html?keyword=Steam Deck" class="hover:text-purple-600">Steam Deck</a><a href="search.html?keyword=PSP/PSV" class="hover:text-purple-600">PSP/PSV</a><a href="search.html?keyword=3DS" class="hover:text-purple-600">3DS</a><a href="search.html?keyword=Retro+Console" class="hover:text-purple-600">Retro Console</a>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Games & Accessories</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Switch+Cartridge" class="hover:text-purple-600">Switch Cartridge</a><a href="search.html?keyword=PS5+Disc" class="hover:text-purple-600">PS5 Disc</a><a href="search.html?keyword=Steam+Account" class="hover:text-purple-600">Steam Account</a><a href="search.html?keyword=Game+Controller" class="hover:text-purple-600">Game Controller</a><a href="search.html?keyword=Gaming+Headset" class="hover:text-purple-600">Gaming Headset</a><a href="search.html?keyword=Gaming+Chair" class="hover:text-purple-600">Gaming Chair</a><a href="search.html?keyword=Gaming+Mouse" class="hover:text-purple-600">Gaming Mouse</a>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Vouchers & Memberships</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Coffee+Voucher" class="hover:text-purple-600">Coffee Voucher</a><a href="search.html?keyword=Food+Delivery+Coupon" class="hover:text-purple-600">Food Delivery Coupon</a><a href="search.html?keyword=Movie+Ticket" class="hover:text-purple-600">Movie Ticket</a><a href="search.html?keyword=Membership+Card" class="hover:text-purple-600">Membership Card</a><a href="search.html?keyword=Gift+Card" class="hover:text-purple-600">Gift Card</a><a href="search.html?keyword=Video+Streaming" class="hover:text-purple-600">Video Streaming</a><a href="search.html?keyword=Music+Streaming" class="hover:text-purple-600">Music Streaming</a><a href="search.html?keyword=Cloud+Storage" class="hover:text-purple-600">Cloud Storage</a><a href="search.html?keyword=Gym+Pass" class="hover:text-purple-600">Gym Pass</a><a href="search.html?keyword=Grocery+Card" class="hover:text-purple-600">Grocery Card</a><a href="search.html?keyword=Gas+Card" class="hover:text-purple-600">Gas Card</a>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Collectibles & Figures</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Pop+Mart" class="hover:text-purple-600">Pop Mart</a><a href="search.html?keyword=LEGO" class="hover:text-purple-600">LEGO</a><a href="search.html?keyword=GK+Figure" class="hover:text-purple-600">GK Figure</a><a href="search.html?keyword=Plush+Toy" class="hover:text-purple-600">Plush Toy</a><a href="search.html?keyword=Blind+Box" class="hover:text-purple-600">Blind Box</a><a href="search.html?keyword=Model+Kit" class="hover:text-purple-600">Model Kit</a><a href="search.html?keyword=Gundam" class="hover:text-purple-600">Gundam</a><a href="search.html?keyword=Transformers" class="hover:text-purple-600">Transformers</a><a href="search.html?keyword=Disney+Merch" class="hover:text-purple-600">Disney Merch</a>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Board Games & Anime</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Three+Kingdoms+Kill" class="hover:text-purple-600">Three Kingdoms Kill</a><a href="search.html?keyword=Werewolf" class="hover:text-purple-600">Werewolf</a><a href="search.html?keyword=UNO" class="hover:text-purple-600">UNO</a><a href="search.html?keyword=Puzzle" class="hover:text-purple-600">Puzzle</a><a href="search.html?keyword=Chess+%26+Go" class="hover:text-purple-600">Chess & Go</a><a href="search.html?keyword=Manga" class="hover:text-purple-600">Manga</a><a href="search.html?keyword=Anime+Merch" class="hover:text-purple-600">Anime Merch</a><a href="search.html?keyword=Cosplay+Costume" class="hover:text-purple-600">Cosplay Costume</a><a href="search.html?keyword=Anime+Goods" class="hover:text-purple-600">Anime Goods</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- 4. Textbooks/Study Materials -->
+                    <li class="group flex items-center space-x-1 cursor-pointer hover:text-purple-600 hover:bg-purple-50 rounded-lg px-2 py-2 -mx-2 overflow-hidden whitespace-nowrap" data-cat="Textbooks/Study Materials">
+                        <span>📚</span><span>Textbooks</span><span class="text-gray-300">/</span><span>Study</span><span class="text-gray-300">/</span><span>Materials</span>
+                        <span class="ml-auto text-gray-300 text-xs">›</span>
+                        <div class="hidden group-hover:block absolute left-full top-0 ml-1 w-[520px] bg-white rounded-xl shadow-xl p-5 z-50 border border-gray-100 text-gray-600">
+                            <div class="mb-4">
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">STEM Textbooks</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Calculus" class="hover:text-purple-600">Calculus</a><a href="search.html?keyword=Physics" class="hover:text-purple-600">Physics</a><a href="search.html?keyword=Linear+Algebra" class="hover:text-purple-600">Linear Algebra</a><a href="search.html?keyword=Probability" class="hover:text-purple-600">Probability</a><a href="search.html?keyword=C+Programming" class="hover:text-purple-600">C Programming</a><a href="search.html?keyword=Data+Structures" class="hover:text-purple-600">Data Structures</a><a href="search.html?keyword=Discrete+Math" class="hover:text-purple-600">Discrete Math</a><a href="search.html?keyword=Circuit+Theory" class="hover:text-purple-600">Circuit Theory</a><a href="search.html?keyword=Analog+Electronics" class="hover:text-purple-600">Analog Electronics</a><a href="search.html?keyword=Digital+Electronics" class="hover:text-purple-600">Digital Electronics</a><a href="search.html?keyword=Operating+Systems" class="hover:text-purple-600">Operating Systems</a><a href="search.html?keyword=Computer+Networks" class="hover:text-purple-600">Computer Networks</a>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Business & Humanities</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Microeconomics" class="hover:text-purple-600">Microeconomics</a><a href="search.html?keyword=Macroeconomics" class="hover:text-purple-600">Macroeconomics</a><a href="search.html?keyword=Management" class="hover:text-purple-600">Management</a><a href="search.html?keyword=Accounting" class="hover:text-purple-600">Accounting</a><a href="search.html?keyword=Marketing" class="hover:text-purple-600">Marketing</a><a href="search.html?keyword=Political+Science" class="hover:text-purple-600">Political Science</a><a href="search.html?keyword=Ethics" class="hover:text-purple-600">Ethics</a><a href="search.html?keyword=Philosophy" class="hover:text-purple-600">Philosophy</a><a href="search.html?keyword=Law+Intro" class="hover:text-purple-600">Law Intro</a><a href="search.html?keyword=Psychology" class="hover:text-purple-600">Psychology</a>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Grad School Prep</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Math+Prep" class="hover:text-purple-600">Math Prep</a><a href="search.html?keyword=Linear+Algebra+Guide" class="hover:text-purple-600">Linear Algebra Guide</a><a href="search.html?keyword=Review+Books" class="hover:text-purple-600">Review Books</a><a href="search.html?keyword=GRE+Prep" class="hover:text-purple-600">GRE Prep</a><a href="search.html?keyword=Writing+Guide" class="hover:text-purple-600">Writing Guide</a><a href="search.html?keyword=Test+Prep" class="hover:text-purple-600">Test Prep</a><a href="search.html?keyword=Practice+Exams" class="hover:text-purple-600">Practice Exams</a><a href="search.html?keyword=Study+Notes" class="hover:text-purple-600">Study Notes</a><a href="search.html?keyword=Major+Materials" class="hover:text-purple-600">Major Materials</a><a href="search.html?keyword=Interview+Prep" class="hover:text-purple-600">Interview Prep</a><a href="search.html?keyword=Senior+Notes" class="hover:text-purple-600">Senior Notes</a>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Certifications & Languages</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=TOEFL%2FIELTS" class="hover:text-purple-600">TOEFL/IELTS</a><a href="search.html?keyword=IELTS" class="hover:text-purple-600">IELTS</a><a href="search.html?keyword=TOEFL" class="hover:text-purple-600">TOEFL</a><a href="search.html?keyword=GRE%2FGMAT" class="hover:text-purple-600">GRE/GMAT</a><a href="search.html?keyword=JLPT+N1%2FN2" class="hover:text-purple-600">JLPT N1/N2</a><a href="search.html?keyword=Computer+Cert" class="hover:text-purple-600">Computer Cert</a><a href="search.html?keyword=Teaching+Cert" class="hover:text-purple-600">Teaching Cert</a><a href="search.html?keyword=Bar+Exam" class="hover:text-purple-600">Bar Exam</a><a href="search.html?keyword=CPA" class="hover:text-purple-600">CPA</a><a href="search.html?keyword=Bookkeeping" class="hover:text-purple-600">Bookkeeping</a><a href="search.html?keyword=Public+Speaking" class="hover:text-purple-600">Public Speaking</a><a href="search.html?keyword=Driving+Test" class="hover:text-purple-600">Driving Test</a>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Leisure Reading</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Fiction" class="hover:text-purple-600">Fiction</a><a href="search.html?keyword=Biography" class="hover:text-purple-600">Biography</a><a href="search.html?keyword=Popular+Science" class="hover:text-purple-600">Popular Science</a><a href="search.html?keyword=Philosophy+Books" class="hover:text-purple-600">Philosophy Books</a><a href="search.html?keyword=Reference+Books" class="hover:text-purple-600">Reference Books</a><a href="search.html?keyword=Programming+Books" class="hover:text-purple-600">Programming Books</a><a href="search.html?keyword=Business+Books" class="hover:text-purple-600">Business Books</a><a href="search.html?keyword=Comics" class="hover:text-purple-600">Comics</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- 5. Furniture/Appliances/Daily -->
+                    <li class="group flex items-center space-x-1 cursor-pointer hover:text-purple-600 hover:bg-purple-50 rounded-lg px-2 py-2 -mx-2 overflow-hidden whitespace-nowrap" data-cat="Furniture/Appliances/Daily">
+                        <span>🏠</span><span>Furniture</span><span class="text-gray-300">/</span><span>Appliances</span><span class="text-gray-300">/</span><span>Daily</span>
+                        <span class="ml-auto text-gray-300 text-xs">›</span>
+                        <div class="hidden group-hover:block absolute left-full top-0 ml-1 w-[520px] bg-white rounded-xl shadow-xl p-5 z-50 border border-gray-100 text-gray-600">
+                            <div class="mb-4">
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Furniture</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Desk" class="hover:text-purple-600">Desk</a><a href="search.html?keyword=Chair" class="hover:text-purple-600">Chair</a><a href="search.html?keyword=Storage+Cabinet" class="hover:text-purple-600">Storage Cabinet</a><a href="search.html?keyword=Bedding" class="hover:text-purple-600">Bedding</a><a href="search.html?keyword=Bean+Bag" class="hover:text-purple-600">Bean Bag</a><a href="search.html?keyword=Folding+Table" class="hover:text-purple-600">Folding Table</a><a href="search.html?keyword=Wardrobe" class="hover:text-purple-600">Wardrobe</a><a href="search.html?keyword=Shoe+Rack" class="hover:text-purple-600">Shoe Rack</a><a href="search.html?keyword=Mattress" class="hover:text-purple-600">Mattress</a><a href="search.html?keyword=Curtains" class="hover:text-purple-600">Curtains</a>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Large Appliances</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Mini+Fridge" class="hover:text-purple-600">Mini Fridge</a><a href="search.html?keyword=Washing+Machine" class="hover:text-purple-600">Washing Machine</a><a href="search.html?keyword=Air+Conditioner" class="hover:text-purple-600">Air Conditioner</a><a href="search.html?keyword=TV" class="hover:text-purple-600">TV</a><a href="search.html?keyword=Microwave" class="hover:text-purple-600">Microwave</a><a href="search.html?keyword=Oven" class="hover:text-purple-600">Oven</a><a href="search.html?keyword=Air+Purifier" class="hover:text-purple-600">Air Purifier</a><a href="search.html?keyword=Robot+Vacuum" class="hover:text-purple-600">Robot Vacuum</a>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Small Appliances</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Desk+Lamp" class="hover:text-purple-600">Desk Lamp</a><a href="search.html?keyword=Fan" class="hover:text-purple-600">Fan</a><a href="search.html?keyword=Humidifier" class="hover:text-purple-600">Humidifier</a><a href="search.html?keyword=Hair+Dryer" class="hover:text-purple-600">Hair Dryer</a><a href="search.html?keyword=Electric+Kettle" class="hover:text-purple-600">Electric Kettle</a><a href="search.html?keyword=Rice+Cooker" class="hover:text-purple-600">Rice Cooker</a><a href="search.html?keyword=Soy+Milk+Maker" class="hover:text-purple-600">Soy Milk Maker</a><a href="search.html?keyword=Juicer" class="hover:text-purple-600">Juicer</a><a href="search.html?keyword=Yogurt+Maker" class="hover:text-purple-600">Yogurt Maker</a><a href="search.html?keyword=Iron" class="hover:text-purple-600">Iron</a><a href="search.html?keyword=Hand+Warmer" class="hover:text-purple-600">Hand Warmer</a>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Kitchen Supplies</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Cookware" class="hover:text-purple-600">Cookware</a><a href="search.html?keyword=Tableware" class="hover:text-purple-600">Tableware</a><a href="search.html?keyword=Thermos" class="hover:text-purple-600">Thermos</a><a href="search.html?keyword=Lunch+Box" class="hover:text-purple-600">Lunch Box</a><a href="search.html?keyword=Water+Bottle" class="hover:text-purple-600">Water Bottle</a><a href="search.html?keyword=Knives" class="hover:text-purple-600">Knives</a><a href="search.html?keyword=Cutting+Board" class="hover:text-purple-600">Cutting Board</a><a href="search.html?keyword=Food+Container" class="hover:text-purple-600">Food Container</a>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Daily Essentials</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Storage+Box" class="hover:text-purple-600">Storage Box</a><a href="search.html?keyword=Hangers" class="hover:text-purple-600">Hangers</a><a href="search.html?keyword=Trash+Can" class="hover:text-purple-600">Trash Can</a><a href="search.html?keyword=Shelf" class="hover:text-purple-600">Shelf</a><a href="search.html?keyword=Toiletries" class="hover:text-purple-600">Toiletries</a><a href="search.html?keyword=Towels" class="hover:text-purple-600">Towels</a><a href="search.html?keyword=Umbrella" class="hover:text-purple-600">Umbrella</a><a href="search.html?keyword=Mirror" class="hover:text-purple-600">Mirror</a><a href="search.html?keyword=Alarm+Clock" class="hover:text-purple-600">Alarm Clock</a><a href="search.html?keyword=Power+Strip" class="hover:text-purple-600">Power Strip</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+<!-- ASIDE_CHUNK_3 -->
+                    <!-- 6. Beauty/Skincare/Personal Care -->
+                    <li class="group flex items-center space-x-1 cursor-pointer hover:text-purple-600 hover:bg-purple-50 rounded-lg px-2 py-2 -mx-2 overflow-hidden whitespace-nowrap" data-cat="Beauty/Skincare/Personal Care">
+                        <span>💄</span><span>Beauty</span><span class="text-gray-300">/</span><span>Skincare</span><span class="text-gray-300">/</span><span>Personal</span>
+                        <span class="ml-auto text-gray-300 text-xs">›</span>
+                        <div class="hidden group-hover:block absolute left-full top-0 ml-1 w-[520px] bg-white rounded-xl shadow-xl p-5 z-50 border border-gray-100 text-gray-600">
+                            <div class="mb-4">
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Makeup</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Lipstick" class="hover:text-purple-600">Lipstick</a><a href="search.html?keyword=Foundation" class="hover:text-purple-600">Foundation</a><a href="search.html?keyword=Eyeshadow+Palette" class="hover:text-purple-600">Eyeshadow Palette</a><a href="search.html?keyword=Blush" class="hover:text-purple-600">Blush</a><a href="search.html?keyword=Makeup+Brushes" class="hover:text-purple-600">Makeup Brushes</a><a href="search.html?keyword=Makeup+Remover" class="hover:text-purple-600">Makeup Remover</a><a href="search.html?keyword=Concealer" class="hover:text-purple-600">Concealer</a><a href="search.html?keyword=Mascara" class="hover:text-purple-600">Mascara</a><a href="search.html?keyword=Eyebrow+Pencil" class="hover:text-purple-600">Eyebrow Pencil</a><a href="search.html?keyword=Setting+Spray" class="hover:text-purple-600">Setting Spray</a><a href="search.html?keyword=Loose+Powder" class="hover:text-purple-600">Loose Powder</a><a href="search.html?keyword=Lip+Gloss" class="hover:text-purple-600">Lip Gloss</a>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Skincare</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Face+Mask" class="hover:text-purple-600">Face Mask</a><a href="search.html?keyword=Toner+%26+Lotion+Set" class="hover:text-purple-600">Toner & Lotion Set</a><a href="search.html?keyword=Serum" class="hover:text-purple-600">Serum</a><a href="search.html?keyword=Sunscreen" class="hover:text-purple-600">Sunscreen</a><a href="search.html?keyword=Moisturizer" class="hover:text-purple-600">Moisturizer</a><a href="search.html?keyword=Cleanser" class="hover:text-purple-600">Cleanser</a><a href="search.html?keyword=Toner" class="hover:text-purple-600">Toner</a><a href="search.html?keyword=Eye+Cream" class="hover:text-purple-600">Eye Cream</a><a href="search.html?keyword=Lip+Balm" class="hover:text-purple-600">Lip Balm</a><a href="search.html?keyword=Acne+Treatment" class="hover:text-purple-600">Acne Treatment</a><a href="search.html?keyword=Brightening+Serum" class="hover:text-purple-600">Brightening Serum</a>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Personal Care Devices</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Electric+Toothbrush" class="hover:text-purple-600">Electric Toothbrush</a><a href="search.html?keyword=Electric+Shaver" class="hover:text-purple-600">Electric Shaver</a><a href="search.html?keyword=Beauty+Device" class="hover:text-purple-600">Beauty Device</a><a href="search.html?keyword=Curling+Iron" class="hover:text-purple-600">Curling Iron</a><a href="search.html?keyword=Hair+Straightener" class="hover:text-purple-600">Hair Straightener</a><a href="search.html?keyword=Facial+Cleansing+Brush" class="hover:text-purple-600">Facial Brush</a><a href="search.html?keyword=Hair+Removal+Device" class="hover:text-purple-600">Hair Removal</a><a href="search.html?keyword=Water+Flosser" class="hover:text-purple-600">Water Flosser</a>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Fragrance & Body Care</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Perfume" class="hover:text-purple-600">Perfume</a><a href="search.html?keyword=Body+Lotion" class="hover:text-purple-600">Body Lotion</a><a href="search.html?keyword=Body+Wash" class="hover:text-purple-600">Body Wash</a><a href="search.html?keyword=Shampoo" class="hover:text-purple-600">Shampoo</a><a href="search.html?keyword=Conditioner" class="hover:text-purple-600">Conditioner</a><a href="search.html?keyword=Nail+Polish" class="hover:text-purple-600">Nail Polish</a><a href="search.html?keyword=Nail+Tools" class="hover:text-purple-600">Nail Tools</a><a href="search.html?keyword=Aromatherapy" class="hover:text-purple-600">Aromatherapy</a><a href="search.html?keyword=Essential+Oil" class="hover:text-purple-600">Essential Oil</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- 7. Instruments/Stationery/Crafts -->
+                    <li class="group flex items-center space-x-1 cursor-pointer hover:text-purple-600 hover:bg-purple-50 rounded-lg px-2 py-2 -mx-2 overflow-hidden whitespace-nowrap" data-cat="Instruments/Stationery/Crafts">
+                        <span>🎵</span><span>Instruments</span><span class="text-gray-300">/</span><span>Stationery</span><span class="text-gray-300">/</span><span>Crafts</span>
+                        <span class="ml-auto text-gray-300 text-xs">›</span>
+                        <div class="hidden group-hover:block absolute left-full top-0 ml-1 w-[520px] bg-white rounded-xl shadow-xl p-5 z-50 border border-gray-100 text-gray-600">
+                            <div class="mb-4">
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Guitar & Strings</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Acoustic+Guitar" class="hover:text-purple-600">Acoustic Guitar</a><a href="search.html?keyword=Classical+Guitar" class="hover:text-purple-600">Classical Guitar</a><a href="search.html?keyword=Electric+Guitar" class="hover:text-purple-600">Electric Guitar</a><a href="search.html?keyword=Bass+Guitar" class="hover:text-purple-600">Bass Guitar</a><a href="search.html?keyword=Ukulele" class="hover:text-purple-600">Ukulele</a><a href="search.html?keyword=Violin" class="hover:text-purple-600">Violin</a><a href="search.html?keyword=Cello" class="hover:text-purple-600">Cello</a><a href="search.html?keyword=Erhu" class="hover:text-purple-600">Erhu</a><a href="search.html?keyword=Pipa" class="hover:text-purple-600">Pipa</a><a href="search.html?keyword=Guzheng" class="hover:text-purple-600">Guzheng</a>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Keys & Percussion</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Keyboard+Piano" class="hover:text-purple-600">Keyboard</a><a href="search.html?keyword=Digital+Piano" class="hover:text-purple-600">Digital Piano</a><a href="search.html?keyword=MIDI+Keyboard" class="hover:text-purple-600">MIDI Keyboard</a><a href="search.html?keyword=Synthesizer" class="hover:text-purple-600">Synthesizer</a><a href="search.html?keyword=Drum+Kit" class="hover:text-purple-600">Drum Kit</a><a href="search.html?keyword=Hand+Drum" class="hover:text-purple-600">Hand Drum</a><a href="search.html?keyword=Harmonica" class="hover:text-purple-600">Harmonica</a><a href="search.html?keyword=Recorder" class="hover:text-purple-600">Recorder</a><a href="search.html?keyword=Saxophone" class="hover:text-purple-600">Saxophone</a><a href="search.html?keyword=Flute" class="hover:text-purple-600">Flute</a>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Instrument Accessories</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Guitar+Strings" class="hover:text-purple-600">Strings</a><a href="search.html?keyword=Tuner" class="hover:text-purple-600">Tuner</a><a href="search.html?keyword=Capo" class="hover:text-purple-600">Capo</a><a href="search.html?keyword=Gig+Bag" class="hover:text-purple-600">Gig Bag</a><a href="search.html?keyword=Guitar+Stand" class="hover:text-purple-600">Stand</a><a href="search.html?keyword=Effects+Pedal" class="hover:text-purple-600">Effects Pedal</a><a href="search.html?keyword=Speaker" class="hover:text-purple-600">Amp/Speaker</a><a href="search.html?keyword=Music+Stand" class="hover:text-purple-600">Music Stand</a><a href="search.html?keyword=Metronome" class="hover:text-purple-600">Metronome</a>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Stationery & Office</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Fountain+Pen" class="hover:text-purple-600">Fountain Pen</a><a href="search.html?keyword=Journal" class="hover:text-purple-600">Journal</a><a href="search.html?keyword=Markers" class="hover:text-purple-600">Markers</a><a href="search.html?keyword=Drawing+Tools" class="hover:text-purple-600">Drawing Tools</a><a href="search.html?keyword=Calculator" class="hover:text-purple-600">Calculator</a><a href="search.html?keyword=Printer" class="hover:text-purple-600">Printer</a><a href="search.html?keyword=Binder" class="hover:text-purple-600">Binder</a><a href="search.html?keyword=Sticky+Notes" class="hover:text-purple-600">Sticky Notes</a><a href="search.html?keyword=Pencil+Case" class="hover:text-purple-600">Pencil Case</a><a href="search.html?keyword=Stapler" class="hover:text-purple-600">Stapler</a>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Art & Crafts</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Colored+Pencils" class="hover:text-purple-600">Colored Pencils</a><a href="search.html?keyword=Watercolor+Paint" class="hover:text-purple-600">Watercolor Paint</a><a href="search.html?keyword=Oil+Pastels" class="hover:text-purple-600">Oil Pastels</a><a href="search.html?keyword=Easel" class="hover:text-purple-600">Easel</a><a href="search.html?keyword=Sketch+Paper" class="hover:text-purple-600">Sketch Paper</a><a href="search.html?keyword=Yarn" class="hover:text-purple-600">Yarn</a><a href="search.html?keyword=Cross+Stitch" class="hover:text-purple-600">Cross Stitch</a><a href="search.html?keyword=Resin+Molds" class="hover:text-purple-600">Resin Molds</a><a href="search.html?keyword=Sewing+Machine" class="hover:text-purple-600">Sewing Machine</a><a href="search.html?keyword=Rubber+Stamps" class="hover:text-purple-600">Rubber Stamps</a><a href="search.html?keyword=Pottery+Tools" class="hover:text-purple-600">Pottery Tools</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- 8. Transport/Rental/Other -->
+                    <li class="group flex items-center space-x-1 cursor-pointer hover:text-purple-600 hover:bg-purple-50 rounded-lg px-2 py-2 -mx-2 overflow-hidden whitespace-nowrap" data-cat="Transport/Rental/Other">
+                        <span>🚲</span><span>Transport</span><span class="text-gray-300">/</span><span>Rental</span><span class="text-gray-300">/</span><span>Other</span>
+                        <span class="ml-auto text-gray-300 text-xs">›</span>
+                        <div class="hidden group-hover:block absolute left-full top-0 ml-1 w-[520px] bg-white rounded-xl shadow-xl p-5 z-50 border border-gray-100 text-gray-600">
+                            <div class="mb-4">
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Transportation</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Bicycle" class="hover:text-purple-600">Bicycle</a><a href="search.html?keyword=E-Bike" class="hover:text-purple-600">E-Bike</a><a href="search.html?keyword=Skateboard" class="hover:text-purple-600">Skateboard</a><a href="search.html?keyword=Hoverboard" class="hover:text-purple-600">Hoverboard</a><a href="search.html?keyword=Kick+Scooter" class="hover:text-purple-600">Kick Scooter</a><a href="search.html?keyword=Unicycle" class="hover:text-purple-600">Unicycle</a><a href="search.html?keyword=Folding+Bike" class="hover:text-purple-600">Folding Bike</a><a href="search.html?keyword=Mountain+Bike" class="hover:text-purple-600">Mountain Bike</a><a href="search.html?keyword=Road+Bike" class="hover:text-purple-600">Road Bike</a><a href="search.html?keyword=Cycling+Gear" class="hover:text-purple-600">Cycling Gear</a>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Rental Services</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Camera+Rental" class="hover:text-purple-600">Camera Rental</a><a href="search.html?keyword=Suit+Rental" class="hover:text-purple-600">Suit Rental</a><a href="search.html?keyword=Projector" class="hover:text-purple-600">Projector</a><a href="search.html?keyword=Camping+Gear" class="hover:text-purple-600">Camping Gear</a><a href="search.html?keyword=Instrument+Rental" class="hover:text-purple-600">Instrument Rental</a><a href="search.html?keyword=Costume+Rental" class="hover:text-purple-600">Costume Rental</a><a href="search.html?keyword=JK+Uniform" class="hover:text-purple-600">JK Uniform</a><a href="search.html?keyword=Performance+Costume" class="hover:text-purple-600">Performance Costume</a><a href="search.html?keyword=Graduation+Gown" class="hover:text-purple-600">Graduation Gown</a>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Pets</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Cat+Food" class="hover:text-purple-600">Cat Food</a><a href="search.html?keyword=Dog+Food" class="hover:text-purple-600">Dog Food</a><a href="search.html?keyword=Cat+Litter" class="hover:text-purple-600">Cat Litter</a><a href="search.html?keyword=Pet+Toys" class="hover:text-purple-600">Pet Toys</a><a href="search.html?keyword=Cat+Tree" class="hover:text-purple-600">Cat Tree</a><a href="search.html?keyword=Pet+Cage" class="hover:text-purple-600">Pet Cage</a><a href="search.html?keyword=Leash" class="hover:text-purple-600">Leash</a><a href="search.html?keyword=Pet+Clothes" class="hover:text-purple-600">Pet Clothes</a><a href="search.html?keyword=Fish+Tank" class="hover:text-purple-600">Fish Tank</a>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Food & Snacks</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Imported+Snacks" class="hover:text-purple-600">Imported Snacks</a><a href="search.html?keyword=Nut+Gift+Box" class="hover:text-purple-600">Nut Gift Box</a><a href="search.html?keyword=Tea" class="hover:text-purple-600">Tea</a><a href="search.html?keyword=Coffee+Beans" class="hover:text-purple-600">Coffee Beans</a><a href="search.html?keyword=Supplements" class="hover:text-purple-600">Supplements</a><a href="search.html?keyword=Local+Specialty" class="hover:text-purple-600">Local Specialty</a><a href="search.html?keyword=Meal+Replacement" class="hover:text-purple-600">Meal Replacement</a>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-purple-600 mb-2">Other</h4>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                    <a href="search.html?keyword=Event+Tickets" class="hover:text-purple-600">Event Tickets</a><a href="search.html?keyword=Plants" class="hover:text-purple-600">Plants</a><a href="search.html?keyword=Skill+Exchange" class="hover:text-purple-600">Skill Exchange</a><a href="search.html?keyword=Errand+Service" class="hover:text-purple-600">Errand Service</a><a href="search.html?keyword=Tutoring" class="hover:text-purple-600">Tutoring</a><a href="search.html?keyword=Design+Service" class="hover:text-purple-600">Design Service</a><a href="search.html?keyword=Photography+Service" class="hover:text-purple-600">Photography Service</a><a href="search.html?keyword=Moving+Service" class="hover:text-purple-600">Moving Service</a><a href="search.html?keyword=Repair+Service" class="hover:text-purple-600">Repair Service</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </aside>
+
+            <!-- ===== Middle: Promo Banner + Product Grid ===== -->
+            <div class="flex-1 flex flex-col md:flex-row gap-4">
+                <!-- Left: Promo Banner -->
+                <div class="trade-banner hidden md:flex w-full md:w-[320px] shrink-0 p-6 flex-col justify-between min-h-[200px] md:min-h-[400px]">
+                    <div class="z-10">
+                        <h2 class="text-white text-2xl font-black leading-tight">Campus Deals<br>Great Finds</h2>
+                        <p class="text-white/80 text-sm mt-2">Low prices, great items waiting for you</p>
+                        <p class="text-white/70 text-xs mt-1">Best value picks, save big today</p>
+                    </div>
+                    <div class="z-10">
+                        <a href="search.html" class="inline-block bg-white text-purple-600 font-bold px-6 py-2 rounded-full text-sm hover:bg-purple-50 transition shadow-md">Browse All →</a>
+                    </div>
+                    <div class="absolute right-[-20px] bottom-[-10px] text-[120px] opacity-20 select-none">🐟</div>
+                </div>
+                <!-- Middle: 2x3 Product Grid -->
+                <div id="card-grid" class="flex-1 grid grid-cols-2 sm:grid-cols-2 gap-3">
+                </div>
+            </div>
+            <aside class="hidden lg:flex sticky top-24 self-start w-20 shrink-0 flex-col bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden divide-y divide-gray-100 z-40">
+                <a href="messages.html" class="flex flex-col items-center justify-center hover:bg-purple-50 text-gray-600 hover:text-purple-600 py-4 transition">
+                    <span class="text-xl mb-1">💬</span>
+                    <span class="text-[11px] font-medium">Messages</span>
+                </a>
+                <a href="mypublish.html" class="flex flex-col items-center justify-center hover:bg-purple-50 text-gray-600 hover:text-purple-600 py-4 transition">
+                    <span class="text-xl mb-1">🏷️</span>
+                    <span class="text-[11px] font-medium">Listings</span>
+                </a>
+                <a href="purchases.html" class="relative flex flex-col items-center justify-center hover:bg-purple-50 text-gray-600 hover:text-purple-600 py-4 transition">
+                    <span class="text-xl mb-1">📦</span>
+                    <span class="text-[11px] font-medium">Orders</span>
+                    <span id="badge-buy" class="absolute top-2 right-2 bg-purple-100 text-purple-600 text-[9px] font-bold px-1.5 py-0.5 rounded-full hidden">0</span>
+                </a>
+                <a href="sales.html" class="relative flex flex-col items-center justify-center hover:bg-purple-50 text-gray-600 hover:text-purple-600 py-4 transition">
+                    <span class="text-xl mb-1">💰</span>
+                    <span class="text-[11px] font-medium">Sales</span>
+                    <span id="badge-sell" class="absolute top-2 right-2 bg-purple-100 text-purple-600 text-[9px] font-bold px-1.5 py-0.5 rounded-full hidden">0</span>
+                </a>
+                <a href="favorites.html" class="relative flex flex-col items-center justify-center hover:bg-purple-50 text-gray-600 hover:text-purple-600 py-4 transition">
+                    <span class="text-xl mb-1">⭐</span>
+                    <span class="text-[11px] font-medium">Favorites</span>
+                    <span id="badge-fav" class="absolute top-2 right-2 bg-purple-100 text-purple-600 text-[9px] font-bold px-1.5 py-0.5 rounded-full hidden">0</span>
+                </a>
+            </aside>
+        </div>
+            </div>
+        </div>
+
+        <!-- ===== Recommendations Feed ===== -->
+        <section class="mt-6">
+            <div class="flex items-center space-x-3 mb-4 overflow-x-auto pb-2" style="-ms-overflow-style:none;scrollbar-width:none;">
+                <button class="recommend-tab shrink-0 px-4 py-1.5 rounded-full text-sm font-bold shadow-sm text-white bg-gradient-to-br from-purple-500 to-purple-600">For You</button>
+                <button class="recommend-tab shrink-0 px-3 py-1.5 rounded-full text-sm bg-white text-gray-600 hover:bg-gray-50 shadow-sm">Personal Items</button>
+                <button class="recommend-tab shrink-0 px-3 py-1.5 rounded-full text-sm bg-white text-gray-600 hover:bg-gray-50 shadow-sm">Digital Devices</button>
+                <button class="recommend-tab shrink-0 px-3 py-1.5 rounded-full text-sm bg-white text-gray-600 hover:bg-gray-50 shadow-sm">Textbooks</button>
+                <button class="recommend-tab shrink-0 px-3 py-1.5 rounded-full text-sm bg-white text-gray-600 hover:bg-gray-50 shadow-sm">Instruments</button>
+                <button class="recommend-tab shrink-0 px-3 py-1.5 rounded-full text-sm bg-white text-gray-600 hover:bg-gray-50 shadow-sm">Photography</button>
+                <button class="recommend-tab shrink-0 px-3 py-1.5 rounded-full text-sm bg-white text-gray-600 hover:bg-gray-50 shadow-sm">Sports & Outdoors</button>
+                <button class="recommend-tab shrink-0 px-3 py-1.5 rounded-full text-sm bg-white text-gray-600 hover:bg-gray-50 shadow-sm">Women's Fashion</button>
+                <button class="recommend-tab shrink-0 px-3 py-1.5 rounded-full text-sm bg-white text-gray-600 hover:bg-gray-50 shadow-sm">Home & Living</button>
+            </div>
+            <div id="recommend-grid" class="columns-2 sm:columns-3 lg:columns-4 gap-4">
+                <!-- JS dynamic rendering -->
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== Card Detail Modal ===== -->
+    <div id="detail-modal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center">
+        <div class="bg-white rounded-2xl w-full max-w-md mx-4 overflow-hidden shadow-2xl">
+            <div id="modal-banner" class="h-48 flex items-center justify-center text-6xl"></div>
+            <div class="p-6">
+                <h2 id="modal-title" class="text-xl font-bold text-gray-800"></h2>
+                <p id="modal-desc" class="text-sm text-gray-500 mt-1"></p>
+                <div class="flex items-end space-x-3 mt-4">
+                    <span id="modal-price" class="text-purple-600 text-3xl font-black"></span>
+                    <span id="modal-original" class="text-gray-400 line-through text-sm"></span>
+                </div>
+                <div class="flex gap-3 mt-6">
+                    <button onclick="closeModal()" class="flex-1 border border-gray-300 text-gray-600 py-2 rounded-xl hover:bg-gray-50 transition">Close</button>
+                    <button class="flex-1 bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-xl transition font-semibold">View Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== List Item Modal ===== -->
+    <div id="publish-modal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-2 sm:p-0">
+        <div class="bg-white rounded-2xl w-full max-w-2xl mx-2 sm:mx-4 overflow-hidden shadow-2xl max-h-[95vh] sm:max-h-[90vh] flex flex-col">
+            <!-- Header -->
+            <div class="flex items-center justify-between px-8 py-5 border-b border-gray-100 shrink-0">
+                <h2 class="text-xl font-black text-gray-900">List Item</h2>
+                <button onclick="closePublish()" class="text-gray-400 hover:text-gray-600 text-2xl leading-none">&times;</button>
+            </div>
+            <!-- Form Content (scrollable) -->
+            <form id="publish-form" class="px-8 py-6 space-y-8 overflow-y-auto flex-1">
+
+    <div class="space-y-5">
+        <h3 class="text-sm font-bold text-purple-600 border-b border-purple-50 pb-2">Basic Info</h3>
+
+        <div>
+            <label class="block text-sm text-gray-600 mb-2">Item Title <span class="text-red-500">*</span></label>
+            <input type="text" name="title" id="itemTitle" required placeholder="e.g. iPad Pro 11-inch 2022"
+                class="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-purple-400 outline-none transition">
+        </div>
+
+        <div>
+            <label class="block text-sm text-gray-600 mb-2">Category <span class="text-red-500">*</span></label>
+            <select name="category" id="itemCategory" required
+                class="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-purple-400 outline-none bg-white">
+                <option value="">Select a category</option>
+                <option>Phones/Digital/Computers</option>
+                <option>Textbooks/Study Materials</option>
+                <option>Clothing/Bags/Sports</option>
+                <option>Gaming/Vouchers/Collectibles</option>
+                <option>Furniture/Appliances/Daily</option>
+                <option>Beauty/Skincare/Personal Care</option>
+                <option>Instruments/Stationery/Crafts</option>
+                <option>Transport/Rental/Other</option>
+            </select>
+        </div>
+
+        <div>
+            <label class="block text-sm text-gray-600 mb-2">Description <span class="text-red-500">*</span></label>
+            <textarea name="description" id="itemDescription" rows="4" placeholder="Describe the item's origin, condition, reason for selling..."
+                class="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-purple-400 outline-none resize-none transition"></textarea>
+        </div>
+
+        <div>
+            <label class="block text-sm text-gray-600 mb-2">Photos</label>
+            <div class="flex flex-wrap gap-3">
+                <label class="w-24 h-24 rounded-lg bg-gray-50 border-2 border-dashed border-gray-200 flex flex-col items-center justify-center cursor-pointer hover:bg-purple-50 hover:border-purple-200 transition">
+                    <input type="file" id="publish-images" name="images" accept="image/*" multiple class="hidden">
+                    <span class="text-gray-400 text-2xl">+</span>
+                    <span class="text-[10px] text-gray-400 mt-1">Add Photos</span>
+                </label>
+                <div id="image-preview" class="flex flex-wrap gap-3"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="space-y-5">
+        <h3 class="text-sm font-bold text-purple-600 border-b border-purple-50 pb-2">Pricing & Condition</h3>
+
+        <div>
+            <label class="block text-sm text-gray-600 mb-2">Price ($)
+                <span class="text-red-500">*</span></label>
+            <input type="number" name="price" id="itemPrice" step="0.01" required placeholder="0.00"
+                class="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-purple-400 outline-none">
+        </div>
+
+        <div>
+            <label class="block text-sm text-gray-600 mb-2">Condition (0-100 = Brand New) <span class="text-red-500">*</span></label>
+            <input type="number" name="condition" id="itemCondition" min="0" max="100" required placeholder="e.g. 95"
+                class="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-purple-400 outline-none">
+        </div>
+    </div>
+
+    <div class="space-y-5">
+        <h3 class="text-sm font-bold text-purple-600 border-b border-purple-50 pb-2">Meeting Location</h3>
+
+        <div>
+            <label class="block text-sm text-gray-600 mb-2 flex items-center justify-between">
+                <span>Meeting Location</span>
+                <button type="button" id="openMapBtn" class="text-xs text-purple-600 hover:text-purple-800 bg-purple-50 px-2 py-1 rounded transition">
+                    📍 Pick on Campus Map
+                </button>
+            </label>
+            <input type="text" id="itemLocation" name="address" placeholder="e.g. South Dorm, Library Entrance (type or pick on map)"
+                class="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-purple-400 outline-none">
+
+            <div id="mini-map-container" class="hidden mt-3 border border-gray-200 rounded-lg overflow-hidden relative">
+                <div id="mini-map" style="height: 250px; width: 100%;"></div>
+                <div class="absolute bottom-2 right-2 z-[1000]">
+                    <button type="button" id="confirmLocationBtn" class="bg-purple-600 text-white px-4 py-1.5 rounded-lg text-sm shadow hover:bg-purple-700">
+                        Confirm Location
+                    </button>
+                </div>
+            </div>
+
+            <input type="hidden" id="itemLat" value="">
+            <input type="hidden" id="itemLng" value="">
+        </div>
+    </div>
+
+    <div class="space-y-5">
+        <h3 class="text-sm font-bold text-purple-600 border-b border-purple-50 pb-2">Options</h3>
+
+        <div class="flex flex-col space-y-4">
+            <label class="flex items-center justify-between cursor-pointer group">
+                <span class="text-sm text-gray-700 group-hover:text-purple-600 transition">Urgent Sale</span>
+                <div class="relative">
+                    <input type="checkbox" id="isUrgent" name="isUrgent" class="sr-only peer">
+                    <div class="w-11 h-6 bg-gray-200 rounded-full peer-checked:bg-purple-500 transition"></div>
+                    <div class="absolute left-0.5 top-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform peer-checked:translate-x-5"></div>
+                </div>
+            </label>
+
+            <label class="flex items-center justify-between cursor-pointer group">
+                <span class="text-sm text-gray-700 group-hover:text-purple-600 transition">Open to Trade/Barter</span>
+                <div class="relative">
+                    <input type="checkbox" id="isShippingFree" name="allowBarter" class="sr-only peer">
+                    <div class="w-11 h-6 bg-gray-200 rounded-full peer-checked:bg-purple-500 transition"></div>
+                    <div class="absolute left-0.5 top-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform peer-checked:translate-x-5"></div>
+                </div>
+            </label>
+
+            <label class="flex items-center justify-between cursor-pointer group">
+                <span class="text-sm text-gray-700 group-hover:text-purple-600 transition">Inspection Allowed</span>
+                <div class="relative">
+                    <input type="checkbox" id="canInspect" name="canInspect" class="sr-only peer">
+                    <div class="w-11 h-6 bg-gray-200 rounded-full peer-checked:bg-purple-500 transition"></div>
+                    <div class="absolute left-0.5 top-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform peer-checked:translate-x-5"></div>
+                </div>
+            </label>
+        </div>
+    </div>
+
+    <div class="pt-4 pb-2">
+        <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 rounded-xl transition shadow-lg transform active:scale-[0.98]">
+            List Item
+        </button>
+    </div>
+    </form>
+        </div>
+    </div>
+
+    <!-- ===== Toast ===== -->
+    <div id="toast" class="fixed top-6 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-6 py-2.5 rounded-full shadow-lg text-sm z-[60] transition-all duration-300 opacity-0 -translate-y-4 pointer-events-none"></div>
+
+    <script src="api-config.js"></script>
+    <script type="text/javascript">
+    window._AMapSecurityConfig = {
+        securityJsCode: 'e63fb52ca8a343c906e699296138ce7b',
+    }
+</script>
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=a93cadfe783d24d3b7b7e9df5b22e14e&plugin=AMap.Geocoder"></script>
+
+    <script>
+        let map = null;
+        let marker = null;
+        let geocoder = null;
+        // MUST Campus center coordinates (GCJ-02)
+        const CAMPUS_CENTER = [113.573175, 22.149299];
+        const CAMPUS_DATA = [
+        { name: "MUST Block D Conference Hall", lat:22.148303, lng:113.570687 },
+        { name: "MUST Block O (Teaching Building)", lat: 22.148318, lng: 113.571546 },
+        { name: "MUST Block B (Teaching Building)", lat: 22.148696, lng: 113.570925 },
+        { name: "MUST Block A", lat: 22.149020, lng: 113.570954 },
+        { name: "MUST Block N", lat: 22.148943, lng: 113.571972 },
+        { name: "Library", lat: 22.149018, lng: 113.571849 },
+        { name: "Seasons Restaurant", lat: 22.148657, lng: 113.572380 },
+        { name: "Culinary World", lat: 22.148406, lng: 113.571640 },
+        { name: "MUST Block L Dormitory", lat: 22.147808, lng: 113.572723 },
+        { name: "MUST Block E", lat: 22.149550, lng: 113.571509 },
+        { name: "Gathering Restaurant", lat: 22.149692, lng: 113.571587 },
+        { name: "MUST Northwest Gate", lat: 22.149361, lng: 113.570695 },
+        { name: "Gongye Cafe", lat: 22.149296, lng: 113.571241 },
+        { name: "Sichuan Garden", lat: 22.149146, lng: 113.571157 },
+        { name: "MUST South Gate", lat: 22.149146, lng: 113.571157 },
+        { name: "Container Cafe", lat: 22.148293, lng: 113.575429 },
+        { name: "MUST East Gate", lat: 22.149535, lng: 113.575522 },
+        { name: "MUST North Gate", lat: 22.151230, lng: 113.572539 },
+        { name: "MUST Block M", lat: 22.148244, lng: 113.572421 },
+        { name: "MUST Block C", lat: 22.148548, lng: 113.570410 },
+        ]
+
+        console.log("Campus database loaded:", CAMPUS_DATA);
+
+        document.getElementById('openMapBtn').addEventListener('click', function() {
+            const mapContainer = document.getElementById('mini-map-container');
+            mapContainer.classList.toggle('hidden');
+
+            if (!mapContainer.classList.contains('hidden')) {
+                if (!map) {
+                    setTimeout(() => {
+                        map = new AMap.Map('mini-map', {
+                            zoom: 17,
+                            center: CAMPUS_CENTER,
+                            resizeEnable: true
+                        });
+
+                        geocoder = new AMap.Geocoder({
+                            radius: 100,
+                            extensions: "all"
+                        });
+
+                        map.on('click', function(e) {
+                            const lng = e.lnglat.getLng();
+                            const lat = e.lnglat.getLat();
+
+                            console.log(`Location: { name: "Unnamed", lat: ${lat.toFixed(6)}, lng: ${lng.toFixed(6)} },`);
+
+                            document.getElementById('itemLng').value = lng;
+                            document.getElementById('itemLat').value = lat;
+
+                            if (marker) {
+                                map.remove(marker);
+                            }
+                            marker = new AMap.Marker({
+                                position: new AMap.LngLat(lng, lat),
+                                title: 'Meeting Location'
+                            });
+                            map.add(marker);
+
+                            const locInput = document.getElementById('itemLocation');
+
+                            let nearestBuilding = null;
+                            let minDistance = 50;
+
+                            const clickPoint = new AMap.LngLat(lng, lat);
+
+                            for (let i = 0; i < CAMPUS_DATA.length; i++) {
+                                const building = CAMPUS_DATA[i];
+                                const buildingPoint = new AMap.LngLat(building.lng, building.lat);
+                                const distance = Math.round(clickPoint.distance(buildingPoint));
+
+                                if (distance < minDistance) {
+                                    minDistance = distance;
+                                    nearestBuilding = building;
+                                }
+                            }
+
+                            if (nearestBuilding) {
+                                locInput.value = nearestBuilding.name;
+                            } else {
+                                locInput.value = "Identifying address...";
+
+                                geocoder.getAddress([lng, lat], function(status, result) {
+                                    if (status === 'complete' && result.regeocode) {
+                                        const pois = result.regeocode.pois;
+                                        let specificName = "";
+
+                                        if (pois && pois.length > 0) {
+                                            for (let i = 0; i < pois.length; i++) {
+                                                const poiName = pois[i].name;
+                                                if (poiName !== "MUST" && poiName !== "Macau University of Science and Technology") {
+                                                    specificName = poiName;
+                                                    break;
+                                                }
+                                            }
+                                            if (!specificName) specificName = pois[0].name;
+                                        } else {
+                                            specificName = result.regeocode.addressComponent.building || result.regeocode.formattedAddress;
+                                        }
+                                        locInput.value = specificName;
+                                    } else {
+                                        window.notify.show.show('Failed to identify address', 'warning')
+                                        locInput.value = "Coordinates saved. Please enter building name manually";
+                                    }
+                                });
+                            }
+                        });
+                    }, 100);
+                }
+            }
+        });
+
+        // Confirm button: hide map container
+        document.getElementById('confirmLocationBtn').addEventListener('click', function() {
+            document.getElementById('mini-map-container').classList.add('hidden');
+        });
+    </script>
+    <script src="../js/app/seeds.js"></script>
+    <script src="trade.js"></script>
+    <script src="../js/notifications.js"></script>
+    <script type="module">
+        window.notify.show = new NotificationManager();
+    </script>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js"
+            }
+        }
+    </script>
+    <script type="module" src="../js/effects/liquid/liquid.js">
+    </script>
+</body>
+</html>

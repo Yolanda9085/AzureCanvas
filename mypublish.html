@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Listings - AzureTrade</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen text-gray-800">
+
+    <nav class="bg-white shadow-sm h-14 flex items-center px-6 sticky top-0 z-50">
+        <div class="flex items-center space-x-2 text-purple-600 font-black text-xl">
+            <span>Trade</span><span class="text-purple-700">AzureTrade</span>
+        </div>
+    </nav>
+
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-6 pt-6 px-4 pb-10">
+
+        <aside class="w-full md:w-56 flex-shrink-0">
+            <div class="bg-white rounded-2xl p-5 shadow-sm sticky top-20">
+                <nav class="space-y-0.5 text-sm">
+                    <a href="profile.html" class="flex items-center space-x-3 px-4 py-2.5 text-gray-600 hover:bg-gray-50 rounded-lg transition">
+                        <span>🏠</span><span>My Profile</span>
+                    </a>
+                    <div>
+                        <div class="flex items-center justify-between px-4 py-2.5 text-gray-800 font-bold cursor-pointer hover:bg-gray-50 rounded-lg transition" id="trade-toggle">
+                            <div class="flex items-center space-x-3"><span>📋</span><span>My Trades</span></div>
+                            <svg class="w-3.5 h-3.5 text-gray-400 transition-transform rotate-180" id="trade-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </div>
+                        <div id="trade-sub" class="ml-6 space-y-0.5">
+                            <a href="mypublish.html" class="flex items-center justify-between px-4 py-2 bg-purple-50 text-purple-600 font-bold rounded-lg transition">
+                                <span>My Listings</span>
+                                <span id="sidebar-publish-count" class="text-xs text-purple-600 font-bold bg-purple-100 px-2 py-0.5 rounded-full">0</span>
+                            </a>
+                            <a href="sales.html" class="flex items-center justify-between px-4 py-2 text-gray-500 hover:text-purple-600 hover:bg-gray-50 rounded-lg transition">
+                                <span>My Sales</span>
+                                <span id="sidebar-sell-count" class="text-xs text-purple-600 font-bold bg-purple-50 px-2 py-0.5 rounded-full">0</span>
+                            </a>
+                            <a href="purchases.html" class="flex items-center justify-between px-4 py-2 text-gray-500 hover:text-purple-600 hover:bg-gray-50 rounded-lg transition">
+                                <span>My Purchases</span>
+                                <span id="sidebar-buy-count" class="text-xs text-purple-600 font-bold bg-purple-50 px-2 py-0.5 rounded-full">0</span>
+                            </a>
+                        </div>
+                    </div>
+                    <a href="favorites.html" class="flex items-center justify-between px-4 py-2.5 text-gray-600 hover:bg-gray-50 rounded-lg transition">
+                        <div class="flex items-center space-x-3"><span>⭐</span><span>My Favorites</span></div>
+                        <span id="sidebar-fav-count" class="text-xs text-purple-600 font-bold bg-purple-50 px-2 py-0.5 rounded-full">0</span>
+                    </a>
+                    <!-- My Posts -->
+                    <div>
+                        <div class="flex items-center justify-between px-4 py-2.5 text-gray-800 font-bold cursor-pointer hover:bg-gray-50 rounded-lg transition" id="contribution-toggle">
+                            <div class="flex items-center space-x-3"><span>📝</span><span>My Posts</span></div>
+                            <svg class="w-3.5 h-3.5 text-gray-400 transition-transform rotate-180" id="contribution-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </div>
+                        <div id="contribution-sub" class="ml-6 space-y-0.5">
+                            <a href="/treehole/index.html" class="flex items-center justify-between px-4 py-2 text-gray-500 hover:text-purple-600 hover:bg-gray-50 rounded-lg transition">
+                                <span>My Articles</span>
+                                <span class="text-xs text-purple-600 font-bold bg-purple-50 px-2 py-0.5 rounded-full">0</span>
+                            </a>
+                            <a href="/storymap/index.html" class="flex items-center justify-between px-4 py-2 text-gray-500 hover:text-purple-600 hover:bg-gray-50 rounded-lg transition">
+                                <span>My Maps</span>
+                                <span class="text-xs text-purple-600 font-bold bg-purple-50 px-2 py-0.5 rounded-full">1</span>
+                            </a>
+                            <a href="#" class="flex items-center justify-between px-4 py-2 text-gray-500 hover:text-purple-600 hover:bg-gray-50 rounded-lg transition">
+                                <span>My Moments</span>
+                                <span class="text-xs text-purple-600 font-bold bg-purple-50 px-2 py-0.5 rounded-full">0</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </nav>
+                <div class="mt-6 pt-4 border-t border-gray-100 space-y-2">
+                    <a href="trade.html" class="flex items-center justify-center space-x-2 px-4 py-2.5 bg-gray-50 text-gray-500 hover:text-purple-600 hover:bg-purple-50 rounded-xl transition font-medium text-sm">
+                        <span>&larr;</span>
+                        <span>Back to Market</span>
+                    </a>
+                    <button id="logout-btn" class="w-full flex items-center justify-center space-x-2 px-4 py-2.5 bg-purple-100 text-purple-700 hover:bg-purple-200 rounded-xl transition font-medium text-sm">
+                        <span>🚪</span>
+                        <span>Log Out</span>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <main class="flex-1 max-w-3xl">
+            <div class="bg-white rounded-2xl shadow-sm overflow-hidden mb-4">
+                <div class="flex overflow-x-auto hide-scrollbar border-b border-gray-100 bg-white">
+                    <a href="#" class="pub-tab flex-none px-5 py-3.5 text-sm font-bold text-purple-600 relative" data-filter="all">
+                        All <span id="tab-count-all" class="text-xs text-purple-400 ml-0.5">0</span>
+                        <div class="tab-bar absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-0.5 bg-purple-600 rounded-full"></div>
+                    </a>
+                    <a href="#" class="pub-tab flex-none px-5 py-3.5 text-sm text-gray-600 hover:text-purple-600 transition" data-filter="selling">On Sale <span id="tab-count-selling" class="text-xs text-gray-400 ml-0.5">0</span></a>
+                    <a href="#" class="pub-tab flex-none px-5 py-3.5 text-sm text-gray-600 hover:text-purple-600 transition" data-filter="sold">Sold <span id="tab-count-sold" class="text-xs text-gray-400 ml-0.5">0</span></a>
+                    <a href="#" class="pub-tab flex-none px-5 py-3.5 text-sm text-gray-600 hover:text-purple-600 transition" data-filter="off">Delisted <span id="tab-count-off" class="text-xs text-gray-400 ml-0.5">0</span></a>
+                </div>
+            </div>
+            <p id="pub-count" class="text-xs text-gray-400 mb-3 px-1"></p>
+            <div id="pub-list" class="space-y-4"></div>
+        </main>
+    </div>
+
+    <!-- Edit item modal -->
+    <div id="edit-modal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center">
+        <div class="bg-white rounded-2xl w-full max-w-2xl mx-4 overflow-hidden shadow-2xl max-h-[90vh] flex flex-col">
+            <div class="flex items-center justify-between px-8 py-5 border-b border-gray-100 shrink-0">
+                <h2 class="text-xl font-black text-gray-900">Edit Item</h2>
+                <button id="edit-close-btn" class="text-gray-400 hover:text-gray-600 text-2xl leading-none">&times;</button>
+            </div>
+            <form id="edit-form" class="px-8 py-6 space-y-8 overflow-y-auto flex-1">
+                <input type="hidden" id="edit-item-id" value="">
+                <div class="space-y-5">
+                    <h3 class="text-sm font-bold text-purple-600 border-b border-purple-50 pb-2">Core Information</h3>
+                    <div>
+                        <label class="block text-sm text-gray-600 mb-2">Item Name <span class="text-red-500">*</span></label>
+                        <input type="text" name="title" id="edit-title" required placeholder="Enter item title"
+                            class="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-purple-400 outline-none transition">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-600 mb-2">Item Category</label>
+                        <select name="category" id="edit-category"
+                            class="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-purple-400 outline-none bg-white">
+                            <option value="">Select a category</option>
+                            <option>Phones/Digital/Computers</option>
+                            <option>Textbooks/Exam Prep/Materials</option>
+                            <option>Clothing/Bags/Sports</option>
+                            <option>Games/Vouchers/Collectibles</option>
+                            <option>Furniture/Appliances/Daily Use</option>
+                            <option>Beauty/Skincare/Personal Care</option>
+                            <option>Instruments/Stationery/Crafts</option>
+                            <option>Transport/Rental/Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-600 mb-2">Item Description</label>
+                        <textarea name="description" id="edit-description" rows="4" placeholder="Describe the item's origin, condition details, reason for selling..."
+                            class="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-purple-400 outline-none resize-none transition"></textarea>
+                    </div>
+                </div>
+                <div class="space-y-5">
+                    <h3 class="text-sm font-bold text-purple-600 border-b border-purple-50 pb-2">Pricing & Condition</h3>
+                    <div>
+                        <label class="block text-sm text-gray-600 mb-2">Price (CNY) <span class="text-red-500">*</span></label>
+                        <input type="number" name="price" id="edit-price" step="0.01" required placeholder="0.00"
+                            class="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-purple-400 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-600 mb-2">Condition (0-100 = brand new)</label>
+                        <input type="number" name="condition" id="edit-condition" min="0" max="100" placeholder="e.g.: 95"
+                            class="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-purple-400 outline-none">
+                    </div>
+                </div>
+                <div class="space-y-5">
+                    <h3 class="text-sm font-bold text-purple-600 border-b border-purple-50 pb-2">Item Images</h3>
+                    <div>
+                        <label class="block text-sm text-gray-600 mb-2">Re-upload images (max 9)</label>
+                        <input type="file" id="edit-images" accept="image/*" multiple
+                            class="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-purple-400 outline-none">
+                        <div id="edit-image-preview" class="flex flex-wrap gap-2 mt-3"></div>
+                    </div>
+                </div>
+                <div class="pt-4 pb-2">
+                    <button type="submit" id="edit-submit-btn" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 rounded-xl transition shadow-lg transform active:scale-[0.98]">
+                        Confirm & List
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="toast" class="fixed top-6 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-6 py-2.5 rounded-full shadow-lg text-sm z-[60] transition-all duration-300 opacity-0 -translate-y-4 pointer-events-none"></div>
+
+<script src="api-config.js"></script>
+<script>
+var API = window.API_BASE || '';
+var currentUsername = '';
+var pubItems = [
+    { id:'ticket_1', title:'Concert Ticket - Mayday 2026 Tour Front Row', price:380, emoji:'🎤', bg:'from-pink-100 to-rose-200', wants:28, views:412, status:'selling', time:'3 hours ago', category:'Games/Vouchers/Collectibles', description:'Mayday 2026 tour concert, front row seat, schedule conflict forces sale, bought at original price, no bargaining.', images:['images/ticket_concert.jpg'] },
+    { id:'ticket_2', title:'Theater Ticket - Mahua Comedy VIP Seat', price:350, emoji:'🎭', bg:'from-violet-100 to-purple-200', wants:15, views:267, status:'selling', time:'5 hours ago', category:'Games/Vouchers/Collectibles', description:'Mahua immersive theater VIP interactive seat with dinner, Saturday show, cannot attend, selling at original price.', images:['images/ticket_drama.jpg'] },
+    { id:'ticket_3', title:'Music Festival Ticket - Strawberry Festival 2-Day Pass', price:399, emoji:'🎵', bg:'from-green-100 to-emerald-200', wants:32, views:523, status:'selling', time:'1 day ago', category:'Games/Vouchers/Collectibles', description:'2026 Strawberry Music Festival two-day pass, amazing lineup, business trip forces sale.', images:['images/ticket_festival.jpg'] },
+    { id:'ticket_4', title:'LiveHouse Ticket - Tell Five Front Row Standing', price:340, emoji:'🎸', bg:'from-amber-100 to-orange-200', wants:19, views:301, status:'selling', time:'2 days ago', category:'Games/Vouchers/Collectibles', description:'Tell Five tour front row standing ticket, gift from friend but have an exam that day, selling cheap.', images:['images/ticket_livehouse.jpg'] },
+    { id:'cross_1', title:'Sony WH-1000XM4 Over-ear Noise Cancelling Headphones Black', price:368, emoji:'🎧', bg:'from-slate-100 to-gray-200', wants:22, views:389, status:'selling', time:'1 day ago', category:'Phones/Digital/Computers', description:'Sony WH-1000XM4 wireless noise cancelling headphones, black, owned for one year, 95% new condition, excellent noise cancellation, all accessories included with original case. Selling because upgraded to XM5.', images:['images/cross_headphone.jpg'] },
+    { id:'p1', title:'Mechanical Keyboard + Mouse Combo for Coding', price:150, emoji:'⌨️', bg:'from-indigo-100 to-purple-200', wants:12, views:89, status:'selling', time:'2 hours ago' },
+    { id:'p2', title:'Advanced Mathematics Tongji 7th Ed. Upper & Lower - Like New', price:15, emoji:'📘', bg:'from-blue-100 to-sky-200', wants:8, views:156, status:'selling', time:'5 hours ago' },
+    { id:'p3', title:'iPad Air5 64G WiFi Blue with Pencil and Case', price:2800, emoji:'📱', bg:'from-cyan-100 to-teal-200', wants:25, views:342, status:'selling', time:'1 day ago' },
+    { id:'p4', title:'C Programming Language by Tan Haoqiang 5th Ed. 90% New', price:5, emoji:'📓', bg:'from-green-100 to-emerald-200', wants:3, views:67, status:'sold', time:'3 days ago' },
+    { id:'p5', title:'Xiaomi Mini Fridge 45L Single Door White - Dorm Use', price:250, emoji:'🧊', bg:'from-amber-100 to-yellow-200', wants:6, views:201, status:'sold', time:'5 days ago' },
+    { id:'p6', title:'Xiaomi Desk Fan Silent Mode 3 Speeds - Moving Out', price:20, emoji:'🌀', bg:'from-rose-100 to-pink-200', wants:2, views:45, status:'off', time:'1 week ago' }
+];
+
+// Sync ticket and cross-category items to localStorage for barter feature
+(function syncTicketsToStorage() {
+    var barterItems = pubItems.filter(function(i) { return i.id.startsWith('ticket_') || i.id.startsWith('cross_'); });
+    var existing = [];
+    try { existing = JSON.parse(localStorage.getItem('publishedItems') || '[]'); } catch(e) {}
+    var existingIds = existing.map(function(i) { return i.id; });
+    barterItems.forEach(function(t) {
+        if (existingIds.indexOf(t.id) === -1) {
+            existing.push({
+                id: t.id,
+                title: t.title,
+                price: t.price,
+                category: t.category,
+                description: t.description,
+                images: t.images,
+                emoji: t.emoji,
+                status: 'available',
+                createdAt: new Date().toISOString()
+            });
+        }
+    });
+    localStorage.setItem('publishedItems', JSON.stringify(existing));
+})();
+
+var statusMap = {
+    selling: { text:'On Sale', cls:'bg-green-100 text-green-600' },
+    sold:    { text:'Sold', cls:'bg-gray-100 text-gray-500' },
+    off:     { text:'Delisted', cls:'bg-red-50 text-red-400' }
+};
+function showToast(msg) {
+    var t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.remove('opacity-0', '-translate-y-4');
+    t.classList.add('opacity-100', 'translate-y-0');
+    setTimeout(function() {
+        t.classList.remove('opacity-100', 'translate-y-0');
+        t.classList.add('opacity-0', '-translate-y-4');
+    }, 2000);
+}
+
+function updateTabCounts() {
+    var allCount = pubItems.length;
+    var sellingCount = pubItems.filter(function(i) { return i.status === 'selling'; }).length;
+    var soldCount = pubItems.filter(function(i) { return i.status === 'sold'; }).length;
+    var offCount = pubItems.filter(function(i) { return i.status === 'off'; }).length;
+    document.getElementById('tab-count-all').textContent = allCount;
+    document.getElementById('tab-count-selling').textContent = sellingCount;
+    document.getElementById('tab-count-sold').textContent = soldCount;
+    document.getElementById('tab-count-off').textContent = offCount;
+    var sidebarCount = document.getElementById('sidebar-publish-count');
+    if (sidebarCount) sidebarCount.textContent = allCount;
+}
+
+
+function renderPublished(filter) {
+    var list = document.getElementById('pub-list');
+    list.innerHTML = '';
+    var items = filter === 'all' ? pubItems : pubItems.filter(function(i){ return i.status === filter; });
+    document.getElementById('pub-count').textContent = items.length + ' items total';
+    updateTabCounts();
+    items.forEach(function(item) {
+        var s = statusMap[item.status];
+
+        var imgHtml;
+        if (item.images && item.images.length > 0) {
+            var imgSrc = item.images[0];
+            if (!imgSrc.startsWith('http')) {
+                if (imgSrc.startsWith('/')) imgSrc = API + imgSrc;
+                else if (imgSrc.startsWith('images/')) imgSrc = imgSrc;
+                else imgSrc = API + '/resources/' + imgSrc;
+            }
+            imgHtml = '<img src="' + imgSrc + '" class="w-full h-full object-cover">';
+        } else {
+            imgHtml = '<div class="w-full h-full bg-gradient-to-br ' + item.bg + ' flex items-center justify-center text-3xl">' + item.emoji + '</div>';
+        }
+
+        var card = document.createElement('div');
+        card.className = 'bg-white rounded-2xl p-5 shadow-sm hover:shadow-md transition cursor-pointer';
+        var sellerLine = currentUsername ? '<p class="text-xs text-gray-400 mt-0.5">Seller: ' + currentUsername + '</p>' : '';
+        var descLine = item.description ? '<p class="text-xs text-gray-500 mt-1 line-clamp-1">' + item.description + '</p>' : '';
+        card.innerHTML =
+            '<a href="javascript:;" class="item-link flex gap-4 cursor-pointer" data-id="' + item.id + '">' +
+                '<div class="w-24 h-24 bg-gray-50 rounded-xl flex-shrink-0 overflow-hidden border border-gray-100">' +
+                    imgHtml +
+                '</div>' +
+                '<div class="flex-1 flex flex-col justify-between min-w-0 py-1">' +
+                    '<div class="flex justify-between items-start gap-4">' +
+                        '<div class="min-w-0"><h3 class="text-sm md:text-base text-gray-800 leading-snug line-clamp-2">' + item.title + '</h3>' + sellerLine + descLine + '</div>' +
+                        '<span class="text-[11px] px-2 py-0.5 rounded flex-shrink-0 ' + s.cls + '">' + s.text + '</span>' +
+                    '</div>' +
+                    '<div class="flex items-center justify-between mt-2">' +
+                        '<span class="text-orange-500 font-black text-lg">¥' + item.price + '</span>' +
+                        '<div class="flex items-center space-x-3 text-xs text-gray-400">' +
+                            '<span>' + item.wants + ' want this</span>' +
+                            '<span>' + item.views + ' views</span>' +
+                            '<span>' + item.time + '</span>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>' +
+            '</a>';
+
+        // Click item link - save data to sessionStorage then navigate
+        card.addEventListener('click', function() {
+            sessionStorage.setItem('viewProduct', JSON.stringify({
+                id: item.id,
+                title: item.title,
+                price: item.price,
+                description: item.description || item.title,
+                emoji: item.emoji,
+                seller: currentUsername || 'Me',
+                tags: [item.category || 'Second-hand'],
+                images: item.images || []
+            }));
+            window.location.href = 'product.html?id=' + item.id;
+        });
+
+        list.appendChild(card);
+    });
+}
+// Delist item
+async function offShelfItem(itemId) {
+    if (!confirm('Are you sure you want to delist this item?')) return;
+    try {
+        var res = await fetch(API + '/api/market/items/' + itemId + '/off', { method: 'PUT', credentials: 'include' });
+        if (res.ok) {
+            showToast('Delisted');
+            var item = pubItems.find(function(i) { return i.id === itemId; });
+            if (item) item.status = 'off';
+            renderPublished(currentFilter);
+        } else {
+            showToast('Failed to delist');
+        }
+    } catch (e) {
+        showToast('Network error');
+    }
+}
+
+// Delete item
+async function deleteItem(itemId) {
+    if (!confirm('Are you sure you want to delete this item? This cannot be undone.')) return;
+    try {
+        var res = await fetch(API + '/api/market/items/' + itemId, { method: 'DELETE', credentials: 'include' });
+        if (res.ok) {
+            showToast('Deleted');
+            pubItems = pubItems.filter(function(i) { return i.id !== itemId; });
+            renderPublished(currentFilter);
+        } else {
+            showToast('Failed to delete');
+        }
+    } catch (e) {
+        showToast('Network error');
+    }
+}
+
+// Edit modal
+var editModal = document.getElementById('edit-modal');
+var editCloseBtn = document.getElementById('edit-close-btn');
+var editForm = document.getElementById('edit-form');
+var editImageFiles = [];
+
+function openEditModal(item) {
+    document.getElementById('edit-item-id').value = item.id;
+    document.getElementById('edit-title').value = item.title || '';
+    document.getElementById('edit-price').value = item.price || '';
+    document.getElementById('edit-description').value = item.description || '';
+    document.getElementById('edit-category').value = item.category || '';
+    document.getElementById('edit-condition').value = item.condition || '';
+    editImageFiles = [];
+    var preview = document.getElementById('edit-image-preview');
+    preview.innerHTML = '';
+    if (item.images && item.images.length > 0) {
+        item.images.forEach(function(img) {
+            var imgSrc = img.startsWith('http') ? img : (img.startsWith('/') ? API + img : (img.startsWith('images/') ? img : API + '/resources/' + img));
+            var div = document.createElement('div');
+            div.className = 'w-16 h-16 rounded-lg overflow-hidden border border-gray-200';
+            div.innerHTML = '<img src="' + imgSrc + '" class="w-full h-full object-cover">';
+            preview.appendChild(div);
+        });
+    }
+    editModal.classList.remove('hidden');
+    editModal.classList.add('flex');
+}
+// Edit modal image preview
+(function() {
+    var fileInput = document.getElementById('edit-images');
+    var preview = document.getElementById('edit-image-preview');
+    if (!fileInput) return;
+    fileInput.addEventListener('change', function() {
+        editImageFiles = Array.from(fileInput.files).slice(0, 9);
+        preview.innerHTML = '';
+        editImageFiles.forEach(function(file, index) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var wrapper = document.createElement('div');
+                wrapper.className = 'w-16 h-16 rounded-lg overflow-hidden border border-gray-200 relative group';
+                wrapper.innerHTML =
+                    '<img src="' + e.target.result + '" class="w-full h-full object-cover">' +
+                    '<button type="button" data-idx="' + index + '" class="absolute top-0 right-0 w-4 h-4 bg-red-500 text-white text-[10px] rounded-bl opacity-0 group-hover:opacity-100">&times;</button>';
+                preview.appendChild(wrapper);
+                wrapper.querySelector('button').addEventListener('click', function() {
+                    editImageFiles.splice(parseInt(this.dataset.idx), 1);
+                    var dt = new DataTransfer();
+                    editImageFiles.forEach(function(f) { dt.items.add(f); });
+                    fileInput.files = dt.files;
+                    fileInput.dispatchEvent(new Event('change'));
+                });
+            };
+            reader.readAsDataURL(file);
+        });
+    });
+})();
+
+function closeEditModal() {
+    editModal.classList.add('hidden');
+    editModal.classList.remove('flex');
+}
+
+editCloseBtn.addEventListener('click', closeEditModal);
+editModal.addEventListener('click', function(e) { if (e.target === editModal) closeEditModal(); });
+
+editForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    var itemId = document.getElementById('edit-item-id').value;
+    var data = {
+        title: document.getElementById('edit-title').value,
+        price: parseFloat(document.getElementById('edit-price').value),
+        description: document.getElementById('edit-description').value,
+        category: document.getElementById('edit-category').value,
+        condition: parseInt(document.getElementById('edit-condition').value) || null,
+        status: 'available'
+    };
+    try {
+        // If there are new images, upload first
+        if (editImageFiles.length > 0) {
+            var formData = new FormData();
+            editImageFiles.forEach(function(f) { formData.append('files', f); });
+            var uploadRes = await fetch(API + '/api/v1/images/upload', { method: 'POST', body: formData });
+            if (uploadRes.ok) {
+                var imageUuids = await uploadRes.json();
+                data.images = imageUuids;
+            }
+        }
+
+        var res = await fetch(API + '/api/market/items/' + itemId, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: API ? 'omit' : 'include',
+            body: JSON.stringify(data)
+        });
+        if (res.ok) {
+            showToast('Listed successfully');
+            closeEditModal();
+            var item = pubItems.find(function(i) { return i.id === itemId; });
+            if (item) {
+                item.title = data.title;
+                item.price = data.price;
+                item.description = data.description;
+                item.category = data.category;
+                item.status = 'selling';
+            }
+            renderPublished(currentFilter);
+        } else {
+            showToast('Operation failed, please retry');
+        }
+    } catch (err) {
+        showToast('Network error');
+    }
+});
+<!-- MYPUBLISH_SCRIPT5_CONTINUE -->

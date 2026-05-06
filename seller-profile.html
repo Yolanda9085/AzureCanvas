@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Profile - AzureTrade</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen text-gray-800">
+
+    <nav class="bg-white shadow-sm h-14 flex items-center px-6 sticky top-0 z-50">
+        <div class="flex items-center space-x-2 text-purple-600 font-black text-xl">
+            <span>Trade</span><span class="text-purple-700">AzureTrade</span>
+        </div>
+        <div class="ml-auto flex items-center space-x-4">
+            <a href="trade.html" class="text-sm text-gray-500 hover:text-purple-600">Back to Market</a>
+        </div>
+    </nav>
+
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-6 pt-6 px-4 pb-10">
+
+        <main class="flex-1 max-w-4xl mx-auto w-full">
+            <div class="bg-white rounded-2xl shadow-sm overflow-hidden min-h-[80vh]">
+
+                <div id="seller-banner" class="h-48 bg-gradient-to-r from-blue-400 via-purple-300 to-pink-300 relative">
+                </div>
+
+                <div class="px-6 pb-4 relative mt-[-40px]">
+                    <div class="flex justify-between items-end mb-3">
+                        <div id="seller-avatar" class="w-20 h-20 rounded-full border-4 border-white bg-gradient-to-br from-blue-400 to-purple-500 shadow-md flex items-center justify-center text-white font-bold text-3xl z-10 relative">
+                            L
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <div class="flex items-center gap-2 flex-wrap mb-1">
+                            <h2 id="seller-username" class="text-xl font-black text-gray-900">TicketShop</h2>
+                            <span class="bg-yellow-100 text-yellow-700 text-[10px] px-2 py-0.5 rounded-full font-bold">Excellent Credit</span>
+                        </div>
+                        <p id="seller-bio" class="text-xs text-gray-400">Professional tickets, trusted seller</p>
+                    </div>
+
+                    <div class="flex items-center gap-6 text-sm mt-4 mb-2">
+                        <a href="#" id="followers-link" class="flex items-baseline gap-1 hover:text-purple-600 transition">
+                            <span id="seller-followers" class="font-black text-gray-900 text-lg">83</span>
+                            <span class="text-gray-500">Followers</span>
+                        </a>
+                        <a href="#" class="flex items-baseline gap-1 hover:text-purple-600 transition">
+                            <span id="seller-following" class="font-black text-gray-900 text-lg">32</span>
+                            <span class="text-gray-500">Following</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-8 px-6 h-12 border-t border-b border-gray-100 sticky top-14 bg-white z-40">
+                    <div class="seller-tab relative h-full flex items-center cursor-pointer text-sm font-bold text-purple-600 transition-all" data-tab="items">
+                        <span>Items <span class="text-gray-400 font-normal ml-0.5" id="items-count">51</span></span>
+                        <div class="tab-bar absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 bg-purple-600 rounded-full transition-all duration-300 opacity-100 scale-100"></div>
+                    </div>
+                    <div class="seller-tab relative h-full flex items-center cursor-pointer text-sm text-gray-500 hover:text-purple-600 transition-all" data-tab="reviews">
+                        <span>Credit & Reviews <span class="text-gray-400 font-normal ml-0.5" id="reviews-count-tab">29</span></span>
+                        <div class="tab-bar absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 bg-purple-600 rounded-full transition-all duration-300 opacity-0 scale-0"></div>
+                    </div>
+                </div>
+
+                <div class="p-4 bg-gray-50/50 min-h-[50vh]">
+
+                    <div id="seller-grid" class="grid grid-cols-2 md:grid-cols-3 gap-4"></div>
+
+                    <div id="reviews-panel" class="hidden">
+
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="review_filter" value="all" class="peer hidden" checked>
+                                <div class="px-4 py-1.5 bg-white text-gray-600 border border-gray-200 rounded-full text-xs peer-checked:bg-purple-100 peer-checked:text-purple-700 peer-checked:border-purple-200 peer-checked:font-bold transition shadow-sm">
+                                    All <span id="count-all" class="ml-0.5 opacity-80"></span>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="review_filter" value="good" class="peer hidden">
+                                <div class="px-4 py-1.5 bg-white text-gray-600 border border-gray-200 rounded-full text-xs peer-checked:bg-purple-100 peer-checked:text-purple-700 peer-checked:border-purple-200 peer-checked:font-bold transition shadow-sm">
+                                    Positive <span id="count-good" class="ml-0.5 opacity-80"></span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div id="reviews-list" class="space-y-3"></div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Followers List Modal -->
+    <div id="followers-modal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center">
+        <div class="bg-white rounded-2xl w-full max-w-lg mx-4 overflow-hidden shadow-2xl max-h-[90vh] flex flex-col">
+            <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100 shrink-0">
+                <h2 class="text-lg font-black text-gray-900">All Followers (<span id="followers-total">83</span>)</h2>
+                <button id="followers-close-btn" class="text-gray-400 hover:text-gray-600 text-2xl leading-none">&times;</button>
+            </div>
+            <div class="px-6 py-2 border-b border-gray-100 shrink-0">
+                <div class="flex items-center justify-between text-xs text-gray-500">
+                    <span>Sort: Sorting criteria updated daily, results are for reference only.</span>
+                    <select id="followers-sort" class="border border-gray-200 rounded px-2 py-1 text-xs">
+                        <option value="time">Followers (descending)</option>
+                        <option value="time-asc" selected>Follow time (newest first)</option>
+                    </select>
+                </div>
+            </div>
+            <div id="followers-list" class="px-6 py-4 overflow-y-auto flex-1 space-y-3"></div>
+        </div>
+    </div>
+
+<script src="api-config.js"></script>
+<script>
+var API = window.API_BASE || '';
+var sellerItems = [
+    { title: 'Free Shipping - Paper Airplane Origami Kit 10 Designs', price: 280, wants: 11, emoji: '✈️', bg: 'from-sky-200 to-blue-300' },
+    { title: 'Free Shipping - Instant Camera Brand New Sealed', price: 1100, wants: 3, emoji: '📷', bg: 'from-amber-200 to-orange-300' },
+    { title: 'Free Shipping - Malaysia Railway Travel Pass 60min', price: 200, wants: 1, emoji: '🚂', bg: 'from-green-200 to-emerald-300' },
+    { title: 'Perfume Collection XVVIP 60ml Bottles', price: 358, wants: 0, emoji: '🧴', bg: 'from-pink-200 to-rose-300' },
+    { title: 'Apple Original Earbuds 50% Off + Phone Case Bundle', price: 230, wants: 0, emoji: '🎧', bg: 'from-violet-200 to-purple-300' },
+    { title: 'Mechanical Keyboard Cherry Red Switch 90% New w/ RGB', price: 180, wants: 5, emoji: '⌨️', bg: 'from-red-200 to-rose-300' }
+];
+
+var reviews = [
+    { name: 'HappyStudent', avatar: 'H', text: 'Shipped fast, item matches the description, great communication! Seller packed it really carefully too. Will buy again!', time: '2026-04-08 14:30', rating: 'good', type: 'buyer' },
+    { name: 'StudyProShop', avatar: 'S', text: 'Well packaged, no damage, very satisfied.', time: '2026-04-06 09:15', rating: 'good', type: 'buyer' },
+    { name: 'ChillSeller', avatar: 'C', text: 'Nice person, showed up on time for the meetup.', time: '2026-04-04 18:45', rating: 'good', type: 'buyer' },
+    { name: 'PickyFish', avatar: 'P', text: 'Minor flaw, but considering the secondhand price it\'s acceptable overall.', time: '2026-03-28 11:20', rating: 'medium', type: 'buyer' }
+];
+
+var followers = [
+    { name: 'PQQDJT', avatar: 'P', bio: 'Entertainment blogger', fans: 14400, followTime: '2026-04-20 10:30', isFollowing: false },
+    { name: 'FriedChickenWing', avatar: 'F', bio: 'Entertainment blogger, fan community host', fans: 1580, followTime: '2026-04-18 15:20', isFollowing: true },
+    { name: 'znziaoedsbakise87172', avatar: 'Z', bio: '', fans: 1065, followTime: '2026-04-15 09:10', isFollowing: false },
+    { name: 'NoFish_0527', avatar: 'N', bio: 'Shared account / DM for inquiries / please state your purpose', fans: 406, followTime: '2026-04-10 18:45', isFollowing: true },
+    { name: 'Ttthua0318', avatar: 'T', bio: 'Posts what I want, no unsolicited DMs', fans: 342, followTime: '2026-04-05 12:30', isFollowing: false }
+];
+
+var grid = document.getElementById('seller-grid');
+var reviewsPanel = document.getElementById('reviews-panel');
+var reviewsList = document.getElementById('reviews-list');
+var tabs = document.querySelectorAll('.seller-tab');
+
+function renderItems() {
+    grid.innerHTML = '';
+    sellerItems.forEach(function(item) {
+        var card = document.createElement('div');
+        card.className = 'bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition cursor-pointer';
+
+        var imageContent;
+        if (item.images && item.images.length > 0) {
+            imageContent = '<img src="' + item.images[0] + '" class="w-full h-full object-cover" alt="' + item.title + '">';
+        } else {
+            imageContent = '<div class="h-40 bg-gradient-to-br ' + item.bg + ' flex items-center justify-center text-5xl relative">' + item.emoji + '</div>';
+        }
+
+        card.innerHTML =
+            '<div class="h-40 relative overflow-hidden">' + imageContent + '</div>' +
+            '<div class="p-3">' +
+                '<p class="text-sm text-gray-800 leading-snug line-clamp-2">' + item.title + '</p>' +
+                '<div class="flex items-center justify-between mt-2">' +
+                    '<span class="text-purple-600 font-black">$' + item.price + '</span>' +
+                    '<span class="text-xs text-gray-400">' + item.wants + ' want this</span>' +
+                '</div>' +
+            '</div>';
+        card.addEventListener('click', function() {
+            window.location.href = 'product.html?id=' + item.id;
+        });
+        grid.appendChild(card);
+    });
+}
+
+function updateFilterCounts() {
+    var countGood = reviews.filter(r => r.rating === 'good').length;
+    document.getElementById('count-all').textContent = reviews.length;
+    document.getElementById('count-good').textContent = countGood;
+    document.getElementById('reviews-count-tab').textContent = reviews.length;
+}
+
+function renderReviews(dataToRender) {
+    reviewsList.innerHTML = '';
+
+    if (dataToRender.length === 0) {
+        reviewsList.innerHTML = '<div class="text-center py-8 text-gray-400 text-sm">No reviews matching the criteria</div>';
+        return;
+    }
+
+    dataToRender.forEach(function(r) {
+        // Rating tag
+        var ratingTag = '';
+        var ratingIcon = '';
+        if (r.rating === 'good') {
+            ratingTag = '<span class="inline-block bg-orange-50 text-orange-500 px-2 py-1 rounded text-xs font-medium">👍 Positive</span>';
+            ratingIcon = '👍';
+        } else if (r.rating === 'medium') {
+            ratingTag = '<span class="inline-block bg-blue-50 text-blue-500 px-2 py-1 rounded text-xs font-medium">😐 Neutral</span>';
+            ratingIcon = '😐';
+        } else if (r.rating === 'bad') {
+            ratingTag = '<span class="inline-block bg-red-50 text-red-500 px-2 py-1 rounded text-xs font-medium">👎 Negative</span>';
+            ratingIcon = '👎';
+        }
+
+        // Determine if buyer or seller
+        var userType = r.type === 'buyer' ? 'Buyer' : 'Seller';
+
+        var div = document.createElement('div');
+        div.className = 'bg-white rounded-xl p-4 shadow-sm border border-gray-100';
+
+        div.innerHTML =
+            '<div class="flex items-start gap-3 mb-3">' +
+                '<div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center text-lg text-purple-600 font-bold flex-shrink-0">' + r.avatar + '</div>' +
+                '<div class="flex-1">' +
+                    '<div class="flex items-center gap-2 mb-1">' +
+                        '<span class="text-sm font-bold text-gray-800">' + r.name + '</span>' +
+                        '<span class="text-xs text-blue-500 bg-blue-50 px-2 py-0.5 rounded">' + userType + '</span>' +
+                    '</div>' +
+                    '<div class="mb-2">' + ratingTag + '</div>' +
+                    '<p class="text-sm text-gray-600 leading-relaxed">' + r.text + '</p>' +
+                    '<div class="text-xs text-gray-400 mt-2">' + r.time + '</div>' +
+                '</div>' +
+            '</div>';
+
+        reviewsList.appendChild(div);
+    });
+}
+
+// Filter logic
+var filterRadios = document.querySelectorAll('input[name="review_filter"]');
+filterRadios.forEach(function(radio) {
+    radio.addEventListener('change', function(e) {
+        var filterValue = e.target.value;
+        var filteredData = reviews;
+
+        if (filterValue === 'good') {
+            filteredData = reviews.filter(r => r.rating === 'good');
+        }
+
+        renderReviews(filteredData);
+    });
+});
+
+// Tab switching logic
+tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+        tabs.forEach(function(t) {
+            t.classList.remove('font-bold', 'text-purple-600');
+            t.classList.add('text-gray-500');
+            var bar = t.querySelector('.tab-bar');
+            if (bar) {
+                bar.classList.remove('opacity-100', 'scale-100');
+                bar.classList.add('opacity-0', 'scale-0');
+            }
+        });
+
+        tab.classList.remove('text-gray-500');
+        tab.classList.add('font-bold', 'text-purple-600');
+        var activeBar = tab.querySelector('.tab-bar');
+        if (activeBar) {
+            activeBar.classList.remove('opacity-0', 'scale-0');
+            activeBar.classList.add('opacity-100', 'scale-100');
+        }
+
+        if (tab.dataset.tab === 'items') {
+            grid.classList.remove('hidden');
+            reviewsPanel.classList.add('hidden');
+        } else {
+            grid.classList.add('hidden');
+            reviewsPanel.classList.remove('hidden');
+        }
+    });
+});
+
+// Followers list modal
+var followersModal = document.getElementById('followers-modal');
+var followersLink = document.getElementById('followers-link');
+var followersCloseBtn = document.getElementById('followers-close-btn');
+var followersList = document.getElementById('followers-list');
+var followersSort = document.getElementById('followers-sort');
+
+function renderFollowers(data) {
+    followersList.innerHTML = '';
+    data.forEach(function(f) {
+        var div = document.createElement('div');
+        div.className = 'flex items-start justify-between';
+
+        // Determine button text
+        var buttonText = f.isFollowing ? 'Mutual Follow' : 'Follow Back';
+        var buttonClass = f.isFollowing ? 'px-4 py-1.5 bg-purple-50 text-purple-600 rounded-full text-xs font-medium hover:bg-purple-100 transition shrink-0' : 'px-4 py-1.5 bg-purple-600 text-white rounded-full text-xs font-medium hover:bg-purple-700 transition shrink-0';
+
+        div.innerHTML =
+            '<div class="flex items-center gap-3">' +
+                '<div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center text-sm text-purple-600 font-bold flex-shrink-0">' + f.avatar + '</div>' +
+                '<div class="flex flex-col">' +
+                    '<span class="text-sm font-bold text-gray-800">' + f.name + '</span>' +
+                    (f.bio ? '<p class="text-xs text-gray-500 mt-0.5 line-clamp-1">' + f.bio + '</p>' : '') +
+                    '<span class="text-[11px] text-gray-400 mt-1">Followers ' + f.fans + '</span>' +
+                '</div>' +
+            '</div>' +
+            '<button class="' + buttonClass + '">' + buttonText + '</button>';
+        followersList.appendChild(div);
+    });
+}
+
+function sortFollowers(type) {
+    var sorted = followers.slice();
+    if (type === 'time-asc') {
+        sorted.sort(function(a, b) {
+            return new Date(b.followTime) - new Date(a.followTime);
+        });
+    } else if (type === 'time') {
+        sorted.sort(function(a, b) {
+            return b.fans - a.fans;
+        });
+    }
+    return sorted;
+}
+
+followersLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    followersModal.classList.remove('hidden');
+    followersModal.classList.add('flex');
+    renderFollowers(sortFollowers('time-asc'));
+});
+
+followersCloseBtn.addEventListener('click', function() {
+    followersModal.classList.add('hidden');
+    followersModal.classList.remove('flex');
+});
+
+followersModal.addEventListener('click', function(e) {
+    if (e.target === followersModal) {
+        followersModal.classList.add('hidden');
+        followersModal.classList.remove('flex');
+    }
+});
+
+followersSort.addEventListener('change', function(e) {
+    renderFollowers(sortFollowers(e.target.value));
+});
+
+// Initialize
+renderItems();
+updateFilterCounts();
+renderReviews(reviews);
+
+// Get seller info from URL
+var params = new URLSearchParams(window.location.search);
+var sellerName = params.get('seller');
+var sellerId = params.get('id') || params.get('sellerId');
+
+// Load seller info and items from API
+(async function() {
+    // If sellerId exists, load from API
+    if (sellerId) {
+        try {
+            var userResponse = await fetch(API + '/api/users/' + sellerId, {
+                method: 'GET',
+                credentials: 'include'
+            });
+
+            if (userResponse.ok) {
+                var seller = await userResponse.json();
+                document.getElementById('seller-username').textContent = seller.username || seller.nickname || 'Seller';
+                document.getElementById('seller-bio').textContent = seller.bio || 'This user hasn\'t written anything yet~';
+                document.getElementById('seller-followers').textContent = seller.followersCount || 0;
+                document.getElementById('seller-following').textContent = seller.followingCount || 0;
+
+                if (seller.avatarUrl) {
+                    document.getElementById('seller-avatar').innerHTML = '<img src="' + seller.avatarUrl + '" class="w-20 h-20 rounded-full object-cover">';
+                } else {
+                    document.getElementById('seller-avatar').textContent = (seller.username || 'U').charAt(0).toUpperCase();
+                }
+            }
+
+            var itemsResponse = await fetch(API + '/api/market/users/' + sellerId + '/items', {
+                method: 'GET',
+                credentials: 'include'
+            });
+
+            if (itemsResponse.ok) {
+                var items = await itemsResponse.json();
+                if (items && items.length > 0) {
+                    sellerItems = items.map(function(item) {
+                        return {
+                            id: item.itemId,
+                            title: item.title,
+                            price: item.price,
+                            wants: item.wants || 0,
+                            emoji: item.images && item.images.length > 0 ? '📷' : '📦',
+                            bg: 'from-purple-200 to-pink-300',
+                            images: item.images || []
+                        };
+                    });
+                    document.getElementById('items-count').textContent = items.length;
+                    renderItems();
+                }
+            }
+        } catch (err) {
+            console.error('Failed to load seller info:', err);
+        }
+    } else if (sellerName) {
+        document.getElementById('seller-username').textContent = sellerName;
+        document.getElementById('seller-avatar').textContent = sellerName.charAt(0).toUpperCase();
+    }
+})();
+</script>
+
+</body>
+</html>

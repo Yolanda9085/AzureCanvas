@@ -1,0 +1,307 @@
+/* ========== AzureTrade Module Styles ========== */
+
+/* --- CSS Variables --- */
+:root {
+    --trade-primary: #7c3aed;
+    --trade-primary-hover: #6d28d9;
+    --trade-primary-light: #ede9fe;
+    --trade-primary-border: #a78bfa;
+    --trade-accent-orange: #f97316;
+    --trade-accent-yellow: #f59e0b;
+    --trade-text-primary: #1f2937;
+    --trade-text-secondary: #6b7280;
+    --trade-text-muted: #9ca3af;
+    --trade-bg-page: #f3f4f6;
+    --trade-bg-card: #ffffff;
+    --trade-radius-sm: 0.5rem;
+    --trade-radius-md: 0.75rem;
+    --trade-radius-lg: 1rem;
+    --trade-radius-xl: 1.5rem;
+    --trade-shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+    --trade-shadow-md: 0 4px 6px rgba(0,0,0,0.07);
+}
+
+/* --- Gradient Card Classes --- */
+.card-green  { background: linear-gradient(135deg, #a3e635 0%, #65a30d 100%); }
+.card-blue   { background: linear-gradient(135deg, #67e8f9 0%, #06b6d4 100%); }
+.card-pink   { background: linear-gradient(135deg, #f9a8d4 0%, #ec4899 100%); }
+.card-yellow { background: linear-gradient(135deg, #fde68a 0%, #f59e0b 100%); }
+.card-purple { background: linear-gradient(135deg, #c4b5fd 0%, #8b5cf6 100%); }
+.card-orange { background: linear-gradient(135deg, #fdba74 0%, #f97316 100%); }
+
+/* --- Category Sidebar Flyout Bridge --- */
+.category-list .group > div::before {
+    content: '';
+    position: absolute;
+    left: -12px;
+    top: 0;
+    width: 12px;
+    height: 100%;
+}
+
+/* --- Promotional Banner --- */
+.trade-banner {
+    background: linear-gradient(135deg, #fb923c 0%, #f97316 100%);
+    border-radius: var(--trade-radius-xl);
+    position: relative;
+    overflow: hidden;
+}
+
+/* --- Product Card (compact) --- */
+.trade-product-card {
+    background: var(--trade-bg-card);
+    border-radius: var(--trade-radius-lg);
+    padding: 0.75rem;
+    cursor: pointer;
+    transition: box-shadow 0.2s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+.trade-product-card:hover {
+    box-shadow: var(--trade-shadow-md);
+    transform: translateY(-2px);
+}
+
+/* --- Recommend Feed Card --- */
+.trade-recommend-card {
+    background: var(--trade-bg-card);
+    border-radius: var(--trade-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--trade-shadow-sm);
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+.trade-recommend-card:hover {
+    box-shadow: var(--trade-shadow-md);
+}
+
+/* --- Price --- */
+.trade-price {
+    color: var(--trade-accent-orange);
+    font-weight: 900;
+}
+.trade-price-original {
+    color: var(--trade-text-muted);
+    text-decoration: line-through;
+    font-size: 0.75rem;
+}
+
+/* --- Badge / Tag --- */
+.trade-badge {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 700;
+}
+.trade-badge--hot  { background: #fef2f2; color: #ef4444; }
+.trade-badge--new  { background: #fff7ed; color: #f97316; }
+.trade-badge--free { background: #ef4444; color: #fff; }
+.trade-badge--fresh { background: #ecfdf5; color: #10b981; }
+
+/* --- Recommend Tab Active --- */
+.trade-tab-active {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b) !important;
+    color: #fff !important;
+    font-weight: 700;
+}
+
+/* --- Hide Scrollbar --- */
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* --- Scroll-Driven Animation for Product Cards --- */
+@keyframes cardScaleIn {
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.trade-api-card {
+    background: var(--trade-bg-card);
+    border-radius: var(--trade-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--trade-shadow-sm);
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    animation: cardScaleIn 0.5s ease-out forwards;
+    will-change: transform, opacity;
+}
+
+.trade-api-card:hover {
+    box-shadow: var(--trade-shadow-md);
+}
+
+.trade-api-card .card-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f5f3ff 0%, #e9d5ff 50%, #f3e8ff 100%);
+}
+
+.trade-api-card .card-image-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    transition: opacity 0.5s ease-out;
+}
+
+.trade-api-card .card-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+    position: relative;
+    z-index: 2;
+}
+
+.trade-api-card .card-cover.loaded {
+    opacity: 1;
+}
+
+.trade-api-card .card-image-wrapper.image-loaded::before {
+    opacity: 0;
+}
+
+/* Scroll-driven animation using view timeline */
+@supports (animation-timeline: view()) {
+    .trade-api-card {
+        animation: cardScrollIn linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 100%;
+    }
+    
+    @keyframes cardScrollIn {
+        from {
+            transform: scale(0.5);
+            opacity: 0;
+        }
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+}
+
+/* --- Loading Indicator --- */
+.loading-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: var(--trade-primary);
+}
+
+.loading-spinner {
+    width: 24px;
+    height: 24px;
+    border: 3px solid var(--trade-primary-light);
+    border-top-color: var(--trade-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* --- End of Feed Message --- */
+.feed-end-message {
+    text-align: center;
+    padding: 20px;
+    color: var(--trade-text-muted);
+    font-size: 14px;
+}
+
+/* ========== Responsive Design ========== */
+
+/* Tablet: hide right sidebar, shrink left sidebar */
+@media (max-width: 1024px) {
+    .trade-banner {
+        display: none !important;
+    }
+}
+
+/* Mobile: stack layout, hide sidebars */
+@media (max-width: 768px) {
+    /* Header: hide search hot tags, shrink search bar */
+    .hot-tags {
+        display: none !important;
+    }
+
+    /* Hide category sidebar on mobile */
+    main .flex.gap-5 > aside:first-child {
+        display: none !important;
+    }
+
+    /* Hide right quick-nav sidebar on mobile */
+    main .flex.gap-5 > aside:last-child {
+        display: none !important;
+    }
+
+    /* Stack the main content area */
+    main .flex.gap-5 {
+        flex-direction: column !important;
+    }
+
+    /* Banner: full width, shorter */
+    .trade-banner {
+        width: 100% !important;
+        min-height: 200px !important;
+    }
+
+    /* Product grid: full width */
+    main .flex.gap-5 .flex-1.flex.gap-4 {
+        flex-direction: column !important;
+    }
+
+    /* Recommend grid: 2 columns on mobile */
+    #recommend-grid {
+        columns: 2 !important;
+    }
+
+    /* Card grid: single column on very small screens */
+    #card-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    /* Notification banner: wrap text */
+    .bg-purple-50 .max-w-7xl {
+        flex-wrap: wrap;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+    /* Header: hide brand text, compact search */
+    header .max-w-7xl {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    header .flex-1.max-w-xl {
+        margin-left: 0.5rem !important;
+        margin-right: 0.5rem !important;
+    }
+
+    /* Recommend grid: single column */
+    #recommend-grid {
+        columns: 1 !important;
+    }
+
+    /* Recommend tabs: smaller */
+    .recommend-tab {
+        font-size: 12px !important;
+        padding: 4px 10px !important;
+    }
+}
