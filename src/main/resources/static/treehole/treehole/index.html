@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AZURECANVAS-Treehole</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ===== 进入动画 ===== -->
+  <div id="loadingScreen" class="loading-screen">
+    <canvas id="loadingCanvas"></canvas>
+    <div class="loading-content">
+      <div class="loading-logo">
+        <i class="fas fa-tree"></i>
+      </div>
+      <div class="loading-title">MUST Treehole</div>
+      <div class="loading-sub">AzureCanvas</div>
+      <div class="loading-bar-wrap">
+        <div class="loading-bar" id="loadingBar"></div>
+      </div>
+      <div class="loading-status" id="loadingStatus">Loading…</div>
+      <div class="loading-welcome" id="loadingWelcome">Welcome back 🌳</div>
+    </div>
+  </div>
+
+  <!-- ===== 欢迎弹窗（首次访问）===== -->
+  <div id="welcomeModal" class="modal-overlay">
+    <div class="welcome-card">
+      <div class="welcome-tree">🌳</div>
+      <h2 class="welcome-title">Welcome back to MUST Treehole</h2>
+      <p class="welcome-sub">Here, you can anonymously share all your thoughts</p>
+      <button class="btn btn-primary welcome-btn" id="welcomeCloseBtn">Enter Treehole</button>
+    </div>
+  </div>
+
+  <!-- ===== 导航栏 ===== -->
+  <nav class="navbar">
+    <div class="nav-logo">
+        <i class="fas fa-tree"></i> Azurecanvas-Treehole
+        <span class="badge">MUST</span>
+      </div>
+
+      <!-- Search Bar (Centered) -->
+      <div class="nav-search-center">
+        <theme-button value="light" id="btn" size="3"></theme-button>
+        <div class="nav-search">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" id="searchInput" placeholder="Search posts or authors…" autocomplete="off">
+          <button class="search-button" id="searchButton">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <!-- Publish Button → Go to Publish Page -->
+        <button class="btn btn-primary" id="newPostBtn" onclick="window.location.href='publish.html'">
+          <i class="fas fa-plus"></i> Publish
+        </button>
+        <!-- Top-right User Avatar -->
+        <div class="user-badge-wrap">
+          <button class="user-avatar-btn" id="userAvatarBtn" title="My Settings">Me</button>
+        </div>
+      </div>
+  </nav>
+
+  <!-- ===== 主布局 ===== -->
+  <div class="app-layout">
+
+    <!-- Left Sidebar -->
+    <aside class="left-sidebar">
+      <!-- Content Categories -->
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">Categories</div>
+        <div class="sidebar-item active" data-category="all">
+          <i class="fas fa-home"></i> All
+        </div>
+        <div class="sidebar-item" data-category="study">
+          <i class="fas fa-book"></i> Study
+        </div>
+        <div class="sidebar-item" data-category="life">
+          <i class="fas fa-coffee"></i> Life
+        </div>
+        <div class="sidebar-item" data-category="emotion">
+          <i class="fas fa-heart"></i> Emotion
+        </div>
+        <div class="sidebar-item" data-category="question">
+          <i class="fas fa-question-circle"></i> Help
+        </div>
+        <div class="sidebar-item" data-category="share">
+          <i class="fas fa-share-alt"></i> Share
+        </div>
+      </div>
+
+      <!-- Notifications -->
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">Messages</div>
+        <div class="sidebar-item" id="notifyRepliesBtn">
+          <i class="fas fa-comment-dots"></i> Replies
+          <span class="sidebar-badge red-badge" id="replyBadge" style="display:none">0</span>
+        </div>
+        <div class="sidebar-item" id="notifyMsgBtn">
+          <i class="fas fa-envelope"></i> Messages
+          <span class="sidebar-badge red-badge" id="msgBadge" style="display:none">0</span>
+        </div>
+        <div class="sidebar-item" id="myFollowingBtn">
+          <i class="fas fa-user-check"></i> Following
+        </div>
+        <div class="sidebar-item" id="myFavoritesBtn">
+          <i class="fas fa-bookmark"></i> Favorites
+          <span class="sidebar-badge red-badge" id="collectBadge" style="display:none">0</span>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">Changelog</div>
+        <div class="sidebar-item" style="flex-direction:column;align-items:flex-start;gap:2px;cursor:default">
+          <div style="font-size:0.72rem;color:var(--text-light)">2026-05-04 · v1.5.0</div>
+          <div style="font-size:0.88rem">Added clubs, practice, and pet features</div>
+        </div>
+        <div class="sidebar-item" style="flex-direction:column;align-items:flex-start;gap:2px;cursor:default;border-bottom:none">
+          <div style="font-size:0.72rem;color:var(--text-light)">2026-04-20 · v1.4.5</div>
+          <div style="font-size:0.88rem">Improved loading speed &amp; fixed messages</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+      <!-- Search Results Bar -->
+      <div class="search-results-bar" id="searchResultsBar"></div>
+
+      <!-- Home View -->
+      <div id="homeView">
+        <div class="home-input-bar" id="homeInputBar" onclick="window.location.href='publish.html'" style="cursor:pointer">
+          <div class="avatar-sm" id="homeAvatarSm"><i class="fas fa-user"></i></div>
+          <span class="home-input-placeholder">What's on your mind? Share anonymously…</span>
+          <button class="btn btn-sm agent-btn" onclick="event.stopPropagation();window.location.href='agent.html'">
+            <i class="fas fa-robot"></i> Agent
+          </button>
+          <button class="btn btn-sm" onclick="event.stopPropagation();window.location.href='publish.html'">Publish</button>
+        </div>
+
+        <!-- Treehole Square -->
+        <div class="home-section-card" id="feedSectionCard">
+          <div class="home-section-header">
+            <span class="home-section-title"><i class="fas fa-tree"></i> Treehole Square</span>
+            <div style="display:flex;align-items:center;gap:8px">
+              <button class="home-section-action-btn" id="feedRefreshBtn" title="Refresh"><i class="fas fa-sync-alt"></i> Refresh</button>
+              <button class="home-section-action-btn" id="feedExpandBtn" ><i class="fas fa-chevron-down"></i> Expand</button>
+            </div>
+          </div>
+          <div id="postsFeedContainer"></div>
+          <div id="emptyFeedMsg" class="empty-tip" style="display:none">
+            <i class="far fa-comment-dots" style="font-size:2rem; display:block; margin-bottom:8px;"></i>
+            No posts yet. Be the first to publish!
+          </div>
+        </div>
+
+        <div class="home-section-card">
+          <div class="home-section-header">
+            <span class="home-section-title"><i class="fas fa-users"></i> Campus Clubs</span>
+            <a class="home-section-more" href="club.html">All <i class="fas fa-chevron-right"></i></a>
+          </div>
+          <div class="club-grid" id="clubGrid">
+            <a class="club-cell" href="club.html?id=0"><div class="club-emblem">🏛️</div><div class="club-name">Student Union</div></a>
+            <a class="club-cell" href="club.html?id=1"><div class="club-emblem">🏸</div><div class="club-name">Badminton Club</div></a>
+            <a class="club-cell" href="club.html?id=2"><div class="club-emblem">🏓</div><div class="club-name">Table Tennis Club</div></a>
+            <a class="club-cell" href="club.html?id=3"><div class="club-emblem">📜</div><div class="club-name">Chinese Culture Club</div></a>
+            <a class="club-cell" href="club.html?id=4"><div class="club-emblem">🏕️</div><div class="club-name">Outdoor Adventure Assoc.</div></a>
+            <a class="club-cell" href="club.html?id=5"><div class="club-emblem">💃</div><div class="club-name">Dance Alliance</div></a>
+            <a class="club-cell" href="club.html?id=6"><div class="club-emblem">🎵</div><div class="club-name">Music Society</div></a>
+            <a class="club-cell" href="club.html?id=7"><div class="club-emblem">⚡</div><div class="club-name">IEEE</div></a>
+            <a class="club-cell club-cell-more" id="clubMoreCell" href="javascript:void(0)"><div class="club-emblem" id="clubMoreEmblem">➕</div><div class="club-name" id="clubMoreLabel">More Clubs</div></a>
+          </div>
+        </div>
+
+        <div class="home-section-card">
+          <div class="home-section-header">
+            <span class="home-section-title"><i class="fas fa-briefcase"></i> Practice &amp; Consulting</span>
+            <a class="home-section-more" href="practice.html">All <i class="fas fa-chevron-right"></i></a>
+          </div>
+          <div class="practice-hot-preview">
+            <a class="practice-preview-item" href="practice.html?tab=group">
+              <div class="practice-preview-icon">👥</div>
+              <div class="practice-preview-info">
+                <div class="practice-preview-label">Study Groups</div>
+                <div class="practice-preview-sub">Find like-minded teammates</div>
+              </div>
+              <span class="practice-preview-badge">Hot</span>
+            </a>
+            <a class="practice-preview-item" href="practice.html?tab=competition">
+              <div class="practice-preview-icon">🏆</div>
+              <div class="practice-preview-info">
+                <div class="practice-preview-label">Competitions</div>
+                <div class="practice-preview-sub">Math modeling, coding contests, etc.</div>
+              </div>
+              <span class="practice-preview-badge">Hot</span>
+            </a>
+            <a class="practice-preview-item" href="practice.html?tab=internship">
+              <div class="practice-preview-icon">💼</div>
+              <div class="practice-preview-info">
+                <div class="practice-preview-label">Internships</div>
+                <div class="practice-preview-sub">Corporate internship opportunities</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- Post Detail View -->
+      <div id="detailView" class="detail-view">
+        <div class="back-btn" id="backBtn">
+          <i class="fas fa-arrow-left"></i> Back
+        </div>
+        <div class="detail-card">
+          <!-- Post Body (Author, Content, Images) -->
+          <div class="detail-post-body" id="detailPostBody"></div>
+          <!-- Like/Collect Actions -->
+          <div class="detail-actions" id="detailActions"></div>
+          <!-- Comments Section -->
+          <div class="comment-section">
+            <div class="comment-section-title" id="commentCount">Comments</div>
+            <div class="comment-input-row">
+              <!-- Reply Hint Label -->
+              <span class="reply-hint" id="replyHint" style="display:none"></span>
+              <textarea class="comment-input" id="commentInput" placeholder="Write your comment… (Enter to send, Esc to cancel)"
+                rows="1"></textarea>
+              <button class="btn btn-primary btn-sm" id="submitCommentBtn">Send</button>
+            </div>
+            <div id="commentsList"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Message View -->
+      <div id="messageView" class="message-view">
+        <!-- Message Header -->
+        <div class="msg-header">
+          <button class="back-btn" id="msgBackBtn" style="margin-bottom:0">
+            <i class="fas fa-arrow-left"></i> Back
+          </button>
+          <div class="msg-target-info">
+            <div class="msg-avatar" id="msgTargetAvatar">Anon</div>
+            <span id="msgTargetName">User</span>
+          </div>
+        </div>
+
+        <!-- Message List -->
+        <div class="msg-list" id="msgList">
+          <div class="msg-empty">Send the first message 👋</div>
+        </div>
+
+        <!-- Quick Reply Panel -->
+        <div class="quick-reply-panel" id="quickReplyPanel"></div>
+
+        <!-- Emoji Panel -->
+        <div class="quick-reply-panel" id="msgEmojiPanel"></div>
+
+        <!-- Input Bar -->
+        <div class="msg-input-bar">
+          <button class="tool-btn" id="msgEmojiBtn" title="Emoji">
+            <i class="far fa-smile"></i>
+          </button>
+          <button class="tool-btn" id="msgQuickBtn" title="Quick Reply">
+            <i class="fas fa-bolt"></i>
+          </button>
+          <textarea class="msg-input" id="msgInput" placeholder="Send a message…" rows="1"></textarea>
+          <button class="btn btn-primary btn-sm" id="msgSendBtn">Send</button>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Right Sidebar -->
+    <aside class="right-sidebar">
+      <div class="widget pet-widget">
+        <div class="widget-title pet-widget-title">
+          <i class="fas fa-paw" style="color:#e05c00;margin-right:5px;"></i>Treehole Pet
+          <div class="pet-type-toggle">
+            <button class="pet-type-btn active" id="petCatBtn" title="Cat">🐱</button>
+            <button class="pet-type-btn" id="petDogBtn" title="Dog">🐶</button>
+          </div>
+        </div>
+        <div class="pet-canvas-wrap">
+          <canvas id="petCanvas"></canvas>
+          <div class="pet-mood-bar">
+            <span class="pet-name" id="petName">Mochi</span>
+            <div class="pet-mood-icons">
+              <span title="Mood" id="petMoodIcon">😊</span>
+              <span title="Hunger" id="petHungerIcon">🍖</span>
+            </div>
+          </div>
+          <div class="pet-speech-bubble" id="petSpeech"></div>
+        </div>
+        <div class="pet-actions">
+          <button class="pet-action-btn" id="petFeedBtn" title="Feed"><i class="fas fa-drumstick-bite"></i> Feed</button>
+          <button class="pet-action-btn" id="petPlayBtn" title="Play"><i class="fas fa-gamepad"></i> Play</button>
+          <button class="pet-action-btn" id="petSleepBtn" title="Rest"><i class="fas fa-moon"></i> Rest</button>
+        </div>
+        <div class="pet-chat-area">
+          <div class="pet-chat-log" id="petChatLog"></div>
+          <div class="pet-chat-input-row">
+            <input class="pet-chat-input" id="petChatInput" placeholder="Talk to your pet…" autocomplete="off">
+            <button class="btn btn-sm btn-primary" id="petChatSend">Send</button>
+          </div>
+        </div>
+      </div>
+      <!-- Trending -->
+      <div class="widget">
+        <div class="widget-title hot-title"><i class="fas fa-fire" style="color:#e05c00;margin-right:5px;"></i>Trending</div>
+        <div id="hotSearchList"></div>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- Script Loading (Order: Data Layer → Render Layer → Modules → Entry) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js"
+        }
+    }
+  </script>
+  <script type="module">
+    import { initLiquidEffect } from "../js/effects/liquid/liquid.js";
+    initLiquidEffect();
+  </script>
+  <script src="../js/notifications.js"></script>
+  <script>
+    window.notify.show = new NotificationManager();
+  </script>
+  <script src="store.js"></script>
+  <script src="render.js"></script>
+  <script src="user.js"></script>
+  <script src="message.js"></script>
+  <script src="main.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="pet.js"></script>
+  <script src="daynight.changer.js"></script>
+  <script src="../js/security.util.js"></script>
+  <script src="../js/app/treehole/daynight.changer.js"></script>
+  <script>
+    // Club Grid Expansion Logic
+    (function () {
+      const EXTRA_CLUBS = [
+        { id: 8,  emoji: '📷', name: 'Photography Club' },
+        { id: 9,  emoji: '🎨', name: 'Art Club' },
+        { id: 10, emoji: '♟️', name: 'Board Games Club' },
+        { id: 11, emoji: '🤖', name: 'Robotics Club' },
+        { id: 12, emoji: '🌱', name: 'Environmental Assoc.' },
+        { id: 13, emoji: '📚', name: 'Book Club' },
+      ];
+
+      const grid = document.getElementById('clubGrid');
+      const moreCell = document.getElementById('clubMoreCell');
+      const moreEmblem = document.getElementById('clubMoreEmblem');
+      const moreLabel = document.getElementById('clubMoreLabel');
+      if (!grid || !moreCell) return;
+
+      let expanded = false;
+
+      moreCell.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (!expanded) {
+          // first click: expand all clubs
+          expanded = true;
+          // remove the more cell temporarily
+          grid.removeChild(moreCell);
+          // insert extra clubs
+          EXTRA_CLUBS.forEach((c, idx) => {
+            const a = document.createElement('a');
+            a.className = 'club-cell club-cell-extra';
+            a.style.animationDelay = (idx * 40) + 'ms';
+            a.href = 'club.html?id=' + c.id;
+            a.innerHTML = `<div class="club-emblem">${c.emoji}</div><div class="club-name">${c.name}</div>`;
+            grid.appendChild(a);
+          });
+          // re-add more cell as "Club Overview"
+          moreEmblem.textContent = '🏠';
+          moreLabel.textContent = 'Club Overview';
+          moreCell.href = 'club.html';
+          grid.appendChild(moreCell);
+        } else {
+          // second click: navigate
+          window.location.href = 'club.html';
+        }
+      });
+    })();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publish Post · Campus</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #ffffff;
+      --bg-subtle: #f6f8fa;
+      --bg-inset: #f0f0f0;
+      --border: #d0d7de;
+      --border-muted: #e8eaed;
+      --text: #1f2328;
+      --text-muted: #656d76;
+      --text-light: #9198a1;
+      --hover-bg: #f3f4f6;
+      --radius: 8px;
+      --radius-lg: 14px;
+      --transition: 0.18s ease;
+    }
+
+    body {
+      background: var(--bg-subtle);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      min-height: 100vh;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 100;
+      padding: 0 32px; height: 64px;
+      display: flex; align-items: center; gap: 16px;
+    }
+
+    .nav-logo {
+      font-size: 1.2rem; font-weight: 700; color: var(--text);
+      display: flex; align-items: center; gap: 8px; text-decoration: none;
+    }
+    .nav-logo .badge {
+      background: var(--text); color: #fff;
+      font-size: 0.68rem; padding: 2px 8px;
+      border-radius: 20px; font-weight: 400;
+    }
+
+    .nav-breadcrumb {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.95rem; color: var(--text-muted);
+    }
+    .nav-breadcrumb .sep { color: var(--border); }
+    .nav-breadcrumb .current { color: var(--text); font-weight: 500; }
+
+    .nav-back {
+      margin-left: auto;
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 18px; border-radius: var(--radius);
+      font-size: 0.95rem; font-weight: 500; cursor: pointer;
+      border: 1px solid var(--border); background: var(--bg);
+      color: var(--text); text-decoration: none; transition: var(--transition);
+    }
+    .nav-back:hover { background: var(--hover-bg); }
+
+    /* Main Layout (Forum Style: Left Main, Right Sidebar) */
+    .publish-layout {
+      max-width: 100%; padding: 28px 32px;
+      display: grid; grid-template-columns: 1fr 320px; gap: 24px;
+    }
+
+    /* Left Main Editor */
+    .editor-panel {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); overflow: hidden;
+    }
+
+    /* Top Title Bar (Forum Style) */
+    .editor-topbar {
+      background: var(--bg-inset); border-bottom: 1px solid var(--border);
+      padding: 14px 20px; display: flex; align-items: center; gap: 12px;
+    }
+    .editor-topbar-title {
+      font-size: 1.05rem; font-weight: 600; color: var(--text);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .editor-topbar-title i { color: var(--text-muted); }
+
+    /* Category Selection Row (Forum Style Tags) */
+    .category-bar {
+      padding: 14px 20px; border-bottom: 1px solid var(--border-muted);
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    }
+    .category-label {
+      font-size: 0.88rem; color: var(--text-muted); white-space: nowrap;
+    }
+    .category-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    .cat-tag {
+      padding: 5px 16px; border: 1px solid var(--border);
+      border-radius: 20px; font-size: 0.88rem; cursor: pointer;
+      background: var(--bg); color: var(--text-muted);
+      transition: var(--transition); user-select: none;
+    }
+    .cat-tag:hover { background: var(--hover-bg); color: var(--text); border-color: #aaa; }
+    .cat-tag.active {
+      background: var(--text); color: #fff; border-color: var(--text);
+    }
+
+    /* Title Input */
+    .title-input-wrap { padding: 16px 20px 0; }
+    .title-input {
+      width: 100%; padding: 10px 14px;
+      border: 1px solid var(--border); border-radius: var(--radius);
+      font-size: 1.05rem; font-weight: 500; color: var(--text);
+      background: var(--bg-subtle); outline: none; transition: var(--transition);
+      font-family: inherit;
+    }
+    .title-input:focus { background: var(--bg); border-color: #888; box-shadow: 0 0 0 3px rgba(0,0,0,0.05); }
+    .title-input::placeholder { color: var(--text-light); font-weight: 400; }
+
+    /* Toolbar (Forum Style) */
+    .toolbar {
+      padding: 10px 20px; border-bottom: 1px solid var(--border-muted);
+      display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
+    }
+    .tb-btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 5px 12px; border: 1px solid transparent;
+      border-radius: var(--radius); background: transparent;
+      color: var(--text-muted); font-size: 0.88rem; cursor: pointer;
+      transition: var(--transition); font-family: inherit;
+    }
+    .tb-btn:hover { background: var(--hover-bg); color: var(--text); border-color: var(--border); }
+    .tb-sep { width: 1px; height: 20px; background: var(--border-muted); margin: 0 4px; }
+
+    /* Body Textarea */
+    .body-textarea {
+      width: 100%; min-height: 320px; padding: 16px 20px;
+      border: none; outline: none; resize: none;
+      font-size: 1rem; line-height: 1.75; color: var(--text);
+      background: var(--bg); font-family: inherit;
+      border-bottom: 1px solid var(--border-muted);
+    }
+    .body-textarea::placeholder { color: var(--text-light); }
+
+    /* Image Preview Area */
+    .image-preview-area {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      padding: 12px 20px; min-height: 0;
+    }
+    .preview-img-wrap { position: relative; }
+    .preview-img {
+      width: 90px; height: 90px; object-fit: cover;
+      border-radius: var(--radius); border: 1px solid var(--border);
+    }
+    .preview-remove {
+      position: absolute; top: -6px; right: -6px;
+      width: 20px; height: 20px; border-radius: 50%;
+      background: #333; color: #fff; border: none;
+      font-size: 0.7rem; cursor: pointer; display: flex;
+      align-items: center; justify-content: center;
+    }
+
+    /* Emoji Picker */
+    .emoji-picker {
+      display: none; grid-template-columns: repeat(10, 1fr); gap: 4px;
+      padding: 12px 20px; border-top: 1px solid var(--border-muted);
+      background: var(--bg-subtle);
+    }
+    .emoji-picker.open { display: grid; }
+    .emoji-picker span {
+      font-size: 1.4rem; cursor: pointer; text-align: center;
+      padding: 4px; border-radius: 6px; transition: var(--transition);
+    }
+    .emoji-picker span:hover { background: var(--hover-bg); }
+
+    /* Bottom Action Bar */
+    .editor-footer {
+      padding: 14px 20px; display: flex; align-items: center;
+      justify-content: space-between; gap: 12px;
+      border-top: 1px solid var(--border);
+    }
+    .footer-left { display: flex; align-items: center; gap: 8px; }
+    .footer-right { display: flex; align-items: center; gap: 10px; }
+
+    .anon-toggle {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.9rem; color: var(--text-muted); cursor: pointer;
+    }
+    .anon-toggle input[type="checkbox"] { width: 16px; height: 16px; cursor: pointer; accent-color: #333; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 22px; border-radius: var(--radius);
+      font-size: 0.95rem; font-weight: 500; cursor: pointer;
+      transition: var(--transition); border: 1px solid var(--border);
+      background: var(--bg); color: var(--text); font-family: inherit;
+    }
+    .btn:hover { background: var(--hover-bg); }
+    .btn-primary { background: var(--text); color: #fff; border-color: var(--text); }
+    .btn-primary:hover { background: #333; border-color: #333; }
+    .btn-lg { padding: 10px 32px; font-size: 1rem; }
+
+    /* Right Sidebar */
+    .right-panel { display: flex; flex-direction: column; gap: 18px; }
+
+    .panel-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); overflow: hidden;
+    }
+    .panel-card-title {
+      padding: 12px 16px; font-size: 0.82rem; font-weight: 600;
+      color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;
+      border-bottom: 1px solid var(--border-muted);
+      background: var(--bg-inset);
+    }
+    .panel-card-body { padding: 14px 16px; }
+
+    /* Publishing Rules List */
+    .rule-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .rule-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;
+    }
+    .rule-list li .rule-num {
+      width: 20px; height: 20px; border-radius: 50%;
+      background: var(--bg-inset); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.72rem; font-weight: 600; color: var(--text);
+      flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* Trending Topics */
+    .topic-list { display: flex; flex-direction: column; gap: 0; }
+    .topic-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 0; border-bottom: 1px solid var(--border-muted);
+      cursor: pointer; transition: var(--transition);
+    }
+    .topic-item:last-child { border-bottom: none; }
+    .topic-item:hover { color: var(--text); }
+    .topic-rank {
+      width: 22px; font-size: 0.82rem; font-weight: 700;
+      color: var(--text-light); text-align: center; flex-shrink: 0;
+    }
+    .topic-rank.top { color: var(--text); }
+    .topic-name { flex: 1; font-size: 0.9rem; color: var(--text); }
+    .topic-heat { font-size: 0.78rem; color: var(--text-light); }
+
+    /* Character Count */
+    .char-count {
+      font-size: 0.82rem; color: var(--text-light);
+      text-align: right; padding: 6px 20px 0;
+    }
+
+    /* Success Toast */
+    .toast {
+      display: none; position: fixed; bottom: 32px; left: 50%;
+      transform: translateX(-50%);
+      background: #1f2328; color: #fff;
+      padding: 12px 28px; border-radius: 24px;
+      font-size: 0.95rem; z-index: 999;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    }
+    .toast.show { display: block; animation: fadeInUp 0.25s ease; }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateX(-50%) translateY(12px); }
+      to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+
+    @media (max-width: 900px) {
+      .publish-layout { grid-template-columns: 1fr; padding: 16px; }
+      .right-panel { display: none; }
+      .navbar { padding: 0 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <a class="nav-logo" href="index.html">
+    <i class="fas fa-tree"></i> Treehole
+    <span class="badge">Campus</span>
+  </a>
+  <div class="nav-breadcrumb">
+    <span class="sep">/</span>
+    <span class="current">Publish Post</span>
+  </div>
+  <a class="nav-back" href="index.html">
+    <i class="fas fa-arrow-left"></i> Back to Square
+  </a>
+</nav>
+
+<!-- Main -->
+<div class="publish-layout">
+
+  <!-- Left Editor -->
+  <div class="editor-panel">
+
+    <!-- Top Title Bar -->
+    <div class="editor-topbar">
+      <div class="editor-topbar-title">
+        <i class="far fa-edit"></i> Write Post
+      </div>
+    </div>
+
+    <!-- Category Selection -->
+    <div class="category-bar">
+      <span class="category-label">Publish to:</span>
+      <div class="category-tags">
+        <div class="cat-tag active" data-cat="all">All</div>
+        <div class="cat-tag" data-cat="study">📚 Study</div>
+        <div class="cat-tag" data-cat="life">☕ Life</div>
+        <div class="cat-tag" data-cat="emotion">❤️ Emotion</div>
+        <div class="cat-tag" data-cat="question">❓ Help</div>
+        <div class="cat-tag" data-cat="share">🔗 Share</div>
+      </div>
+    </div>
+
+    <!-- Title -->
+    <div class="title-input-wrap">
+      <input type="text" class="title-input" id="postTitle" placeholder="Add a title to reach more people (optional)" maxlength="60">
+    </div>
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <label class="tb-btn" for="imageUploadInput" title="Insert Image">
+        <i class="far fa-image"></i> Image
+      </label>
+      <input type="file" id="imageUploadInput" accept="image/*" multiple style="display:none">
+      <button class="tb-btn" id="emojiToggleBtn" type="button" title="Emoji">
+        <i class="far fa-smile"></i> Emoji
+      </button>
+      <div class="tb-sep"></div>
+      <button class="tb-btn" type="button" onclick="insertText('**', '**')" title="Bold">
+        <i class="fas fa-bold"></i>
+      </button>
+      <button class="tb-btn" type="button" onclick="insertText('_', '_')" title="Italic">
+        <i class="fas fa-italic"></i>
+      </button>
+      <button class="tb-btn" type="button" onclick="insertText('\n> ', '')" title="Quote">
+        <i class="fas fa-quote-left"></i>
+      </button>
+    </div>
+
+    <!-- Emoji Picker -->
+    <div class="emoji-picker" id="emojiPicker">
+      <span>😊</span><span>😂</span><span>🥺</span><span>😎</span><span>😍</span>
+      <span>😭</span><span>🤔</span><span>👍</span><span>❤️</span><span>🔥</span>
+      <span>🎓</span><span>📚</span><span>🍜</span><span>🌧️</span><span>☕</span>
+      <span>✨</span><span>😅</span><span>🙏</span><span>💪</span><span>🎉</span>
+    </div>
+
+    <!-- Body -->
+    <textarea class="body-textarea" id="postTextInput"
+      placeholder="What's on your mind? Share your story&#10;&#10;Supports line breaks, express freely"></textarea>
+    <div class="char-count"><span id="charCount">0</span> / 2000</div>
+
+    <!-- Image Preview -->
+    <div class="image-preview-area" id="imagePreviewContainer"></div>
+
+    <!-- Bottom Actions -->
+    <div class="editor-footer">
+      <div class="footer-left">
+      </div>
+      <div class="footer-right">
+        <a class="btn" href="index.html">Cancel</a>
+        <button class="btn btn-primary btn-lg" id="submitPostBtn">
+          <i class="fas fa-paper-plane"></i> Publish Post
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Sidebar -->
+  <div class="right-panel">
+
+    <!-- Publishing Rules -->
+    <div class="panel-card">
+      <div class="panel-card-title"><i class="fas fa-shield-alt"></i> Publishing Guidelines</div>
+      <div class="panel-card-body">
+        <ul class="rule-list">
+          <li><span class="rule-num">1</span>Content must be authentic, no false information</li>
+          <li><span class="rule-num">2</span>No illegal, discriminatory, or harassing content</li>
+          <li><span class="rule-num">3</span>Academic discussions should cite sources, respect copyright</li>
+          <li><span class="rule-num">4</span>Protect others' privacy when sharing personal stories</li>
+          <li><span class="rule-num">5</span>Violating content will be removed, accounts may be banned</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Trending Topics -->
+    <div class="panel-card">
+      <div class="panel-card-title"><i class="fas fa-fire"></i> Trending Topics</div>
+      <div class="panel-card-body" style="padding: 0 16px;">
+        <div class="topic-list">
+          <div class="topic-item" onclick="insertTopic('#FinalsPrep#')">
+            <span class="topic-rank top">1</span>
+            <span class="topic-name">#FinalsPrep#</span>
+            <span class="topic-heat">2.4k discussions</span>
+          </div>
+          <div class="topic-item" onclick="insertTopic('#LibrarySeatHogging#')">
+            <span class="topic-rank top">2</span>
+            <span class="topic-name">#LibrarySeatHogging#</span>
+            <span class="topic-heat">1.8k discussions</span>
+          </div>
+          <div class="topic-item" onclick="insertTopic('#CafeteriaNewDishes#')">
+            <span class="topic-rank top">3</span>
+            <span class="topic-name">#CafeteriaNewDishes#</span>
+            <span class="topic-heat">1.2k discussions</span>
+          </div>
+          <div class="topic-item" onclick="insertTopic('#CampusRomance#')">
+            <span class="topic-rank">4</span>
+            <span class="topic-name">#CampusRomance#</span>
+            <span class="topic-heat">980 discussions</span>
+          </div>
+          <div class="topic-item" onclick="insertTopic('#GraduationSeason#')">
+            <span class="topic-rank">5</span>
+            <span class="topic-name">#GraduationSeason#</span>
+            <span class="topic-heat">760 discussions</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Tips -->
+    <div class="panel-card">
+      <div class="panel-card-title"><i class="fas fa-lightbulb"></i> Tips</div>
+      <div class="panel-card-body" style="font-size:0.9rem; color:var(--text-muted); line-height:1.7;">
+        Click trending topics to quickly insert tags<br>
+        Upload up to 9 images<br>
+        Title is optional, body is required
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Success Toast -->
+<div class="toast" id="toast">Published successfully! Redirecting…</div>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="../js/frameworks/tailwind.js"></script>
+<script src="store.js"></script>
+<script src="../js/notifications.js"></script>
+<script>
+  window.notify.show = new NotificationManager();
+</script>
+<script src="../js/security.util.js"></script>
+<script>
+  Store.init();
+
+  let selectedImages = [];
+  let selectedImageFiles = [];
+  let selectedCategory = "all";
+
+  const textarea = document.getElementById("postTextInput");
+  const charCount = document.getElementById("charCount");
+  const imageInput = document.getElementById("imageUploadInput");
+  const imagePreview = document.getElementById("imagePreviewContainer");
+  const emojiPicker = document.getElementById("emojiPicker");
+  const emojiToggleBtn = document.getElementById("emojiToggleBtn");
+
+  // Character count
+  textarea.addEventListener("input", () => {
+    const len = textarea.value.length;
+    charCount.textContent = len;
+    if (len > 2000) textarea.value = textarea.value.slice(0, 2000);
+  });
+
+  // Category tag toggle
+  document.querySelectorAll(".cat-tag").forEach(tag => {
+    tag.addEventListener("click", () => {
+      document.querySelectorAll(".cat-tag").forEach(t => t.classList.remove("active"));
+      tag.classList.add("active");
+      selectedCategory = tag.dataset.cat;
+    });
+  });
+
+  // Image upload
+  imageInput.addEventListener("change", e => {
+    Array.from(e.target.files).forEach(file => {
+      if (selectedImages.length >= 9) return;
+      selectedImageFiles.push(file);
+      const reader = new FileReader();
+      reader.onload = ev => {
+        selectedImages.push(ev.target.result);
+        renderPreviews();
+      };
+      reader.readAsDataURL(file);
+    });
+    imageInput.value = "";
+  });
+
+  function renderPreviews() {
+    imagePreview.innerHTML = selectedImages.map((src, i) => `
+      <div class="preview-img-wrap">
+        <img class="preview-img" src="${src}" alt="">
+        <button class="preview-remove" onclick="removeImage(${i})">×</button>
+      </div>
+    `).join("");
+  }
+
+  window.removeImage = function(i) {
+    selectedImages.splice(i, 1);
+    selectedImageFiles.splice(i, 1);
+    renderPreviews();
+  };
+
+  // Emoji toggle
+  emojiToggleBtn.addEventListener("click", () => {
+    emojiPicker.classList.toggle("open");
+  });
+
+  emojiPicker.querySelectorAll("span").forEach(span => {
+    span.addEventListener("click", () => {
+      const start = textarea.selectionStart;
+      const val = textarea.value;
+      textarea.value = val.slice(0, start) + span.textContent + val.slice(textarea.selectionEnd);
+      textarea.focus();
+      textarea.selectionStart = textarea.selectionEnd = start + span.textContent.length;
+      emojiPicker.classList.remove("open");
+      charCount.textContent = textarea.value.length;
+    });
+  });
+
+  // Insert text utility
+  window.insertText = function(before, after) {
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const val = textarea.value;
+    const selected = val.slice(start, end) || "Text";
+    textarea.value = val.slice(0, start) + before + selected + after + val.slice(end);
+    textarea.focus();
+    textarea.selectionStart = start + before.length;
+    textarea.selectionEnd = start + before.length + selected.length;
+    charCount.textContent = textarea.value.length;
+  };
+
+  // Insert topic tag
+  window.insertTopic = function(topic) {
+    const pos = textarea.selectionStart;
+    const val = textarea.value;
+    textarea.value = val.slice(0, pos) + topic + " " + val.slice(pos);
+    textarea.focus();
+    textarea.selectionStart = textarea.selectionEnd = pos + topic.length + 1;
+    charCount.textContent = textarea.value.length;
+  };
+
+  // Helper: delay
+  const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+  // Submit
+  document.getElementById("submitPostBtn").addEventListener("click", async () => {
+    const title = document.getElementById("postTitle").value.trim();
+    const content = textarea.value.trim();
+
+    if (!content) {
+      window.notify.show.show("Content cannot be empty", 'error');
+      return;
+    }
+
+    const submitBtn = document.getElementById("submitPostBtn");
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Publishing...';
+
+    try {
+      let imageUuids = [];
+      if (selectedImageFiles.length > 0) {
+        const formData = new FormData();
+        selectedImageFiles.forEach(f => formData.append("files", f));
+        const uploadRes = await fetch("/api/v1/images/upload", {
+          method: "POST",
+          body: formData,
+          headers: {
+            'X-XSRF-TOKEN': window.getCsrfToken()
+          }
+        });
+        if (!uploadRes.ok) throw new Error("Image upload failed");
+        imageUuids = await uploadRes.json();
+      }
+
+      // 1. 创建帖子
+      const postRes = await fetch("/api/treeholes/posts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          'X-XSRF-TOKEN': window.getCsrfToken()
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          content,
+          title: title || null,
+          category: selectedCategory
+        })
+      });
+
+      if (!postRes.ok) throw new Error("Post publishing failed");
+      const savedPost = await postRes.json();
+
+      // 2. 如果有图片，关联图片
+      if (imageUuids.length > 0 && savedPost.id) {
+        // 参考 trade.js 的延迟机制，确保后端索引同步
+        await sleep(1000);
+
+        const bindRes = await fetch(`/api/treeholes/posts/${savedPost.id}/images`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            'X-XSRF-TOKEN': window.getCsrfToken()
+          },
+          credentials: "include",
+          body: JSON.stringify({ images: imageUuids })
+        });
+
+        if (!bindRes.ok) {
+          console.warn("Image binding failed, but post was published");
+        } else {
+          // Binding successful, manually supplement image list for homepage display
+          savedPost.imagesList = imageUuids.map(uuid => `/resources/${uuid}`);
+        }
+      }
+
+      const toast = document.getElementById("toast");
+      toast.classList.add("show");
+      
+      // Save to sessionStorage for homepage refresh display (optional)
+      sessionStorage.setItem("th_new_post", JSON.stringify(savedPost));
+
+      setTimeout(() => { window.location.href = "index.html"; }, 1200);
+
+    } catch (err) {
+      window.notify.show.show(err.message, 'error');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Publish Post';
+    }
+  });
+</script>
+</body>
+</html>
