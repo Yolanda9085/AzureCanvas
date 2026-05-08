@@ -1,3 +1,7 @@
+/*
+Day night changer.
+Implemented by @Lotiyu
+*/
 (() => {
   const func = (root, initTheme, changeTheme) => {
     const $ = (s) => {

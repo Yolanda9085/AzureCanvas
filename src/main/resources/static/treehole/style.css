@@ -1922,7 +1922,7 @@ body.night-mode .pet-speech-bubble { background: rgba(22,27,34,0.92); }
 
 /* ===== Agent 按钮 ===== */
 .agent-btn {
-  background: linear-gradient(135deg, #1f2328 0%, #444 100%);
+  /*background: linear-gradient(135deg, #1f2328 0%, #444 100%);*/
   color: #fff;
   border-color: #333;
 }

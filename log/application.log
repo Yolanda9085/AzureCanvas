@@ -975,3 +975,539 @@ java.lang.NullPointerException
 [11:36:23 [31mWARN[0;39m] [com.zaxxer.hikari.pool.PoolBase] [36m[0;39m: HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@2ee52420 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
 [11:36:23 [31mWARN[0;39m] [com.zaxxer.hikari.pool.PoolBase] [36m[0;39m: HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@1f503f05 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
 [11:36:23 [31mWARN[0;39m] [com.zaxxer.hikari.pool.PoolBase] [36m[0;39m: HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@7d70c096 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+[11:38:26 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:27 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 230ms
+[11:38:27 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211507071] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:27 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211507071] 数据库中共有 1 条树洞帖子待同步
+[11:38:27 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211507071] 全量同步完成: 总计 1 条，耗时 61ms，累计同步 23 次/17 条
+[11:38:27 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 76ms
+[11:38:27 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:27 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 137ms
+[11:38:27 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211507368] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:27 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211507368] 数据库中共有 1 条树洞帖子待同步
+[11:38:27 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211507368] 全量同步完成: 总计 1 条，耗时 49ms，累计同步 24 次/18 条
+[11:38:27 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:27 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 142ms
+[11:38:27 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211507571] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:27 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211507571] 数据库中共有 1 条树洞帖子待同步
+[11:38:27 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211507571] 全量同步完成: 总计 1 条，耗时 41ms，累计同步 25 次/19 条
+[11:38:27 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 56ms
+[11:38:27 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting incremental item sync since 2026-05-08T11:38:27.566347100+08:00
+[11:38:27 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed incremental item sync: 0 items in 50ms
+[11:38:27 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][INC-1778211507752] 开始增量同步树洞数据 (cron: 0 */15 * * * *)
+[11:38:27 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][INC-1778211507752] 发现 0 条增量更新数据 (自 Fri May 08 11:38:27 CST 2026 起)
+[11:38:27 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][INC-1778211507752] 无增量更新数据
+[11:38:27 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][INC-1778211507752] 增量同步完成: 同步 0 条，耗时 4ms
+[11:38:27 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:27 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 123ms
+[11:38:27 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211507887] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:27 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211507887] 数据库中共有 1 条树洞帖子待同步
+[11:38:27 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211507887] 全量同步完成: 总计 1 条，耗时 42ms，累计同步 27 次/20 条
+[11:38:27 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:28 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 152ms
+[11:38:28 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211508095] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:28 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211508095] 数据库中共有 1 条树洞帖子待同步
+[11:38:28 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211508095] 全量同步完成: 总计 1 条，耗时 44ms，累计同步 28 次/21 条
+[11:38:28 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 48ms
+[11:38:28 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:28 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 143ms
+[11:38:28 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211508368] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:28 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211508368] 数据库中共有 1 条树洞帖子待同步
+[11:38:28 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211508368] 全量同步完成: 总计 1 条，耗时 60ms，累计同步 29 次/22 条
+[11:38:28 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Starting incremental storymap sync since 2026-05-08T11:38:28.206025900+08:00
+[11:38:28 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed incremental storymap sync: 0 items in 7ms
+[11:38:28 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:28 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 138ms
+[11:38:28 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211508621] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:28 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211508621] 数据库中共有 1 条树洞帖子待同步
+[11:38:28 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211508621] 全量同步完成: 总计 1 条，耗时 62ms，累计同步 30 次/23 条
+[11:38:28 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 47ms
+[11:38:28 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:28 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 164ms
+[11:38:28 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211508923] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:28 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211508923] 数据库中共有 1 条树洞帖子待同步
+[11:38:28 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211508923] 全量同步完成: 总计 1 条，耗时 43ms，累计同步 31 次/24 条
+[11:38:28 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:29 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 140ms
+[11:38:29 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211509130] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:29 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211509130] 数据库中共有 1 条树洞帖子待同步
+[11:38:29 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211509130] 全量同步完成: 总计 1 条，耗时 54ms，累计同步 32 次/25 条
+[11:38:29 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 64ms
+[11:38:29 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:29 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 143ms
+[11:38:29 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211509438] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:29 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211509438] 数据库中共有 1 条树洞帖子待同步
+[11:38:29 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211509438] 全量同步完成: 总计 1 条，耗时 65ms，累计同步 33 次/26 条
+[11:38:29 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:29 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 163ms
+[11:38:29 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211509694] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:29 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211509694] 数据库中共有 1 条树洞帖子待同步
+[11:38:29 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211509694] 全量同步完成: 总计 1 条，耗时 45ms，累计同步 34 次/27 条
+[11:38:29 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 71ms
+[11:38:29 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:30 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 187ms
+[11:38:30 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211510033] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:30 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211510033] 数据库中共有 1 条树洞帖子待同步
+[11:38:30 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211510033] 全量同步完成: 总计 1 条，耗时 46ms，累计同步 35 次/28 条
+[11:38:30 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:30 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 145ms
+[11:38:30 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211510235] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:30 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211510235] 数据库中共有 1 条树洞帖子待同步
+[11:38:30 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211510235] 全量同步完成: 总计 1 条，耗时 41ms，累计同步 36 次/29 条
+[11:38:30 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 55ms
+[11:38:30 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:30 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 138ms
+[11:38:30 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211510496] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:30 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211510496] 数据库中共有 1 条树洞帖子待同步
+[11:38:30 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211510496] 全量同步完成: 总计 1 条，耗时 47ms，累计同步 37 次/30 条
+[11:38:30 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:30 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 146ms
+[11:38:30 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211510720] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:30 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211510720] 数据库中共有 1 条树洞帖子待同步
+[11:38:30 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211510720] 全量同步完成: 总计 1 条，耗时 41ms，累计同步 38 次/31 条
+[11:38:30 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 50ms
+[11:38:30 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:30 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 147ms
+[11:38:30 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211510980] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:30 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211510980] 数据库中共有 1 条树洞帖子待同步
+[11:38:31 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211510980] 全量同步完成: 总计 1 条，耗时 65ms，累计同步 39 次/32 条
+[11:38:31 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:31 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 176ms
+[11:38:31 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211511233] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:31 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211511233] 数据库中共有 1 条树洞帖子待同步
+[11:38:31 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211511233] 全量同步完成: 总计 1 条，耗时 43ms，累计同步 40 次/33 条
+[11:38:31 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 47ms
+[11:38:31 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:31 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 118ms
+[11:38:31 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211511462] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:31 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211511462] 数据库中共有 1 条树洞帖子待同步
+[11:38:31 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211511462] 全量同步完成: 总计 1 条，耗时 39ms，累计同步 41 次/34 条
+[11:38:31 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:31 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 174ms
+[11:38:31 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211511693] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:31 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211511693] 数据库中共有 1 条树洞帖子待同步
+[11:38:31 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211511693] 全量同步完成: 总计 1 条，耗时 50ms，累计同步 42 次/35 条
+[11:38:31 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 41ms
+[11:38:31 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:32 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 221ms
+[11:38:32 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211512029] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:32 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211512029] 数据库中共有 1 条树洞帖子待同步
+[11:38:32 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211512029] 全量同步完成: 总计 1 条，耗时 44ms，累计同步 43 次/36 条
+[11:38:32 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:32 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 194ms
+[11:38:32 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211512282] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:32 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211512282] 数据库中共有 1 条树洞帖子待同步
+[11:38:32 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211512282] 全量同步完成: 总计 1 条，耗时 42ms，累计同步 44 次/37 条
+[11:38:32 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 65ms
+[11:38:32 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:32 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 127ms
+[11:38:32 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211512541] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:32 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211512541] 数据库中共有 1 条树洞帖子待同步
+[11:38:32 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211512541] 全量同步完成: 总计 1 条，耗时 41ms，累计同步 45 次/38 条
+[11:38:32 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:32 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 118ms
+[11:38:32 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211512712] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:32 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211512712] 数据库中共有 1 条树洞帖子待同步
+[11:38:32 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211512712] 全量同步完成: 总计 1 条，耗时 90ms，累计同步 46 次/39 条
+[11:38:32 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 45ms
+[11:38:32 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:33 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 147ms
+[11:38:33 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211513024] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:33 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211513024] 数据库中共有 1 条树洞帖子待同步
+[11:38:33 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211513024] 全量同步完成: 总计 1 条，耗时 47ms，累计同步 47 次/40 条
+[11:38:33 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:33 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 233ms
+[11:38:33 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211513323] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:33 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211513323] 数据库中共有 1 条树洞帖子待同步
+[11:38:33 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211513323] 全量同步完成: 总计 1 条，耗时 45ms，累计同步 48 次/41 条
+[11:38:33 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 44ms
+[11:38:33 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:33 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 146ms
+[11:38:33 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211513594] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:33 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211513594] 数据库中共有 1 条树洞帖子待同步
+[11:38:33 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211513594] 全量同步完成: 总计 1 条，耗时 43ms，累计同步 49 次/42 条
+[11:38:33 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:33 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 145ms
+[11:38:33 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211513794] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:33 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211513794] 数据库中共有 1 条树洞帖子待同步
+[11:38:33 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211513794] 全量同步完成: 总计 1 条，耗时 44ms，累计同步 50 次/43 条
+[11:38:33 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 45ms
+[11:38:33 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:34 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 112ms
+[11:38:34 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211514024] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:34 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211514024] 数据库中共有 1 条树洞帖子待同步
+[11:38:34 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211514024] 全量同步完成: 总计 1 条，耗时 59ms，累计同步 51 次/44 条
+[11:38:34 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:34 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 140ms
+[11:38:34 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211514243] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:34 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211514243] 数据库中共有 1 条树洞帖子待同步
+[11:38:34 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211514243] 全量同步完成: 总计 1 条，耗时 60ms，累计同步 52 次/45 条
+[11:38:34 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 44ms
+[11:38:34 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:34 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 148ms
+[11:38:34 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211514523] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:34 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211514523] 数据库中共有 1 条树洞帖子待同步
+[11:38:34 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211514523] 全量同步完成: 总计 1 条，耗时 43ms，累计同步 53 次/46 条
+[11:38:34 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:34 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 138ms
+[11:38:34 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211514719] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:34 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211514719] 数据库中共有 1 条树洞帖子待同步
+[11:38:34 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211514719] 全量同步完成: 总计 1 条，耗时 39ms，累计同步 54 次/47 条
+[11:38:34 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 50ms
+[11:38:34 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:34 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 126ms
+[11:38:34 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211514956] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:34 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211514956] 数据库中共有 1 条树洞帖子待同步
+[11:38:35 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211514956] 全量同步完成: 总计 1 条，耗时 46ms，累计同步 55 次/48 条
+[11:38:35 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:35 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 148ms
+[11:38:35 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211515173] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:35 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211515173] 数据库中共有 1 条树洞帖子待同步
+[11:38:35 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211515173] 全量同步完成: 总计 1 条，耗时 49ms，累计同步 56 次/49 条
+[11:38:35 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 53ms
+[11:38:35 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:35 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 135ms
+[11:38:35 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211515459] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:35 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211515459] 数据库中共有 1 条树洞帖子待同步
+[11:38:35 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211515459] 全量同步完成: 总计 1 条，耗时 47ms，累计同步 57 次/50 条
+[11:38:35 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:35 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 150ms
+[11:38:35 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211515675] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:35 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211515675] 数据库中共有 1 条树洞帖子待同步
+[11:38:35 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211515675] 全量同步完成: 总计 1 条，耗时 48ms，累计同步 58 次/51 条
+[11:38:35 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 42ms
+[11:38:35 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:35 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 147ms
+[11:38:35 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211515951] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:35 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211515951] 数据库中共有 1 条树洞帖子待同步
+[11:38:35 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211515951] 全量同步完成: 总计 1 条，耗时 45ms，累计同步 59 次/52 条
+[11:38:36 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:36 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 139ms
+[11:38:36 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211516153] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:36 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211516153] 数据库中共有 1 条树洞帖子待同步
+[11:38:36 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211516153] 全量同步完成: 总计 1 条，耗时 56ms，累计同步 60 次/53 条
+[11:38:36 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 49ms
+[11:38:36 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:36 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 172ms
+[11:38:36 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211516474] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:36 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211516474] 数据库中共有 1 条树洞帖子待同步
+[11:38:36 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211516474] 全量同步完成: 总计 1 条，耗时 48ms，累计同步 61 次/54 条
+[11:38:36 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:36 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 157ms
+[11:38:36 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211516703] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:36 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211516703] 数据库中共有 1 条树洞帖子待同步
+[11:38:36 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211516703] 全量同步完成: 总计 1 条，耗时 40ms，累计同步 62 次/55 条
+[11:38:36 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 59ms
+[11:38:36 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:36 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 130ms
+[11:38:37 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211517001] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:37 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211517001] 数据库中共有 1 条树洞帖子待同步
+[11:38:37 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211517001] 全量同步完成: 总计 1 条，耗时 42ms，累计同步 63 次/56 条
+[11:38:37 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:37 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 144ms
+[11:38:37 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211517223] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:37 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211517223] 数据库中共有 1 条树洞帖子待同步
+[11:38:37 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211517223] 全量同步完成: 总计 1 条，耗时 48ms，累计同步 64 次/57 条
+[11:38:37 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 46ms
+[11:38:37 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:37 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 125ms
+[11:38:37 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211517464] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:37 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211517464] 数据库中共有 1 条树洞帖子待同步
+[11:38:37 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211517464] 全量同步完成: 总计 1 条，耗时 48ms，累计同步 65 次/58 条
+[11:38:37 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:37 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 142ms
+[11:38:37 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211517666] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:37 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211517666] 数据库中共有 1 条树洞帖子待同步
+[11:38:37 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211517666] 全量同步完成: 总计 1 条，耗时 46ms，累计同步 66 次/59 条
+[11:38:37 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 44ms
+[11:38:37 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:37 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 119ms
+[11:38:37 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211517913] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:37 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211517913] 数据库中共有 1 条树洞帖子待同步
+[11:38:37 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211517913] 全量同步完成: 总计 1 条，耗时 41ms，累计同步 67 次/60 条
+[11:38:37 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:38 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 210ms
+[11:38:38 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211518183] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:38 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211518183] 数据库中共有 1 条树洞帖子待同步
+[11:38:38 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211518183] 全量同步完成: 总计 1 条，耗时 47ms，累计同步 68 次/61 条
+[11:38:38 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 39ms
+[11:38:38 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:38 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 198ms
+[11:38:38 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211518521] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:38 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211518521] 数据库中共有 1 条树洞帖子待同步
+[11:38:38 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211518521] 全量同步完成: 总计 1 条，耗时 58ms，累计同步 69 次/62 条
+[11:38:38 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:38 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 244ms
+[11:38:38 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211518836] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:38 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211518836] 数据库中共有 1 条树洞帖子待同步
+[11:38:38 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211518836] 全量同步完成: 总计 1 条，耗时 49ms，累计同步 70 次/63 条
+[11:38:38 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 54ms
+[11:38:38 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:39 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 227ms
+[11:38:39 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211519225] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:39 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211519225] 数据库中共有 1 条树洞帖子待同步
+[11:38:39 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211519225] 全量同步完成: 总计 1 条，耗时 60ms，累计同步 71 次/64 条
+[11:38:39 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:39 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 156ms
+[11:38:39 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211519470] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:39 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211519470] 数据库中共有 1 条树洞帖子待同步
+[11:38:39 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211519470] 全量同步完成: 总计 1 条，耗时 66ms，累计同步 72 次/65 条
+[11:38:39 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 51ms
+[11:38:39 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:39 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 161ms
+[11:38:39 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211519778] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:39 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211519778] 数据库中共有 1 条树洞帖子待同步
+[11:38:39 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211519778] 全量同步完成: 总计 1 条，耗时 41ms，累计同步 73 次/66 条
+[11:38:39 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:40 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 159ms
+[11:38:40 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211520036] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:40 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211520036] 数据库中共有 1 条树洞帖子待同步
+[11:38:40 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211520036] 全量同步完成: 总计 1 条，耗时 43ms，累计同步 74 次/67 条
+[11:38:40 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 45ms
+[11:38:40 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:40 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 119ms
+[11:38:40 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211520269] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:40 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211520269] 数据库中共有 1 条树洞帖子待同步
+[11:38:40 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211520269] 全量同步完成: 总计 1 条，耗时 40ms，累计同步 75 次/68 条
+[11:38:40 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:40 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 129ms
+[11:38:40 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211520459] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:40 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211520459] 数据库中共有 1 条树洞帖子待同步
+[11:38:40 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211520459] 全量同步完成: 总计 1 条，耗时 40ms，累计同步 76 次/69 条
+[11:38:40 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 41ms
+[11:38:40 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:40 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 119ms
+[11:38:40 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211520680] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:40 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211520680] 数据库中共有 1 条树洞帖子待同步
+[11:38:40 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211520680] 全量同步完成: 总计 1 条，耗时 41ms，累计同步 77 次/70 条
+[11:38:40 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:40 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 185ms
+[11:38:40 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211520957] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:40 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211520957] 数据库中共有 1 条树洞帖子待同步
+[11:38:41 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211520957] 全量同步完成: 总计 1 条，耗时 49ms，累计同步 78 次/71 条
+[11:38:41 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 47ms
+[11:38:41 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:41 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 131ms
+[11:38:41 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211521210] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:41 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211521210] 数据库中共有 1 条树洞帖子待同步
+[11:38:41 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211521210] 全量同步完成: 总计 1 条，耗时 37ms，累计同步 79 次/72 条
+[11:38:41 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:41 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 136ms
+[11:38:41 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211521396] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:41 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211521396] 数据库中共有 1 条树洞帖子待同步
+[11:38:41 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211521396] 全量同步完成: 总计 1 条，耗时 40ms，累计同步 80 次/73 条
+[11:38:41 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 58ms
+[11:38:41 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:41 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 107ms
+[11:38:41 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211521638] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:41 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211521638] 数据库中共有 1 条树洞帖子待同步
+[11:38:41 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211521638] 全量同步完成: 总计 1 条，耗时 43ms，累计同步 81 次/74 条
+[11:38:41 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:41 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 110ms
+[11:38:41 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211521810] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:41 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211521810] 数据库中共有 1 条树洞帖子待同步
+[11:38:41 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211521810] 全量同步完成: 总计 1 条，耗时 47ms，累计同步 82 次/75 条
+[11:38:41 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 49ms
+[11:38:41 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:42 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 137ms
+[11:38:42 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211522066] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:42 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211522066] 数据库中共有 1 条树洞帖子待同步
+[11:38:42 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211522066] 全量同步完成: 总计 1 条，耗时 37ms，累计同步 83 次/76 条
+[11:38:42 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:42 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 118ms
+[11:38:42 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211522231] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:42 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211522231] 数据库中共有 1 条树洞帖子待同步
+[11:38:42 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211522231] 全量同步完成: 总计 1 条，耗时 37ms，累计同步 84 次/77 条
+[11:38:42 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 46ms
+[11:38:42 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:42 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 109ms
+[11:38:42 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211522460] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:42 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211522460] 数据库中共有 1 条树洞帖子待同步
+[11:38:42 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211522460] 全量同步完成: 总计 1 条，耗时 59ms，累计同步 85 次/78 条
+[11:38:42 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:42 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 149ms
+[11:38:42 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211522683] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:42 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211522683] 数据库中共有 1 条树洞帖子待同步
+[11:38:42 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211522683] 全量同步完成: 总计 1 条，耗时 50ms，累计同步 86 次/79 条
+[11:38:42 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 45ms
+[11:38:42 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:42 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 115ms
+[11:38:42 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211522931] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:42 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211522931] 数据库中共有 1 条树洞帖子待同步
+[11:38:42 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211522931] 全量同步完成: 总计 1 条，耗时 59ms，累计同步 87 次/80 条
+[11:38:43 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:43 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 169ms
+[11:38:43 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211523209] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:43 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211523209] 数据库中共有 1 条树洞帖子待同步
+[11:38:43 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211523209] 全量同步完成: 总计 1 条，耗时 39ms，累计同步 88 次/81 条
+[11:38:43 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 48ms
+[11:38:43 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:43 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 116ms
+[11:38:43 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211523449] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:43 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211523449] 数据库中共有 1 条树洞帖子待同步
+[11:38:43 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211523449] 全量同步完成: 总计 1 条，耗时 44ms，累计同步 89 次/82 条
+[11:38:43 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:43 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 141ms
+[11:38:43 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211523649] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:43 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211523649] 数据库中共有 1 条树洞帖子待同步
+[11:38:43 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211523649] 全量同步完成: 总计 1 条，耗时 42ms，累计同步 90 次/83 条
+[11:38:43 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 54ms
+[11:38:43 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:43 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 135ms
+[11:38:43 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211523918] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:43 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211523918] 数据库中共有 1 条树洞帖子待同步
+[11:38:43 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211523918] 全量同步完成: 总计 1 条，耗时 62ms，累计同步 91 次/84 条
+[11:38:43 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:44 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 159ms
+[11:38:44 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211524162] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:44 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211524162] 数据库中共有 1 条树洞帖子待同步
+[11:38:44 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211524162] 全量同步完成: 总计 1 条，耗时 41ms，累计同步 92 次/85 条
+[11:38:44 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 44ms
+[11:38:44 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:44 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 129ms
+[11:38:44 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211524437] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:44 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211524437] 数据库中共有 1 条树洞帖子待同步
+[11:38:44 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211524437] 全量同步完成: 总计 1 条，耗时 52ms，累计同步 93 次/86 条
+[11:38:44 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:44 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 128ms
+[11:38:44 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211524669] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:44 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211524669] 数据库中共有 1 条树洞帖子待同步
+[11:38:44 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211524669] 全量同步完成: 总计 1 条，耗时 40ms，累计同步 94 次/87 条
+[11:38:44 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 53ms
+[11:38:44 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:44 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 119ms
+[11:38:44 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211524939] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:44 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211524939] 数据库中共有 1 条树洞帖子待同步
+[11:38:44 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211524939] 全量同步完成: 总计 1 条，耗时 53ms，累计同步 95 次/88 条
+[11:38:45 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:45 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 152ms
+[11:38:45 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211525169] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:45 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211525169] 数据库中共有 1 条树洞帖子待同步
+[11:38:45 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211525169] 全量同步完成: 总计 1 条，耗时 50ms，累计同步 96 次/89 条
+[11:38:45 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 59ms
+[11:38:45 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:45 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 144ms
+[11:38:45 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211525450] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:45 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211525450] 数据库中共有 1 条树洞帖子待同步
+[11:38:45 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211525450] 全量同步完成: 总计 1 条，耗时 50ms，累计同步 97 次/90 条
+[11:38:45 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:45 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 184ms
+[11:38:45 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211525703] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:45 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211525703] 数据库中共有 1 条树洞帖子待同步
+[11:38:45 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211525703] 全量同步完成: 总计 1 条，耗时 45ms，累计同步 98 次/91 条
+[11:38:45 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 53ms
+[11:38:45 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:45 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 130ms
+[11:38:45 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211525966] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:45 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211525966] 数据库中共有 1 条树洞帖子待同步
+[11:38:46 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211525966] 全量同步完成: 总计 1 条，耗时 54ms，累计同步 99 次/92 条
+[11:38:46 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:46 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 226ms
+[11:38:46 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211526265] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:46 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211526265] 数据库中共有 1 条树洞帖子待同步
+[11:38:46 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211526265] 全量同步完成: 总计 1 条，耗时 59ms，累计同步 100 次/93 条
+[11:38:46 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 51ms
+[11:38:46 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:46 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 152ms
+[11:38:46 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211526571] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:46 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211526571] 数据库中共有 1 条树洞帖子待同步
+[11:38:46 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211526571] 全量同步完成: 总计 1 条，耗时 39ms，累计同步 101 次/94 条
+[11:38:46 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:46 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 119ms
+[11:38:46 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211526746] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:46 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211526746] 数据库中共有 1 条树洞帖子待同步
+[11:38:46 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211526746] 全量同步完成: 总计 1 条，耗时 50ms，累计同步 102 次/95 条
+[11:38:46 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 63ms
+[11:38:46 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:47 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 129ms
+[11:38:47 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211527035] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:47 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211527035] 数据库中共有 1 条树洞帖子待同步
+[11:38:47 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211527035] 全量同步完成: 总计 1 条，耗时 45ms，累计同步 103 次/96 条
+[11:38:47 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:47 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 140ms
+[11:38:47 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211527250] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:47 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211527250] 数据库中共有 1 条树洞帖子待同步
+[11:38:47 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211527250] 全量同步完成: 总计 1 条，耗时 40ms，累计同步 104 次/97 条
+[11:38:47 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 45ms
+[11:38:47 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:47 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 137ms
+[11:38:47 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211527518] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:47 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211527518] 数据库中共有 1 条树洞帖子待同步
+[11:38:47 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211527518] 全量同步完成: 总计 1 条，耗时 48ms，累计同步 105 次/98 条
+[11:38:47 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:47 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 166ms
+[11:38:47 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211527741] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:47 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211527741] 数据库中共有 1 条树洞帖子待同步
+[11:38:47 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211527741] 全量同步完成: 总计 1 条，耗时 53ms，累计同步 106 次/99 条
+[11:38:47 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 73ms
+[11:38:47 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:48 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 104ms
+[11:38:48 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211528042] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:48 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211528042] 数据库中共有 1 条树洞帖子待同步
+[11:38:48 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211528042] 全量同步完成: 总计 1 条，耗时 42ms，累计同步 107 次/100 条
+[11:38:48 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:48 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 140ms
+[11:38:48 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211528256] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:48 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211528256] 数据库中共有 1 条树洞帖子待同步
+[11:38:48 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211528256] 全量同步完成: 总计 1 条，耗时 39ms，累计同步 108 次/101 条
+[11:38:48 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 50ms
+[11:38:48 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:48 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 180ms
+[11:38:48 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211528562] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:48 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211528562] 数据库中共有 1 条树洞帖子待同步
+[11:38:48 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211528562] 全量同步完成: 总计 1 条，耗时 38ms，累计同步 109 次/102 条
+[11:38:48 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:48 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 130ms
+[11:38:48 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211528745] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:48 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211528745] 数据库中共有 1 条树洞帖子待同步
+[11:38:48 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211528745] 全量同步完成: 总计 1 条，耗时 36ms，累计同步 110 次/103 条
+[11:38:48 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 39ms
+[11:38:48 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:48 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 132ms
+[11:38:48 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211528969] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:48 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211528969] 数据库中共有 1 条树洞帖子待同步
+[11:38:49 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211528969] 全量同步完成: 总计 1 条，耗时 37ms，累计同步 111 次/104 条
+[11:38:49 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:49 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 188ms
+[11:38:49 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211529206] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:49 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211529206] 数据库中共有 1 条树洞帖子待同步
+[11:38:49 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211529206] 全量同步完成: 总计 1 条，耗时 45ms，累计同步 112 次/105 条
+[11:38:49 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 48ms
+[11:38:49 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:49 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 142ms
+[11:38:49 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211529466] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:49 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211529466] 数据库中共有 1 条树洞帖子待同步
+[11:38:49 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211529466] 全量同步完成: 总计 1 条，耗时 45ms，累计同步 113 次/106 条
+[11:38:49 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:49 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 138ms
+[11:38:49 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211529665] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:49 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211529665] 数据库中共有 1 条树洞帖子待同步
+[11:38:49 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211529665] 全量同步完成: 总计 1 条，耗时 52ms，累计同步 114 次/107 条
+[11:38:49 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 72ms
+[11:38:49 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:38:49 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 118ms
+[11:38:49 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211529947] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:38:49 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211529947] 数据库中共有 1 条树洞帖子待同步
+[11:38:49 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211529947] 全量同步完成: 总计 1 条，耗时 45ms，累计同步 115 次/108 条
+[11:42:19 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:42:19 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 204ms
+[11:42:19 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211739983] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:42:19 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211739983] 数据库中共有 1 条树洞帖子待同步
+[11:42:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778211739983] 全量同步完成: 总计 1 条，耗时 54ms，累计同步 116 次/109 条
+[11:42:20 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 76ms
+[11:45:00 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][INC-1778211900015] 开始增量同步树洞数据 (cron: 0 */15 * * * *)
+[11:45:00 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][INC-1778211900015] 发现 0 条增量更新数据 (自 Fri May 08 11:42:20 CST 2026 起)
+[11:45:00 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][INC-1778211900015] 无增量更新数据
+[11:45:00 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][INC-1778211900015] 增量同步完成: 同步 0 条，耗时 23ms
+[11:45:00 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting incremental item sync since 2026-05-08T11:42:19.978695400+08:00
+[11:45:00 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed incremental item sync: 0 items in 59ms
+[11:47:19 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[11:47:19 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 194ms
+[11:47:19 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778212039981] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[11:47:19 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778212039981] 数据库中共有 1 条树洞帖子待同步
+[11:47:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778212039981] 全量同步完成: 总计 1 条，耗时 55ms，累计同步 118 次/110 条
+[11:51:12 [34mINFO[0;39m] [o.s.boot.tomcat.GracefulShutdown] [36mCOMMONS-LOGGING[0;39m: Commencing graceful shutdown. Waiting for active requests to complete
+[11:51:12 [34mINFO[0;39m] [o.s.boot.tomcat.GracefulShutdown] [36mCOMMONS-LOGGING[0;39m: Graceful shutdown complete
+[11:51:12 [34mINFO[0;39m] [o.s.o.j.LocalContainerEntityManagerFactoryBean] [36mCOMMONS-LOGGING[0;39m: Closing JPA EntityManagerFactory for persistence unit 'default'
+[11:51:12 [34mINFO[0;39m] [com.zaxxer.hikari.HikariDataSource] [36m[0;39m: HikariPool-1 - Shutdown initiated...
+[11:51:12 [34mINFO[0;39m] [com.zaxxer.hikari.HikariDataSource] [36m[0;39m: HikariPool-1 - Shutdown completed.
