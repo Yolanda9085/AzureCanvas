@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Settings — MUST Treehole</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .settings-layout {
+      max-width: 900px; margin: 32px auto; padding: 0 24px;
+      display: grid; grid-template-columns: 260px 1fr; gap: 32px;
+    }
+    /* Left Profile Card */
+    .profile-card { display: flex; flex-direction: column; align-items: center; gap: 0; }
+    .profile-avatar-wrap { position: relative; margin-bottom: 16px; }
+    .profile-avatar {
+      width: 96px; height: 96px; border-radius: 50%;
+      border: 3px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.4rem; font-weight: 700; color: #fff;
+      background: #555; cursor: pointer; transition: var(--transition);
+      user-select: none;
+    }
+    .profile-avatar:hover::after {
+      content: "Change"; position: absolute; inset: 0; border-radius: 50%;
+      background: rgba(0,0,0,0.45); color: #fff; font-size: 0.85rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .profile-avatar-wrap:hover .profile-avatar { opacity: 0.85; }
+    .profile-name { font-size: 1.3rem; font-weight: 700; margin-bottom: 4px; text-align: center; }
+    .profile-bio-display {
+      font-size: 0.9rem; color: var(--text-muted); text-align: center;
+      margin-bottom: 12px; line-height: 1.5; min-height: 20px;
+    }
+    .profile-stats {
+      display: flex; gap: 20px; margin-bottom: 16px;
+    }
+    .stat-item { text-align: center; }
+    .stat-num { font-size: 1.1rem; font-weight: 700; }
+    .stat-label { font-size: 0.75rem; color: var(--text-muted); }
+    .profile-meta-list { width: 100%; display: flex; flex-direction: column; gap: 8px; }
+    .profile-meta-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.88rem; color: var(--text-muted);
+    }
+    .profile-meta-item i { width: 16px; text-align: center; }
+
+    /* Right Settings Form */
+    .settings-panel {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); overflow: hidden;
+    }
+    .settings-tabs {
+      display: flex; border-bottom: 1px solid var(--border);
+      background: var(--bg-inset); overflow-x: auto;
+    }
+    .settings-tab {
+      padding: 12px 16px; font-size: 0.88rem; cursor: pointer;
+      border-bottom: 2px solid transparent; transition: var(--transition);
+      color: var(--text-muted); font-weight: 500; white-space: nowrap;
+    }
+    .settings-tab.active { color: var(--text); border-bottom-color: var(--text); background: var(--bg); }
+    .settings-tab:hover:not(.active) { color: var(--text); background: var(--hover-bg); }
+
+    .settings-section { display: none; padding: 24px; }
+    .settings-section.active { display: block; }
+
+    .form-group { margin-bottom: 20px; }
+    .form-label {
+      display: block; font-size: 0.88rem; font-weight: 600;
+      color: var(--text); margin-bottom: 6px;
+    }
+    .form-hint { font-size: 0.78rem; color: var(--text-muted); margin-top: 4px; }
+    .form-input {
+      width: 100%; padding: 8px 12px; border: 1px solid var(--border);
+      border-radius: var(--radius); font-size: 0.95rem;
+      background: var(--bg-subtle); color: var(--text);
+      outline: none; transition: var(--transition); font-family: inherit;
+    }
+    .form-input:focus { background: var(--bg); border-color: #888; box-shadow: 0 0 0 3px rgba(0,0,0,0.05); }
+    .form-textarea {
+      width: 100%; padding: 8px 12px; border: 1px solid var(--border);
+      border-radius: var(--radius); font-size: 0.95rem;
+      background: var(--bg-subtle); color: var(--text);
+      outline: none; resize: vertical; min-height: 80px;
+      transition: var(--transition); font-family: inherit;
+    }
+    .form-textarea:focus { background: var(--bg); border-color: #888; box-shadow: 0 0 0 3px rgba(0,0,0,0.05); }
+    .form-select {
+      width: 100%; padding: 8px 12px; border: 1px solid var(--border);
+      border-radius: var(--radius); font-size: 0.95rem;
+      background: var(--bg-subtle); color: var(--text);
+      outline: none; cursor: pointer; font-family: inherit;
+    }
+    .form-select:focus { border-color: #888; }
+
+    .color-picker-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+    .color-dot {
+      width: 28px; height: 28px; border-radius: 50%; cursor: pointer;
+      border: 2px solid transparent; transition: var(--transition);
+    }
+    .color-dot.selected { border-color: #fff; box-shadow: 0 0 0 2px #333; }
+    .color-dot:hover { transform: scale(1.15); }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .settings-toggle-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 0; border-bottom: 1px solid var(--border-muted);
+    }
+    .settings-toggle-row:last-child { border-bottom: none; }
+    .settings-toggle-label { font-size: 0.92rem; color: var(--text); display: flex; align-items: center; gap: 8px; }
+    .settings-toggle-label i { color: var(--text-muted); width: 16px; text-align: center; }
+
+    .theme-options { display: flex; gap: 12px; margin-top: 6px; flex-wrap: wrap; }
+    .theme-option {
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      cursor: pointer; font-size: 0.82rem; color: var(--text-muted);
+      padding: 8px; border-radius: var(--radius); border: 2px solid transparent;
+      transition: var(--transition);
+    }
+    .theme-option.active { border-color: var(--text); color: var(--text); }
+    .theme-option:hover { background: var(--hover-bg); }
+    .theme-preview { width: 56px; height: 36px; border-radius: 6px; border: 1px solid var(--border); }
+    .light-preview { background: #fff; }
+    .dark-preview { background: #1f2328; }
+    .auto-preview { background: linear-gradient(135deg, #fff 50%, #1f2328 50%); }
+
+    .font-size-row { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
+    .font-size-row input[type=range] { flex: 1; accent-color: var(--text); }
+
+    .logout-btn { color: #c00; border-color: #c00; }
+    .logout-btn:hover { background: #fff0f0; }
+
+    .settings-footer {
+      padding: 16px 24px; border-top: 1px solid var(--border);
+      display: flex; align-items: center; gap: 10px;
+      background: var(--bg-inset);
+    }
+
+    .save-toast {
+      display: none; position: fixed; bottom: 32px; left: 50%;
+      transform: translateX(-50%);
+      background: #1f2328; color: #fff;
+      padding: 10px 28px; border-radius: 24px;
+      font-size: 0.95rem; z-index: 999;
+    }
+    .save-toast.show { display: block; animation: fadeInUp 0.25s ease; }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+      to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .settings-layout { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-logo">
+    <i class="fas fa-tree"></i> Azurecanvas-Treehole
+    <span class="badge">MUST</span>
+  </div>
+  <div class="nav-actions" style="margin-left:auto">
+    <button class="btn" onclick="window.location.href='index.html'">
+      <i class="fas fa-arrow-left"></i> Back to Home
+    </button>
+  </div>
+</nav>
+
+<div class="settings-layout">
+  <!-- Left Profile Card -->
+  <div class="profile-card">
+    <div class="profile-avatar-wrap">
+      <div class="profile-avatar" id="previewAvatar">Me</div>
+    </div>
+    <div class="profile-name" id="previewName">My Treehole</div>
+    <div class="profile-bio-display" id="previewBio">This person is mysterious, left nothing behind</div>
+    <div class="profile-stats">
+      <div class="stat-item">
+        <div class="stat-num" id="statPosts">0</div>
+        <div class="stat-label">Posts</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" id="statFollowing">0</div>
+        <div class="stat-label">Following</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" id="statLikes">0</div>
+        <div class="stat-label">Likes</div>
+      </div>
+    </div>
+    <div class="profile-meta-list" id="profileMetaList"></div>
+  </div>
+
+  <!-- Right Settings Panel -->
+  <div class="settings-panel">
+    <div class="settings-tabs">
+      <div class="settings-tab active" data-tab="profile">Profile</div>
+      <div class="settings-tab" data-tab="avatar">Avatar</div>
+      <div class="settings-tab" data-tab="account">Account</div>
+      <div class="settings-tab" data-tab="notify">Notifications</div>
+      <div class="settings-tab" data-tab="privacy">Privacy</div>
+      <div class="settings-tab" data-tab="appearance">Appearance</div>
+      <div class="settings-tab" data-tab="general">General</div>
+    </div>
+
+    <!-- Profile -->
+    <div class="settings-section active" id="tab-profile">
+      <div class="form-group">
+        <label class="form-label">Nickname</label>
+        <input class="form-input" id="inputNickname" type="text" maxlength="16" placeholder="Enter nickname">
+        <div class="form-hint">Maximum 16 characters</div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Gender</label>
+          <select class="form-select" id="inputGender">
+            <option value="">Not Public</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Age</label>
+          <input class="form-input" id="inputAge" type="number" min="1" max="120" placeholder="Age">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Bio</label>
+        <textarea class="form-textarea" id="inputBio" maxlength="100" placeholder="Tell us about yourself…"></textarea>
+        <div class="form-hint">Maximum 100 characters</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Location</label>
+        <input class="form-input" id="inputLocation" type="text" maxlength="30" placeholder="City / School">
+      </div>
+    </div>
+
+    <!-- Avatar Settings -->
+    <div class="settings-section" id="tab-avatar">
+      <div class="form-group">
+        <label class="form-label">Avatar Letter</label>
+        <input class="form-input" id="inputAvatarLetter" type="text" maxlength="1" placeholder="Single character">
+        <div class="form-hint">Character displayed in the avatar circle</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Avatar Color</label>
+        <div class="color-picker-row" id="avatarColorPicker"></div>
+      </div>
+    </div>
+
+    <!-- Account -->
+    <div class="settings-section" id="tab-account">
+      <div class="form-group">
+        <label class="form-label">User ID</label>
+        <input class="form-input" id="inputUserId" type="text" readonly style="color:var(--text-muted)">
+        <div class="form-hint">User ID cannot be modified</div>
+      </div>
+      <div class="form-group" style="padding:16px;background:var(--bg-subtle);border-radius:var(--radius);border:1px solid var(--border-muted)">
+        <div style="font-size:0.88rem;color:var(--text-muted);line-height:1.7;">
+          <i class="fas fa-shield-alt" style="margin-right:6px;"></i>
+          All data is stored locally in the browser and will not be uploaded to the server. Clearing browser cache will result in data loss.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Dangerous Actions</label>
+        <button class="btn" id="clearDataBtn" style="color:#c00;border-color:#c00;width:100%;justify-content:center;">
+          <i class="fas fa-trash-alt"></i> Clear All Local Data
+        </button>
+        <div class="form-hint">Data cannot be recovered after clearing, page will auto-refresh</div>
+      </div>
+    </div>
+
+    <!-- Notifications -->
+    <div class="settings-section" id="tab-notify">
+      <div class="form-group">
+        <label class="form-label">Message Notifications</label>
+        <div class="settings-toggle-row">
+          <span class="settings-toggle-label"><i class="fas fa-comment-dots"></i> Comment Reply Notifications</span>
+          <label class="toggle-switch"><input type="checkbox" id="notifyComment" checked><span class="toggle-slider"></span></label>
+        </div>
+        <div class="settings-toggle-row">
+          <span class="settings-toggle-label"><i class="fas fa-envelope"></i> Message Notifications</span>
+          <label class="toggle-switch"><input type="checkbox" id="notifyMsg" checked><span class="toggle-slider"></span></label>
+        </div>
+        <div class="settings-toggle-row">
+          <span class="settings-toggle-label"><i class="fas fa-bookmark"></i> Favorite Notifications</span>
+          <label class="toggle-switch"><input type="checkbox" id="notifyCollect" checked><span class="toggle-slider"></span></label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Do Not Disturb Period</label>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" style="font-weight:400;font-size:0.82rem;">Start Time</label>
+            <input class="form-input" id="dndStart" type="time" value="22:00">
+          </div>
+          <div class="form-group">
+            <label class="form-label" style="font-weight:400;font-size:0.82rem;">End Time</label>
+            <input class="form-input" id="dndEnd" type="time" value="08:00">
+          </div>
+        </div>
+        <div class="form-hint">Notifications will not be displayed during the DND period</div>
+      </div>
+    </div>
+
+    <!-- Privacy -->
+    <div class="settings-section" id="tab-privacy">
+      <div class="form-group">
+        <label class="form-label">Privacy Settings</label>
+        <div class="settings-toggle-row">
+          <span class="settings-toggle-label"><i class="fas fa-eye-slash"></i> Hide My Following List from Others</span>
+          <label class="toggle-switch"><input type="checkbox" id="privacyFollowing"><span class="toggle-slider"></span></label>
+        </div>
+        <div class="settings-toggle-row">
+          <span class="settings-toggle-label"><i class="fas fa-lock"></i> Only Followers Can Message Me</span>
+          <label class="toggle-switch"><input type="checkbox" id="privacyMsg"><span class="toggle-slider"></span></label>
+        </div>
+        <div class="settings-toggle-row">
+          <span class="settings-toggle-label"><i class="fas fa-ban"></i> Block Stranger Comments</span>
+          <label class="toggle-switch"><input type="checkbox" id="privacyComment"><span class="toggle-slider"></span></label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Blocklist Management</label>
+        <div style="padding:12px;background:var(--bg-subtle);border-radius:var(--radius);border:1px solid var(--border-muted);font-size:0.88rem;color:var(--text-muted);">
+          <i class="fas fa-info-circle" style="margin-right:6px;"></i>No blocked users yet
+        </div>
+      </div>
+    </div>
+
+    <!-- Appearance -->
+    <div class="settings-section" id="tab-appearance">
+      <div class="form-group">
+        <label class="form-label">Theme Mode</label>
+        <div class="theme-options">
+          <div class="theme-option active" data-theme="light">
+            <div class="theme-preview light-preview"></div>
+            <span>Light</span>
+          </div>
+          <div class="theme-option" data-theme="dark">
+            <div class="theme-preview dark-preview"></div>
+            <span>Dark</span>
+          </div>
+          <div class="theme-option" data-theme="auto">
+            <div class="theme-preview auto-preview"></div>
+            <span>Follow System</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Font Size</label>
+        <div class="font-size-row">
+          <span style="font-size:0.8rem;color:var(--text-muted);">Small</span>
+          <input type="range" id="fontSizeRange" min="14" max="20" value="17" style="flex:1;">
+          <span style="font-size:0.8rem;color:var(--text-muted);">Large</span>
+          <span id="fontSizeVal" style="font-size:0.82rem;color:var(--text-muted);min-width:32px;text-align:right;">17px</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Language</label>
+        <select class="form-select" id="inputLang">
+          <option value="zh">Simplified Chinese</option>
+          <option value="zh-tw">Traditional Chinese</option>
+          <option value="en">English</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- General -->
+    <div class="settings-section" id="tab-general">
+      <div class="form-group">
+        <label class="form-label">Content Preferences</label>
+        <div class="settings-toggle-row">
+          <span class="settings-toggle-label"><i class="fas fa-eye-slash"></i> Hide Low-Quality Comments</span>
+          <label class="toggle-switch"><input type="checkbox" id="hideJunk" checked><span class="toggle-slider"></span></label>
+        </div>
+        <div class="settings-toggle-row">
+          <span class="settings-toggle-label"><i class="fas fa-image"></i> Auto-Load Images</span>
+          <label class="toggle-switch"><input type="checkbox" id="autoImg" checked><span class="toggle-slider"></span></label>
+        </div>
+        <div class="settings-toggle-row">
+          <span class="settings-toggle-label"><i class="fas fa-history"></i> Save Browsing History</span>
+          <label class="toggle-switch"><input type="checkbox" id="saveHistory" checked><span class="toggle-slider"></span></label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">About</label>
+        <div style="padding:14px;background:var(--bg-subtle);border-radius:var(--radius);border:1px solid var(--border-muted);font-size:0.88rem;line-height:1.8;color:var(--text-muted);">
+          <div><strong style="color:var(--text);">MUST Treehole</strong> · AzureCanvas</div>
+          <div>Version v1.5.0</div>
+          <div><i class="fas fa-shield-alt" style="margin-right:4px;"></i>Data stored locally, protecting your privacy</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="settings-footer">
+      <button class="btn logout-btn" id="logoutBtn">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </button>
+      <div style="flex:1"></div>
+      <button class="btn" onclick="window.location.href='index.html'">Cancel</button>
+      <button class="btn btn-primary" id="saveSettingsBtn">
+        <i class="fas fa-save"></i> Save Settings
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="save-toast" id="saveToast">Settings saved ✓</div>
+
+<script src="../js/notifications.js"></script>
+<script>
+  window.notify.show = new NotificationManager();
+</script>
+<script src="store.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  Store.init();
+  const u = Store.currentUser;
+
+  // Fetch latest user info from API (including avatar)
+  (async function fetchAndApplyUserInfo() {
+    try {
+      const res = await fetch("/api/users/me", { credentials: "include" });
+      if (res.ok) {
+        const apiUser = await res.json();
+
+        // Process avatar URL: supports avatar field (UUID format)
+        let avatarUrl = null;
+        if (apiUser.avatar || apiUser.avatarUrl) {
+          const rawAvatar = apiUser.avatar || apiUser.avatarUrl;
+          // If already a complete URL, use directly
+          if (rawAvatar.startsWith('http://') || rawAvatar.startsWith('https://') || rawAvatar.startsWith('/')) {
+            avatarUrl = rawAvatar;
+          } else {
+            // Assume UUID format, convert to /resources/{uuid}
+            avatarUrl = '/resources/' + rawAvatar;
+          }
+        }
+
+        // Update user info in Store
+        Store.updateUser({
+          id: apiUser.userId || apiUser.id,
+          nickname: apiUser.username || apiUser.nickname || u.nickname,
+          avatarUrl: avatarUrl,
+          avatarLetter: apiUser.username ? apiUser.username.substring(0, 1) : u.avatarLetter,
+          uuid: apiUser.userId || apiUser.id
+        });
+
+        // If avatar URL exists, update preview avatar display
+        if (avatarUrl) {
+          const previewAvatarEl = document.getElementById("previewAvatar");
+          previewAvatarEl.innerHTML = `<img src="${avatarUrl}" alt="Avatar" style="width:100%;height:100%;border-radius:50%;object-fit:cover;" onerror="this.parentElement.textContent='${Store.currentUser.avatarLetter || 'U'}';this.parentElement.style.background='${u.avatarColor || '#555'}'">`;
+          previewAvatarEl.style.background = "transparent";
+        }
+      }
+    } catch (e) {
+      console.warn("Failed to fetch user info:", e);
+    }
+
+    // Initialize form and preview
+    initFormAndPreview();
+  })();
+
+  function initFormAndPreview() {
+
+  // Fill form
+  document.getElementById("inputNickname").value = u.nickname || "";
+  document.getElementById("inputGender").value = u.gender || "";
+  document.getElementById("inputAge").value = u.age || "";
+  document.getElementById("inputBio").value = u.bio || "";
+  document.getElementById("inputLocation").value = u.location || "";
+  document.getElementById("inputAvatarLetter").value = u.avatarLetter || "";
+  document.getElementById("inputUserId").value = u.id || "me";
+
+  // Stats
+  const myPosts = Store.posts.filter(p => p.authorId === u.id);
+  document.getElementById("statPosts").textContent = myPosts.length;
+  document.getElementById("statFollowing").textContent = Store.getFollowedUsers().length;
+  document.getElementById("statLikes").textContent = myPosts.reduce((s, p) => s + (p.likes || 0), 0);
+
+  // Color picker
+  const COLORS = ["#333","#555","#777","#2d6a4f","#1d3557","#6d2b3d","#7b4f12","#444"];
+  const colorPicker = document.getElementById("avatarColorPicker");
+  colorPicker.innerHTML = COLORS.map(c => `
+    <span class="color-dot ${u.avatarColor === c ? "selected" : ""}" data-color="${c}" style="background:${c}"></span>
+  `).join("");
+  colorPicker.querySelectorAll(".color-dot").forEach(dot => {
+    dot.addEventListener("click", () => {
+      colorPicker.querySelectorAll(".color-dot").forEach(d => d.classList.remove("selected"));
+      dot.classList.add("selected");
+      updatePreview();
+    });
+  });
+
+  // Live preview
+  function updatePreview() {
+    const letter = document.getElementById("inputAvatarLetter").value.trim().slice(0,1)
+      || document.getElementById("inputNickname").value.trim().slice(0,1) || "U";
+    const color = colorPicker.querySelector(".color-dot.selected")?.dataset.color || u.avatarColor || "#555";
+    const name = document.getElementById("inputNickname").value.trim() || "My Treehole";
+    const bio = document.getElementById("inputBio").value.trim() || "This person is mysterious and left nothing";
+    const gender = document.getElementById("inputGender").value;
+    const age = document.getElementById("inputAge").value;
+    const location = document.getElementById("inputLocation").value.trim();
+
+    document.getElementById("previewAvatar").textContent = letter;
+    document.getElementById("previewAvatar").style.background = color;
+    document.getElementById("previewName").textContent = name;
+    document.getElementById("previewBio").textContent = bio;
+
+    const metaItems = [];
+    if (gender) metaItems.push(`<div class="profile-meta-item"><i class="fas fa-${gender==="male"?"mars":gender==="female"?"venus":"genderless"}"></i> ${gender==="male"?"Male":gender==="female"?"Female":"Other"}</div>`);
+    if (age) metaItems.push(`<div class="profile-meta-item"><i class="fas fa-birthday-cake"></i> ${age} years old</div>`);
+    if (location) metaItems.push(`<div class="profile-meta-item"><i class="fas fa-map-marker-alt"></i> ${location}</div>`);
+    document.getElementById("profileMetaList").innerHTML = metaItems.join("");
+  }
+
+  ["inputNickname","inputBio","inputAge","inputLocation","inputAvatarLetter"].forEach(id => {
+    document.getElementById(id).addEventListener("input", updatePreview);
+  });
+  document.getElementById("inputGender").addEventListener("change", updatePreview);
+  updatePreview();
+
+  } // end initFormAndPreview
+
+  // Tab switching
+  document.querySelectorAll(".settings-tab").forEach(tab => {
+    tab.addEventListener("click", () => {
+      document.querySelectorAll(".settings-tab").forEach(t => t.classList.remove("active"));
+      document.querySelectorAll(".settings-section").forEach(s => s.classList.remove("active"));
+      tab.classList.add("active");
+      document.getElementById("tab-" + tab.dataset.tab).classList.add("active");
+    });
+  });
+
+  // Appearance: theme switching
+  document.querySelectorAll(".theme-option").forEach(opt => {
+    opt.addEventListener("click", () => {
+      document.querySelectorAll(".theme-option").forEach(o => o.classList.remove("active"));
+      opt.classList.add("active");
+      localStorage.setItem("th_theme", opt.dataset.theme);
+    });
+  });
+  const savedTheme = localStorage.getItem("th_theme") || "light";
+  document.querySelector(`.theme-option[data-theme="${savedTheme}"]`)?.classList.add("active");
+  document.querySelector(`.theme-option:not([data-theme="${savedTheme}"])`)?.classList.remove("active");
+
+  // Appearance: font size
+  const fontRange = document.getElementById("fontSizeRange");
+  const fontVal = document.getElementById("fontSizeVal");
+  const savedFont = localStorage.getItem("th_font_size") || "17";
+  fontRange.value = savedFont;
+  fontVal.textContent = savedFont + "px";
+  fontRange.addEventListener("input", () => {
+    fontVal.textContent = fontRange.value + "px";
+    localStorage.setItem("th_font_size", fontRange.value);
+  });
+
+  // Account: clear data
+  document.getElementById("clearDataBtn").addEventListener("click", () => {
+    if (confirm("Are you sure you want to clear all local data? This action cannot be undone!")) {
+      localStorage.clear();
+      sessionStorage.clear();
+      location.reload();
+    }
+  });
+
+  // Logout
+  document.getElementById("logoutBtn").addEventListener("click", () => {
+    if (confirm("Are you sure you want to logout?")) {
+      localStorage.removeItem("th_user");
+      sessionStorage.clear();
+      window.location.href = "index.html";
+    }
+  });
+
+  // Save
+  document.getElementById("saveSettingsBtn").addEventListener("click", () => {
+    const nickname = document.getElementById("inputNickname").value.trim();
+    if (!nickname) { window.notify.show.show("Nickname cannot be empty", 'error'); return; }
+    const avatarLetter = document.getElementById("inputAvatarLetter").value.trim().slice(0,1) || nickname.slice(0,1);
+    const avatarColor = colorPicker.querySelector(".color-dot.selected")?.dataset.color || u.avatarColor || "#555";
+    Store.updateUser({
+      nickname, avatarLetter, avatarColor,
+      gender: document.getElementById("inputGender").value,
+      age: document.getElementById("inputAge").value,
+      bio: document.getElementById("inputBio").value.trim(),
+      location: document.getElementById("inputLocation").value.trim(),
+    });
+    // Save notification/privacy/general toggles
+    const prefs = {
+      notifyComment: document.getElementById("notifyComment").checked,
+      notifyMsg: document.getElementById("notifyMsg").checked,
+      notifyCollect: document.getElementById("notifyCollect").checked,
+      dndStart: document.getElementById("dndStart").value,
+      dndEnd: document.getElementById("dndEnd").value,
+      privacyFollowing: document.getElementById("privacyFollowing").checked,
+      privacyMsg: document.getElementById("privacyMsg").checked,
+      privacyComment: document.getElementById("privacyComment").checked,
+      hideJunk: document.getElementById("hideJunk").checked,
+      autoImg: document.getElementById("autoImg").checked,
+      saveHistory: document.getElementById("saveHistory").checked,
+      lang: document.getElementById("inputLang").value,
+    };
+    localStorage.setItem("th_prefs", JSON.stringify(prefs));
+    const toast = document.getElementById("saveToast");
+    toast.classList.add("show");
+    setTimeout(() => toast.classList.remove("show"), 2000);
+  });
+
+  // Load saved preferences
+  try {
+    const prefs = JSON.parse(localStorage.getItem("th_prefs") || "{}");
+    if (prefs.notifyComment !== undefined) document.getElementById("notifyComment").checked = prefs.notifyComment;
+    if (prefs.notifyMsg !== undefined) document.getElementById("notifyMsg").checked = prefs.notifyMsg;
+    if (prefs.notifyCollect !== undefined) document.getElementById("notifyCollect").checked = prefs.notifyCollect;
+    if (prefs.dndStart) document.getElementById("dndStart").value = prefs.dndStart;
+    if (prefs.dndEnd) document.getElementById("dndEnd").value = prefs.dndEnd;
+    if (prefs.privacyFollowing !== undefined) document.getElementById("privacyFollowing").checked = prefs.privacyFollowing;
+    if (prefs.privacyMsg !== undefined) document.getElementById("privacyMsg").checked = prefs.privacyMsg;
+    if (prefs.privacyComment !== undefined) document.getElementById("privacyComment").checked = prefs.privacyComment;
+    if (prefs.hideJunk !== undefined) document.getElementById("hideJunk").checked = prefs.hideJunk;
+    if (prefs.autoImg !== undefined) document.getElementById("autoImg").checked = prefs.autoImg;
+    if (prefs.saveHistory !== undefined) document.getElementById("saveHistory").checked = prefs.saveHistory;
+    if (prefs.lang) document.getElementById("inputLang").value = prefs.lang;
+  } catch(e) {}
+});
+</script>
+</body>
+</html>

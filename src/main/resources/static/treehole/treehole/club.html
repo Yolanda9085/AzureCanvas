@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Club Hub - MUST Treehole</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .club-page { max-width: 860px; margin: 0 auto; padding: 24px 20px; }
+    .club-hero {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 28px 28px 20px;
+      display: flex; align-items: flex-start; gap: 20px; margin-bottom: 20px;
+    }
+    .club-hero-emblem {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: var(--bg-inset); border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.4rem; flex-shrink: 0;
+    }
+    .club-hero-info { flex: 1; }
+    .club-hero-name { font-size: 1.5rem; font-weight: 700; margin-bottom: 6px; }
+    .club-hero-desc { font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 12px; }
+    .club-hero-stats { display: flex; gap: 20px; }
+    .club-stat { font-size: 0.85rem; color: var(--text-muted); }
+    .club-stat strong { color: var(--text); font-size: 1rem; }
+    .club-join-btn {
+      flex-shrink: 0; padding: 8px 22px;
+      background: var(--text); color: #fff; border: none;
+      border-radius: var(--radius); font-size: 0.9rem; font-weight: 500;
+      cursor: pointer; transition: var(--transition); font-family: inherit;
+    }
+    .club-join-btn:hover { background: #333; }
+    .club-join-btn.joined { background: var(--bg-inset); color: var(--text); border: 1px solid var(--border); }
+
+    /* tabs */
+    .club-tabs {
+      display: flex; gap: 0; background: var(--bg);
+      border: 1px solid var(--border); border-radius: var(--radius-lg);
+      overflow: hidden; margin-bottom: 20px;
+    }
+    .club-tab {
+      flex: 1; padding: 12px 8px; text-align: center;
+      font-size: 0.92rem; font-weight: 500; cursor: pointer;
+      border: none; background: none; color: var(--text-muted);
+      transition: var(--transition); font-family: inherit;
+      border-right: 1px solid var(--border);
+    }
+    .club-tab:last-child { border-right: none; }
+    .club-tab:hover { background: var(--hover-bg); color: var(--text); }
+    .club-tab.active { background: var(--bg-inset); color: var(--text); font-weight: 600; }
+
+    /* tab panels */
+    .club-panel { display: none; }
+    .club-panel.active { display: block; }
+
+    /* intro panel */
+    .intro-section { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px; margin-bottom: 16px; }
+    .intro-section-title { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 14px; border-bottom: 1px solid var(--border-muted); padding-bottom: 8px; }
+    .leader-card { display: flex; align-items: center; gap: 14px; }
+    .leader-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--bg-inset); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 700; flex-shrink: 0; }
+    .leader-info .leader-name { font-weight: 600; font-size: 1rem; }
+    .leader-info .leader-meta { font-size: 0.82rem; color: var(--text-muted); }
+    .members-row { display: flex; flex-wrap: wrap; gap: 10px; }
+    .member-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--bg-inset); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: 600; cursor: default; position: relative; }
+    .member-avatar:hover::after { content: attr(data-name); position: absolute; bottom: -24px; left: 50%; transform: translateX(-50%); background: var(--text); color: #fff; font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; white-space: nowrap; pointer-events: none; }
+
+    /* activity panel */
+    .activity-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px 20px; margin-bottom: 12px; display: flex; gap: 16px; align-items: flex-start; }
+    .activity-date-block { flex-shrink: 0; text-align: center; background: var(--bg-inset); border-radius: var(--radius); padding: 8px 14px; border: 1px solid var(--border-muted); }
+    .activity-month { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; }
+    .activity-day { font-size: 1.6rem; font-weight: 700; line-height: 1; }
+    .activity-info { flex: 1; }
+    .activity-title { font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
+    .activity-meta { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 8px; display: flex; gap: 14px; flex-wrap: wrap; }
+    .activity-desc { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 10px; }
+    .activity-spots { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px; }
+    .spots-bar { height: 4px; background: var(--border); border-radius: 2px; margin-top: 4px; }
+    .spots-fill { height: 100%; background: var(--text); border-radius: 2px; transition: width 0.4s ease; }
+    .book-btn { padding: 6px 18px; border: 1px solid var(--border); border-radius: 20px; background: var(--bg); font-size: 0.85rem; cursor: pointer; transition: var(--transition); font-family: inherit; color: var(--text); white-space: nowrap; }
+    .book-btn:hover { background: var(--text); color: #fff; border-color: var(--text); }
+    .book-btn.booked { background: var(--bg-inset); color: var(--text-muted); cursor: default; }
+
+    /* forum panel */
+    .forum-input-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px 20px; margin-bottom: 14px; }
+    .forum-input { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 0.92rem; background: var(--bg-subtle); color: var(--text); resize: none; outline: none; font-family: inherit; min-height: 72px; transition: var(--transition); }
+    .forum-input:focus { background: var(--bg); border-color: #888; }
+    .forum-input-footer { display: flex; justify-content: flex-end; margin-top: 10px; }
+    .forum-post-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px 20px; margin-bottom: 10px; }
+    .forum-post-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .forum-post-body { font-size: 0.95rem; line-height: 1.7; margin-bottom: 10px; }
+    .forum-post-actions { display: flex; gap: 4px; padding-top: 8px; border-top: 1px solid var(--border-muted); }
+    .forum-comments { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-muted); display: none; }
+    .forum-comments.open { display: block; }
+    .forum-comment-item { padding: 6px 0; border-bottom: 1px solid var(--border-muted); font-size: 0.875rem; }
+    .forum-comment-item:last-child { border-bottom: none; }
+    .forum-comment-author { font-weight: 600; margin-right: 6px; }
+    .forum-comment-input-row { display: flex; gap: 8px; margin-top: 10px; }
+    .forum-comment-input { flex: 1; padding: 6px 10px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 0.85rem; background: var(--bg-subtle); color: var(--text); outline: none; font-family: inherit; }
+    .forum-comment-input:focus { background: var(--bg); border-color: #888; }
+
+    /* chat panel */
+    .chat-apply-box { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 40px 20px; text-align: center; }
+    .chat-apply-icon { font-size: 2.8rem; margin-bottom: 14px; }
+    .chat-apply-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; }
+    .chat-apply-sub { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 20px; }
+    .chat-apply-btn { padding: 10px 32px; background: var(--text); color: #fff; border: none; border-radius: var(--radius); font-size: 0.95rem; font-weight: 500; cursor: pointer; font-family: inherit; transition: var(--transition); }
+    .chat-apply-btn:hover { background: #333; }
+    .chat-apply-btn:disabled { background: var(--bg-inset); color: var(--text-muted); cursor: default; }
+    .chat-status { margin-top: 14px; font-size: 0.85rem; color: var(--text-muted); min-height: 20px; }
+    .chat-room { display: none; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+    .chat-room.open { display: flex; flex-direction: column; }
+    .chat-room-header { padding: 12px 16px; border-bottom: 1px solid var(--border); font-weight: 600; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
+    .chat-online-dot { width: 8px; height: 8px; border-radius: 50%; background: #2da44e; }
+    .chat-messages { height: 320px; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+    .chat-msg { display: flex; gap: 10px; align-items: flex-end; }
+    .chat-msg-mine { flex-direction: row-reverse; }
+    .chat-msg-avatar { width: 30px; height: 30px; border-radius: 50%; background: var(--bg-inset); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 600; flex-shrink: 0; }
+    .chat-bubble { padding: 8px 14px; border-radius: 18px; font-size: 0.88rem; max-width: 65%; line-height: 1.5; }
+    .chat-bubble-theirs { background: var(--bg-inset); border: 1px solid var(--border); border-bottom-left-radius: 4px; }
+    .chat-bubble-mine { background: var(--text); color: #fff; border-bottom-right-radius: 4px; }
+    .chat-input-bar { display: flex; gap: 8px; padding: 12px 16px; border-top: 1px solid var(--border); }
+    .chat-input { flex: 1; padding: 8px 12px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 0.9rem; background: var(--bg-subtle); color: var(--text); outline: none; font-family: inherit; }
+    .chat-input:focus { background: var(--bg); border-color: #888; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-logo">
+    <button class="btn btn-sm" onclick="history.back()" style="font-weight:400"><i class="fas fa-arrow-left"></i> Back</button>
+  </div>
+  <div class="nav-search-center">
+    <div style="font-size:1.1rem;font-weight:700;color:var(--text)">Club Hub</div>
+  </div>
+  <div class="nav-actions">
+    <button class="btn btn-sm" id="nightBtn"><i class="fas fa-moon"></i></button>
+  </div>
+</nav>
+
+<div class="club-page">
+  <!-- club hero -->
+  <div class="club-hero" id="clubHero">
+    <div class="club-hero-emblem" id="heroEmblem"></div>
+    <div class="club-hero-info">
+      <div class="club-hero-name" id="heroName"></div>
+      <div class="club-hero-desc" id="heroDesc"></div>
+      <div class="club-hero-stats">
+        <div class="club-stat"><strong id="heroMemberCount"></strong> Members</div>
+        <div class="club-stat"><strong id="heroActivityCount"></strong> Recent Activities</div>
+      </div>
+    </div>
+    <button class="club-join-btn" id="joinBtn">+ Join Club</button>
+  </div>
+
+  <!-- tabs -->
+  <div class="club-tabs">
+    <button class="club-tab active" data-tab="intro"><i class="fas fa-info-circle"></i> Club Intro</button>
+    <button class="club-tab" data-tab="activity"><i class="fas fa-calendar-alt"></i> Activities</button>
+    <button class="club-tab" data-tab="forum"><i class="fas fa-comments"></i> Forum</button>
+    <button class="club-tab" data-tab="chat"><i class="fas fa-comment-dots"></i> Chat</button>
+  </div>
+
+  <!-- intro panel -->
+  <div class="club-panel active" id="panel-intro">
+    <div class="intro-section">
+      <div class="intro-section-title">Club Description</div>
+      <div id="introFullDesc" style="font-size:0.95rem;line-height:1.8;color:var(--text)"></div>
+    </div>
+    <div class="intro-section">
+      <div class="intro-section-title">Current Leader</div>
+      <div class="leader-card">
+        <div class="leader-avatar" id="leaderAvatar"></div>
+        <div class="leader-info">
+          <div class="leader-name" id="leaderName"></div>
+          <div class="leader-meta" id="leaderMeta"></div>
+        </div>
+      </div>
+    </div>
+    <div class="intro-section">
+      <div class="intro-section-title">Club Members</div>
+      <div class="members-row" id="membersRow"></div>
+    </div>
+  </div>
+
+  <!-- activity panel -->
+  <div class="club-panel" id="panel-activity">
+    <div id="activityList"></div>
+  </div>
+
+  <!-- forum panel -->
+  <div class="club-panel" id="panel-forum">
+    <div class="forum-input-card">
+      <textarea class="forum-input" id="forumInput" placeholder="Post in the club forum…"></textarea>
+      <div class="forum-input-footer">
+        <button class="btn btn-primary btn-sm" id="forumPostBtn">Post</button>
+      </div>
+    </div>
+    <div id="forumList"></div>
+  </div>
+
+  <!-- chat panel -->
+  <div class="club-panel" id="panel-chat">
+    <div class="chat-apply-box" id="chatApplyBox">
+      <div class="chat-apply-icon">💬</div>
+      <div class="chat-apply-title">Join Club Chat Room</div>
+      <div class="chat-apply-sub">After approval by club administrator, you can chat with club members in real-time</div>
+      <button class="chat-apply-btn" id="chatApplyBtn">Apply to Join</button>
+      <div class="chat-status" id="chatStatus"></div>
+    </div>
+    <div class="chat-room" id="chatRoom">
+      <div class="chat-room-header">
+        <div class="chat-online-dot"></div>
+        <span id="chatRoomTitle"></span>
+        <span style="font-size:0.78rem;color:var(--text-muted);margin-left:auto" id="chatOnlineCount"></span>
+      </div>
+      <div class="chat-messages" id="chatMessages"></div>
+      <div class="chat-input-bar">
+        <input class="chat-input" id="chatInput" placeholder="Send message…" autocomplete="off">
+        <button class="btn btn-primary btn-sm" id="chatSendBtn">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const CLUBS = [
+  {
+    id:0, name:'Student Union', emoji:'🏛️',
+    desc:'The Student Union is the highest student self-governing organization in the university, responsible for coordinating various student club activities, safeguarding student rights, and organizing campus cultural activities. It hosts large-scale events such as welcome parties, graduation parties, and sports meets every year, providing an important stage for students to showcase themselves.',
+    leader:{name:'Mingyuan Zhang', grade:'Junior', dept:'Computer Science College'},
+    members:['Li','Wang','Chen','Liu','Zhao','Sun','Zhou','Wu','Zheng','Feng'],
+    memberCount:120,
+    activities:[
+      {id:1,title:'May Fourth Youth Day Art Performance',date:'2026-05-04',time:'19:00',location:'Grand Auditorium',desc:'Celebrating May Fourth Youth Day, showcasing youth elegance',spots:200,booked:156},
+      {id:2,title:'Student Representative Assembly',date:'2026-05-15',time:'14:00',location:'Administration Building Lecture Hall',desc:'Discussing student rights-related topics',spots:100,booked:88},
+    ],
+    chatMsgs:[
+      {from:'Mingyuan Zhang',text:'Hello everyone, welcome to the Student Union chat room!',mine:false},
+      {from:'Xiaoyan Wang',text:'Has the program list for the May Fourth evening party been released?',mine:false},
+      {from:'Zhiyuan Chen',text:'Still rehearsing, will be announced next week!',mine:false},
+    ]
+  },
+  {
+    id:1, name:'Badminton Club', emoji:'🏸',
+    desc:'Founded in 2010, the Badminton Club is one of the most active sports clubs in the university. It regularly hosts campus leagues and welcomes players of all levels to join and enjoy the fun of badminton.',
+    leader:{name:'Xiaofeng Lin', grade:'Sophomore', dept:'Physical Education College'},
+    members:['Huang','Zheng','He','Gao','Lin','Liang','Guo','Luo','Han','Tang'],
+    memberCount:85,
+    activities:[
+      {id:1,title:'Spring Badminton League',date:'2026-05-10',time:'09:00',location:'Gymnasium Court 3',desc:'Singles, doubles, and mixed doubles competitions',spots:64,booked:48},
+      {id:2,title:'New Member Training Camp',date:'2026-05-20',time:'15:00',location:'Gymnasium',desc:'Basic skills training, welcome beginners',spots:30,booked:12},
+    ],
+    chatMsgs:[
+      {from:'Xiaofeng Lin',text:'League at 9am this Saturday, everyone be on time!',mine:false},
+      {from:'Zhiqiang Huang',text:'OK, I will bring my racket',mine:false},
+    ]
+  },
+  {
+    id:2, name:'Table Tennis Club', emoji:'🏓',
+    desc:'The Table Tennis Club is dedicated to promoting table tennis, regularly organizing training and competitions, and cultivating students' competitive spirit and teamwork skills.',
+    leader:{name:'Xiaoming Zhao', grade:'Junior', dept:'Engineering College'},
+    members:['Qian','Sun','Li','Zhou','Wu','Zheng','Wang','Feng','Chen','Chu'],
+    memberCount:60,
+    activities:[
+      {id:1,title:'Inter-University Table Tennis Friendly',date:'2026-05-12',time:'14:00',location:'Gymnasium Table Tennis Room',desc:'Compete with brother universities',spots:20,booked:18},
+    ],
+    chatMsgs:[
+      {from:'Xiaoming Zhao',text:'Friendly match roster confirmed, please check the notice',mine:false},
+    ]
+  },
+  {
+    id:3, name:'Chinese Classics Society', emoji:'📜',
+    desc:'The Chinese Classics Society is committed to promoting excellent traditional Chinese culture, conducting activities such as classic reading, calligraphy, tea ceremony, and Hanfu, allowing students to experience the charm of traditional culture.',
+    leader:{name:'Yawen Su', grade:'Senior', dept:'Literature College'},
+    members:['Wei','Jiang','Shen','Han','Yang','Zhu','Qin','You','Xu','He'],
+    memberCount:45,
+    activities:[
+      {id:1,title:'Dragon Boat Festival Traditional Culture Experience',date:'2026-05-31',time:'10:00',location:'Culture Square',desc:'Make zongzi, sachets, and calligraphy',spots:50,booked:32},
+      {id:2,title:'"Analects" Reading Club',date:'2026-05-08',time:'19:00',location:'Library Seminar Room',desc:'Read classics together, exchange insights',spots:20,booked:15},
+    ],
+    chatMsgs:[
+      {from:'Yawen Su',text:'Dragon Boat Festival materials are ready, welcome to participate!',mine:false},
+      {from:'Chenxi Wei',text:'Looking forward to it, I have already signed up',mine:false},
+    ]
+  },
+  {
+    id:4, name:'Outdoor Sports Association', emoji:'🏕️',
+    desc:'The Outdoor Sports Association organizes hiking, camping, rock climbing and other outdoor activities, cultivating students' adventurous spirit and environmental awareness, and enjoying the beauty of nature.',
+    leader:{name:'Haoran Wu', grade:'Sophomore', dept:'Geography College'},
+    members:['Shi','Zhang','Kong','Cao','Yan','Hua','Jin','Wei','Tao','Jiang'],
+    memberCount:72,
+    activities:[
+      {id:1,title:'Weekend Hiking & Mountain Climbing',date:'2026-05-09',time:'07:00',location:'Gather at South Gate',desc:'Destination: nearby mountain, about 8km total',spots:30,booked:28},
+      {id:2,title:'Summer Camping Trip',date:'2026-06-01',time:'16:00',location:'Suburban Camp',desc:'Two days and one night, experience wilderness survival',spots:25,booked:10},
+    ],
+    chatMsgs:[
+      {from:'Haoran Wu',text:'Only 2 spots left for weekend hiking, sign up now!',mine:false},
+      {from:'Xiaoyu Shi',text:'Can you send the equipment list?',mine:false},
+      {from:'Haoran Wu',text:'Sent to group files, remember to bring sunscreen and water',mine:false},
+    ]
+  },
+  {
+    id:5, name:'Dance Alliance', emoji:'💃',
+    desc:'The Dance Alliance gathers students who love dance, covering street dance, modern dance, folk dance and other styles, regularly holding performances and exchange activities.',
+    leader:{name:'Meiqi Lin', grade:'Junior', dept:'Art College'},
+    members:['Qi','Xie','Zou','Yu','Bai','Shui','Dou','Zhang','Yun','Su'],
+    memberCount:95,
+    activities:[
+      {id:1,title:'Campus Dance Competition',date:'2026-05-22',time:'18:30',location:'Grand Auditorium',desc:'Various dance styles compete on the same stage',spots:300,booked:245},
+      {id:2,title:'Street Dance Open Class',date:'2026-05-07',time:'19:00',location:'Activity Center',desc:'Zero-basis introduction, experience the charm of street dance',spots:40,booked:38},
+    ],
+    chatMsgs:[
+      {from:'Meiqi Lin',text:'Competition rehearsal time: 7-9pm every day, Activity Center',mine:false},
+      {from:'Yuqing Qi',text:'OK, I will be there tonight',mine:false},
+    ]
+  },
+  {
+    id:6, name:'Music Society', emoji:'🎵',
+    desc:'The Music Society is the most influential art club in the university, covering vocal, instrumental, choral and other directions, hosting multiple concerts and performances every year.',
+    leader:{name:'Letian Chen', grade:'Senior', dept:'Music College'},
+    members:['Pan','Ge','Xi','Fan','Peng','Lang','Lu','Wei','Chang','Ma'],
+    memberCount:110,
+    activities:[
+      {id:1,title:'Spring Concert',date:'2026-05-18',time:'19:30',location:'Concert Hall',desc:'Vocal and instrumental joint performance',spots:150,booked:142},
+      {id:2,title:'Guitar Beginner Workshop',date:'2026-05-11',time:'15:00',location:'Music Building 204',desc:'Learn guitar from scratch',spots:15,booked:9},
+    ],
+    chatMsgs:[
+      {from:'Letian Chen',text:'Concert program list finalized, final sprint everyone!',mine:false},
+      {from:'Xiaoyue Pan',text:'So excited, are there still tickets?',mine:false},
+      {from:'Letian Chen',text:'Still a few tickets left, come get them from me',mine:false},
+    ]
+  },
+  {
+    id:7, name:'IEEE Student Branch', emoji:'⚡',
+    desc:'The IEEE Student Branch is the on-campus organization of the Institute of Electrical and Electronics Engineers, dedicated to promoting academic exchange and technological innovation in electronics, computer, and communications fields.',
+    leader:{name:'Keyuan Liu', grade:'Junior', dept:'Electronic Information College'},
+    members:['Miao','Feng','Hua','Fang','Yu','Ren','Yuan','Liu','Feng','Bao'],
+    memberCount:68,
+    activities:[
+      {id:1,title:'Embedded Systems Development Lecture',date:'2026-05-06',time:'19:00',location:'Engineering Building Lecture Hall',desc:'Industry experts share practical experience',spots:80,booked:75},
+      {id:2,title:'Electronic Design Contest Training',date:'2026-05-13',time:'14:00',location:'Lab Building 301',desc:'Prepare for National College Student Electronic Design Contest',spots:25,booked:20},
+    ],
+    chatMsgs:[
+      {from:'Keyuan Liu',text:'Lecture guest confirmed, from Huawei Research Institute',mine:false},
+      {from:'Zhiyuan Miao',text:'So impressive! I have already signed up',mine:false},
+    ]
+  },
+  {
+    id:8, name:'Photography Club', emoji:'📷',
+    desc:'The Photography Club brings together students passionate about visual storytelling. We cover portrait, landscape, street, and documentary photography. Members share techniques, go on photo walks, and exhibit their work at the end of each semester.',
+    leader:{name:'Sophie Liang', grade:'Junior', dept:'Art & Design College'},
+    members:['Chen','Wu','Liu','Zhang','Wang','Li','Zhao','Sun','He','Lin'],
+    memberCount:54,
+    activities:[
+      {id:1,title:'Golden Hour Campus Photo Walk',date:'2026-05-10',time:'17:30',location:'Meet at Main Gate',desc:'Capture the campus in the best light of the day',spots:20,booked:17},
+      {id:2,title:'Portrait Photography Workshop',date:'2026-05-17',time:'14:00',location:'Art Building Studio B',desc:'Learn lighting, posing, and post-processing basics',spots:15,booked:11},
+      {id:3,title:'End-of-Semester Photo Exhibition',date:'2026-06-05',time:'10:00',location:'Library Gallery Hall',desc:'Showcase your best shots from the semester',spots:50,booked:22},
+    ],
+    chatMsgs:[
+      {from:'Sophie Liang',text:'Photo walk this Saturday at 5:30pm — bring your best lens!',mine:false},
+      {from:'Jiawei Chen',text:'Can I bring my film camera?',mine:false},
+      {from:'Sophie Liang',text:'Absolutely, film shots are always welcome 📸',mine:false},
+    ]
+  },
+  {
+    id:9, name:'Art Club', emoji:'🎨',
+    desc:'The Art Club is a creative space for students who love painting, illustration, sculpture, and mixed media. We hold weekly open studio sessions, themed art challenges, and collaborate with local galleries for exhibitions.',
+    leader:{name:'Yuna Bai', grade:'Senior', dept:'Fine Arts College'},
+    members:['Xu','Guo','Tang','Fang','Ding','Shi','Luo','Peng','Jiang','Cao'],
+    memberCount:47,
+    activities:[
+      {id:1,title:'Watercolor Basics Workshop',date:'2026-05-08',time:'15:00',location:'Art Building Room 103',desc:'Learn wet-on-wet and wet-on-dry watercolor techniques',spots:18,booked:16},
+      {id:2,title:'Life Drawing Session',date:'2026-05-15',time:'19:00',location:'Art Building Studio A',desc:'Figure drawing with a live model, all skill levels welcome',spots:12,booked:9},
+      {id:3,title:'Spring Art Exhibition',date:'2026-05-28',time:'14:00',location:'Campus Gallery',desc:'Submit up to 3 works for the semester showcase',spots:100,booked:41},
+    ],
+    chatMsgs:[
+      {from:'Yuna Bai',text:'Watercolor workshop this Thursday — materials provided!',mine:false},
+      {from:'Mingzhi Xu',text:'Do we need to bring our own brushes?',mine:false},
+      {from:'Yuna Bai',text:'We have extras but feel free to bring your own 🎨',mine:false},
+    ]
+  },
+  {
+    id:10, name:'Board Games Club', emoji:'♟️',
+    desc:'The Board Games Club meets weekly to play strategy games, card games, and tabletop RPGs. From chess and Go to Catan and Dungeons & Dragons, we welcome all levels of players for a fun and social experience.',
+    leader:{name:'Marcus Qian', grade:'Sophomore', dept:'Mathematics College'},
+    members:['Zhu','Hu','Deng','Xiao','Yan','Kong','Meng','Yin','Hao','Xie'],
+    memberCount:38,
+    activities:[
+      {id:1,title:'Weekly Game Night',date:'2026-05-09',time:'19:00',location:'Student Center Room 2B',desc:'Open game night — bring your favorites or try ours',spots:30,booked:24},
+      {id:2,title:'Chess Tournament',date:'2026-05-16',time:'13:00',location:'Library Seminar Room 2',desc:'Single elimination, prizes for top 3',spots:32,booked:28},
+      {id:3,title:'Dungeons & Dragons One-Shot',date:'2026-05-23',time:'18:00',location:'Student Center Room 3A',desc:'Beginner-friendly D&D adventure, no experience needed',spots:6,booked:4},
+    ],
+    chatMsgs:[
+      {from:'Marcus Qian',text:'Game night this Friday — we\'re trying Terraforming Mars!',mine:false},
+      {from:'Lihua Zhu',text:'Finally! I\'ve been wanting to play that for months',mine:false},
+      {from:'Marcus Qian',text:'Bring snacks if you can, long game ahead 😄',mine:false},
+    ]
+  },
+  {
+    id:11, name:'Robotics Club', emoji:'🤖',
+    desc:'The Robotics Club designs, builds, and programs robots for competitions and research. We work with Arduino, Raspberry Pi, ROS, and custom hardware. Open to all majors — creativity and curiosity are the only requirements.',
+    leader:{name:'Kevin Shen', grade:'Junior', dept:'Mechanical Engineering College'},
+    members:['Luo','Wen','Xia','Tian','Nie','Hou','Shao','Gong','Kuang','Zeng'],
+    memberCount:62,
+    activities:[
+      {id:1,title:'RoboMaster Regional Qualifier',date:'2026-05-14',time:'08:00',location:'Engineering Arena',desc:'Our team competes in the regional RoboMaster competition',spots:200,booked:178},
+      {id:2,title:'Arduino Beginner Workshop',date:'2026-05-11',time:'14:00',location:'Lab Building 205',desc:'Build your first robot from scratch in 2 hours',spots:20,booked:19},
+      {id:3,title:'AI Vision System Seminar',date:'2026-05-19',time:'19:00',location:'Engineering Building 301',desc:'Introduction to computer vision for robotics applications',spots:60,booked:45},
+    ],
+    chatMsgs:[
+      {from:'Kevin Shen',text:'Final practice before regionals — everyone in the lab by 7pm tonight!',mine:false},
+      {from:'Jiahao Luo',text:'Our shooter module is finally calibrated 🎯',mine:false},
+      {from:'Kevin Shen',text:'Great work team, let\'s bring home the trophy 🏆',mine:false},
+    ]
+  },
+  {
+    id:12, name:'Environmental Association', emoji:'🌱',
+    desc:'The Environmental Association promotes sustainability and eco-awareness on campus. We organize clean-up drives, tree planting events, recycling campaigns, and educational workshops to inspire greener habits in our community.',
+    leader:{name:'Aria Zhou', grade:'Senior', dept:'Environmental Science College'},
+    members:['Feng','Cheng','Dong','Xue','Bao','Gu','Qiao','Ruan','Cai','Tan'],
+    memberCount:43,
+    activities:[
+      {id:1,title:'Campus Clean-Up Day',date:'2026-05-09',time:'09:00',location:'Meet at Sports Field',desc:'Help keep our campus beautiful — gloves provided',spots:50,booked:31},
+      {id:2,title:'Tree Planting Drive',date:'2026-05-15',time:'08:30',location:'North Campus Green Area',desc:'Plant 50 new trees to mark World Environment Day',spots:40,booked:27},
+      {id:3,title:'Zero-Waste Living Workshop',date:'2026-05-21',time:'15:00',location:'Student Center Hall B',desc:'Practical tips for reducing waste in dorm life',spots:35,booked:18},
+    ],
+    chatMsgs:[
+      {from:'Aria Zhou',text:'Clean-up day this Saturday — let\'s show campus we care 🌍',mine:false},
+      {from:'Haotian Feng',text:'I\'ll bring extra bags and gloves for the team',mine:false},
+      {from:'Aria Zhou',text:'Amazing, thank you! See everyone at 9am 🌱',mine:false},
+    ]
+  },
+  {
+    id:13, name:'Book Club', emoji:'📚',
+    desc:'The Book Club meets bi-weekly to discuss fiction, non-fiction, and everything in between. We vote on books together, share perspectives, and occasionally invite authors for Q&A sessions. All genres and reading speeds welcome.',
+    leader:{name:'Ellie Fang', grade:'Junior', dept:'Chinese Literature College'},
+    members:['Jiang','Mao','Sheng','Bi','Lian','Rong','Yue','Ning','Jing','Xun'],
+    memberCount:29,
+    activities:[
+      {id:1,title:'Discussion: The Three-Body Problem',date:'2026-05-08',time:'19:00',location:'Library Reading Room 3',desc:'Exploring themes of science, civilization, and survival',spots:20,booked:18},
+      {id:2,title:'Book Swap Fair',date:'2026-05-17',time:'13:00',location:'Campus Square',desc:'Bring a book, take a book — free for all students',spots:100,booked:52},
+      {id:3,title:'Author Talk: Campus Writing Competition',date:'2026-05-25',time:'15:00',location:'Humanities Building Auditorium',desc:'Submit your short story or essay for a chance to win',spots:80,booked:34},
+    ],
+    chatMsgs:[
+      {from:'Ellie Fang',text:'Three-Body discussion tonight at 7pm — come with your hot takes!',mine:false},
+      {from:'Wenbo Jiang',text:'I have SO many thoughts about the Dark Forest theory 🌌',mine:false},
+      {from:'Ellie Fang',text:'Perfect, that\'s exactly what we\'ll debate 😄📖',mine:false},
+    ]
+  }
+];
+
+document.addEventListener('DOMContentLoaded', () => {
+
+// ===== init =====
+const params = new URLSearchParams(location.search);
+const clubId = parseInt(params.get('id') || '0');
+const club = CLUBS.find(c => c.id === clubId) || CLUBS[0];
+
+// night mode
+const nightBtn = document.getElementById('nightBtn');
+const isNight = localStorage.getItem('th_night_mode') === '1';
+if (isNight) document.body.classList.add('night-mode');
+nightBtn.addEventListener('click', () => {
+  document.body.classList.toggle('night-mode');
+  localStorage.setItem('th_night_mode', document.body.classList.contains('night-mode') ? '1' : '0');
+});
+
+// populate hero
+document.getElementById('heroEmblem').textContent = club.emoji;
+document.getElementById('heroName').textContent = club.name;
+document.getElementById('heroDesc').textContent = club.desc.slice(0, 60) + '…';
+document.getElementById('heroMemberCount').textContent = club.memberCount;
+document.getElementById('heroActivityCount').textContent = club.activities.length;
+document.getElementById('chatRoomTitle').textContent = club.name + ' Chat Room';
+document.getElementById('chatOnlineCount').textContent = Math.floor(Math.random()*8+3) + ' online';
+
+// join btn
+const joinKey = 'club_joined_' + club.id;
+const joinBtn = document.getElementById('joinBtn');
+function updateJoinBtn() {
+  const joined = localStorage.getItem(joinKey);
+  joinBtn.textContent = joined ? '✓ Joined' : '+ Join Club';
+  joinBtn.className = 'club-join-btn' + (joined ? ' joined' : '');
+}
+updateJoinBtn();
+joinBtn.addEventListener('click', () => {
+  const joined = localStorage.getItem(joinKey);
+  if (joined) localStorage.removeItem(joinKey);
+  else localStorage.setItem(joinKey, '1');
+  updateJoinBtn();
+});
+
+// tabs
+document.querySelectorAll('.club-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.club-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.club-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+  });
+});
+
+// ===== intro =====
+document.getElementById('introFullDesc').textContent = club.desc;
+const ldr = club.leader;
+document.getElementById('leaderAvatar').textContent = ldr.name[0];
+document.getElementById('leaderName').textContent = ldr.name;
+document.getElementById('leaderMeta').textContent = ldr.dept + ' · ' + ldr.grade;
+const membersRow = document.getElementById('membersRow');
+club.members.forEach(m => {
+  const el = document.createElement('div');
+  el.className = 'member-avatar';
+  el.textContent = m;
+  el.setAttribute('data-name', m + ' Student');
+  membersRow.appendChild(el);
+});
+
+// ===== activities =====
+const activityList = document.getElementById('activityList');
+const bookedKey = 'club_booked_' + club.id;
+let bookedSet = new Set(JSON.parse(localStorage.getItem(bookedKey) || '[]'));
+
+function renderActivities() {
+  activityList.innerHTML = club.activities.map(act => {
+    const d = new Date(act.date);
+    const month = d.toLocaleString('zh', {month:'short'});
+    const day = d.getDate();
+    const pct = Math.round(act.booked / act.spots * 100);
+    const isBooked = bookedSet.has(act.id);
+    return `<div class="activity-card">
+      <div class="activity-date-block">
+        <div class="activity-month">${month}</div>
+        <div class="activity-day">${day}</div>
+      </div>
+      <div class="activity-info">
+        <div class="activity-title">${act.title}</div>
+        <div class="activity-meta">
+          <span><i class="fas fa-clock" style="margin-right:4px"></i>${act.time}</span>
+          <span><i class="fas fa-map-marker-alt" style="margin-right:4px"></i>${act.location}</span>
+        </div>
+        <div class="activity-desc">${act.desc}</div>
+        <div class="activity-spots">
+          Booked ${act.booked}/${act.spots} people
+          <div class="spots-bar"><div class="spots-fill" style="width:${pct}%"></div></div>
+        </div>
+      </div>
+      <button class="book-btn ${isBooked ? 'booked' : ''}" data-act-id="${act.id}">
+        ${isBooked ? '✓ Booked' : 'Book'}
+      </button>
+    </div>`;
+  }).join('');
+  activityList.querySelectorAll('.book-btn:not(.booked)').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = parseInt(btn.dataset.actId);
+      bookedSet.add(id);
+      localStorage.setItem(bookedKey, JSON.stringify([...bookedSet]));
+      const act = club.activities.find(a => a.id === id);
+      if (act) act.booked = Math.min(act.booked + 1, act.spots);
+      renderActivities();
+    });
+  });
+}
+renderActivities();
+
+// ===== forum =====
+const forumKey = 'club_forum_' + club.id;
+function getForumPosts() { return JSON.parse(localStorage.getItem(forumKey) || '[]'); }
+function saveForumPosts(posts) { localStorage.setItem(forumKey, JSON.stringify(posts)); }
+
+function escHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function renderForum() {
+  const posts = getForumPosts();
+  const forumList = document.getElementById('forumList');
+  if (!posts.length) {
+    forumList.innerHTML = '<div class="empty-tip">No posts yet, be the first to post!</div>';
+    return;
+  }
+  forumList.innerHTML = posts.slice().reverse().map((p, ri) => {
+    const i = posts.length - 1 - ri;
+    const commentsHtml = (p.comments || []).map(c =>
+      `<div class="forum-comment-item"><span class="forum-comment-author">${escHtml(c.author)}</span>${escHtml(c.text)}</div>`
+    ).join('');
+    return `<div class="forum-post-card" data-idx="${i}">
+      <div class="forum-post-header">
+        <div class="avatar" style="width:36px;height:36px;font-size:0.85rem">${escHtml(p.author[0])}</div>
+        <div><div style="font-weight:600;font-size:0.92rem">${escHtml(p.author)}</div><div style="font-size:0.75rem;color:var(--text-muted)">${p.time}</div></div>
+      </div>
+      <div class="forum-post-body">${escHtml(p.text)}</div>
+      <div class="forum-post-actions">
+        <button class="action-btn forum-like-btn" data-idx="${i}"><i class="far fa-heart"></i> ${p.likes||0}</button>
+        <button class="action-btn forum-cmt-btn" data-idx="${i}"><i class="far fa-comment"></i> ${(p.comments||[]).length} Comments</button>
+      </div>
+      <div class="forum-comments" id="forum-cmt-${i}">
+        ${commentsHtml}
+        <div class="forum-comment-input-row">
+          <input class="forum-comment-input" placeholder="Write comment…" data-idx="${i}">
+          <button class="btn btn-sm" data-cmt-idx="${i}">Send</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  forumList.querySelectorAll('.forum-like-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = parseInt(btn.dataset.idx);
+      const posts2 = getForumPosts();
+      posts2[idx].likes = (posts2[idx].likes || 0) + 1;
+      saveForumPosts(posts2);
+      renderForum();
+    });
+  });
+  forumList.querySelectorAll('.forum-cmt-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = parseInt(btn.dataset.idx);
+      const box = document.getElementById('forum-cmt-' + idx);
+      box.classList.toggle('open');
+    });
+  });
+  forumList.querySelectorAll('[data-cmt-idx]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = parseInt(btn.dataset.cmtIdx);
+      const input = forumList.querySelector(`.forum-comment-input[data-idx="${idx}"]`);
+      const text = input.value.trim();
+      if (!text) return;
+      const posts2 = getForumPosts();
+      if (!posts2[idx].comments) posts2[idx].comments = [];
+      posts2[idx].comments.push({ author: 'Me', text });
+      saveForumPosts(posts2);
+      renderForum();
+      const box = document.getElementById('forum-cmt-' + idx);
+      if (box) box.classList.add('open');
+    });
+  });
+}
+renderForum();
+
+document.getElementById('forumPostBtn').addEventListener('click', () => {
+  const input = document.getElementById('forumInput');
+  const text = input.value.trim();
+  if (!text) return;
+  const posts = getForumPosts();
+  posts.push({ author: 'Me', text, time: new Date().toLocaleString(), likes: 0, comments: [] });
+  saveForumPosts(posts);
+  input.value = '';
+  renderForum();
+});
+
+// ===== chat =====
+const chatApplyBtn = document.getElementById('chatApplyBtn');
+const chatStatus = document.getElementById('chatStatus');
+const chatApplyBox = document.getElementById('chatApplyBox');
+const chatRoom = document.getElementById('chatRoom');
+const chatApprovedKey = 'club_chat_approved_' + club.id;
+
+function openChatRoom() {
+  chatApplyBox.style.display = 'none';
+  chatRoom.classList.add('open');
+  const msgs = document.getElementById('chatMessages');
+  msgs.innerHTML = club.chatMsgs.map(m => `
+    <div class="chat-msg ${m.mine ? 'chat-msg-mine' : ''}">
+      <div class="chat-msg-avatar">${m.from[0]}</div>
+      <div class="chat-bubble ${m.mine ? 'chat-bubble-mine' : 'chat-bubble-theirs'}">${escHtml(m.text)}</div>
+    </div>`).join('');
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+if (localStorage.getItem(chatApprovedKey)) openChatRoom();
+
+chatApplyBtn.addEventListener('click', () => {
+  chatApplyBtn.disabled = true;
+  chatStatus.textContent = 'Application submitted, waiting for administrator review…';
+  setTimeout(() => {
+    chatStatus.textContent = '✓ Application approved! Entering chat room…';
+    setTimeout(() => {
+      localStorage.setItem(chatApprovedKey, '1');
+      openChatRoom();
+    }, 800);
+  }, 2000);
+});
+
+const chatInput = document.getElementById('chatInput');
+const chatSendBtn = document.getElementById('chatSendBtn');
+function sendChatMsg() {
+  const text = chatInput.value.trim();
+  if (!text) return;
+  const msgs = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = 'chat-msg chat-msg-mine';
+  div.innerHTML = `<div class="chat-msg-avatar">Me</div><div class="chat-bubble chat-bubble-mine">${escHtml(text)}</div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+  chatInput.value = '';
+}
+chatSendBtn.addEventListener('click', sendChatMsg);
+chatInput.addEventListener('keydown', e => { if (e.key === 'Enter') sendChatMsg(); });
+
+}); // DOMContentLoaded
+</script>
+</body>
+</html>
