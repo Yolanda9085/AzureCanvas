@@ -111,8 +111,8 @@ var CardDeck = class {
                     text-transform: lowercase;
                 }
             </style>
-            <div class="title-cn">TENACITY CODEX STAFFS</div>
             <div class="title-cn">CORE DEVELOPERS</div>
+            <div class="title-en">our team</div>
         `;
         
         Object.assign(titleContainer.style, {
