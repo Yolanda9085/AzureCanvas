@@ -1,0 +1,977 @@
+[02:37:58 [34mINFO[0;39m] [o.n.a.AzureCanvasApplication] [36mCOMMONS-LOGGING[0;39m: Starting AzureCanvasApplication using Java 21.0.7.0.7 with PID 56060 (E:\X19\Development\Web\AzureCanvas\target\classes started by AngelTerminator in E:\X19\Development\Web\AzureCanvas)
+[02:37:58 [34mINFO[0;39m] [o.n.a.AzureCanvasApplication] [36mCOMMONS-LOGGING[0;39m: No active profile set, falling back to 1 default profile: "default"
+[02:37:58 [34mINFO[0;39m] [o.h.validator.internal.util.Version] [36m[0;39m: HV000001: Hibernate Validator 9.0.1.Final
+[02:37:58 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationDelegate] [36mCOMMONS-LOGGING[0;39m: Multiple Spring Data modules found, entering strict repository configuration mode
+[02:37:58 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationDelegate] [36mCOMMONS-LOGGING[0;39m: Bootstrapping Spring Data Reactive Elasticsearch repositories in DEFAULT mode.
+[02:37:58 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Reactive Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.ItemCategoryRepository; If you want this repository to be a Reactive Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ReactiveElasticsearchRepository
+[02:37:58 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Reactive Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.ItemCommentRepository; If you want this repository to be a Reactive Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ReactiveElasticsearchRepository
+[02:37:58 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Reactive Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.ItemImageRepository; If you want this repository to be a Reactive Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ReactiveElasticsearchRepository
+[02:37:58 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Reactive Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.ItemRepository; If you want this repository to be a Reactive Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ReactiveElasticsearchRepository
+[02:37:58 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Reactive Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.ItemReviewRepository; If you want this repository to be a Reactive Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ReactiveElasticsearchRepository
+[02:37:58 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Reactive Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.StoryMapCombinedRepository; If you want this repository to be a Reactive Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ReactiveElasticsearchRepository
+[02:37:58 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Reactive Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.TreeholeImageRepository; If you want this repository to be a Reactive Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ReactiveElasticsearchRepository
+[02:37:58 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Reactive Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.UserInterestRepository; If you want this repository to be a Reactive Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ReactiveElasticsearchRepository
+[02:37:58 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Reactive Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.UserRepository; If you want this repository to be a Reactive Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ReactiveElasticsearchRepository
+[02:37:58 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationDelegate] [36mCOMMONS-LOGGING[0;39m: Finished Spring Data repository scanning in 123 ms. Found 0 Reactive Elasticsearch repository interfaces.
+[02:37:59 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationDelegate] [36mCOMMONS-LOGGING[0;39m: Multiple Spring Data modules found, entering strict repository configuration mode
+[02:37:59 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationDelegate] [36mCOMMONS-LOGGING[0;39m: Bootstrapping Spring Data Elasticsearch repositories in DEFAULT mode.
+[02:37:59 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.ItemCategoryRepository; If you want this repository to be a Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ElasticsearchRepository
+[02:37:59 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.ItemCommentRepository; If you want this repository to be a Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ElasticsearchRepository
+[02:37:59 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.ItemImageRepository; If you want this repository to be a Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ElasticsearchRepository
+[02:37:59 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.ItemRepository; If you want this repository to be a Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ElasticsearchRepository
+[02:37:59 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.ItemReviewRepository; If you want this repository to be a Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ElasticsearchRepository
+[02:37:59 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.StoryMapCombinedRepository; If you want this repository to be a Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ElasticsearchRepository
+[02:37:59 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.TreeholeImageRepository; If you want this repository to be a Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ElasticsearchRepository
+[02:37:59 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.UserInterestRepository; If you want this repository to be a Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ElasticsearchRepository
+[02:37:59 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.UserRepository; If you want this repository to be a Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ElasticsearchRepository
+[02:37:59 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationDelegate] [36mCOMMONS-LOGGING[0;39m: Finished Spring Data repository scanning in 25 ms. Found 4 Elasticsearch repository interfaces.
+[02:37:59 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationDelegate] [36mCOMMONS-LOGGING[0;39m: Multiple Spring Data modules found, entering strict repository configuration mode
+[02:37:59 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationDelegate] [36mCOMMONS-LOGGING[0;39m: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[02:37:59 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data JPA - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.EsKnowledgeRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+[02:37:59 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data JPA - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.es.EsItemRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+[02:37:59 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data JPA - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.es.EsStoryMapRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+[02:37:59 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data JPA - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.es.EsTreeHoleRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+[02:37:59 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationDelegate] [36mCOMMONS-LOGGING[0;39m: Finished Spring Data repository scanning in 21 ms. Found 9 JPA repository interfaces.
+[02:37:59 [34mINFO[0;39m] [o.s.boot.tomcat.TomcatWebServer] [36mCOMMONS-LOGGING[0;39m: Tomcat initialized with port 8088 (http)
+[02:37:59 [34mINFO[0;39m] [o.a.coyote.http11.Http11NioProtocol] [36m[0;39m: Initializing ProtocolHandler ["http-nio-8088"]
+[02:37:59 [34mINFO[0;39m] [o.a.catalina.core.StandardService] [36m[0;39m: Starting service [Tomcat]
+[02:37:59 [34mINFO[0;39m] [o.a.catalina.core.StandardEngine] [36m[0;39m: Starting Servlet engine: [Apache Tomcat/11.0.20]
+[02:37:59 [34mINFO[0;39m] [o.s.b.w.c.s.WebApplicationContextInitializer] [36mCOMMONS-LOGGING[0;39m: Root WebApplicationContext: initialization completed in 1480 ms
+[02:37:59 [34mINFO[0;39m] [org.hibernate.orm.jpa] [36m[0;39m: HHH008540: Processing PersistenceUnitInfo [name: default]
+[02:37:59 [34mINFO[0;39m] [org.hibernate.orm.core] [36m[0;39m: HHH000001: Hibernate ORM core version 7.2.7.Final
+[02:38:00 [34mINFO[0;39m] [o.s.o.j.p.SpringPersistenceUnitInfo] [36mCOMMONS-LOGGING[0;39m: No LoadTimeWeaver setup: ignoring JPA class transformer
+[02:38:00 [34mINFO[0;39m] [com.zaxxer.hikari.HikariDataSource] [36m[0;39m: HikariPool-1 - Starting...
+[02:38:00 [34mINFO[0;39m] [com.zaxxer.hikari.pool.HikariPool] [36m[0;39m: HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4cd9ee2c
+[02:38:00 [34mINFO[0;39m] [com.zaxxer.hikari.HikariDataSource] [36m[0;39m: HikariPool-1 - Start completed.
+[02:38:00 [31mWARN[0;39m] [org.hibernate.orm.core] [36m[0;39m: HHH000511: The 5.6.51 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly.The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+[02:38:00 [31mWARN[0;39m] [org.hibernate.orm.deprecation] [36m[0;39m: HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[02:38:00 [34mINFO[0;39m] [o.hibernate.orm.connections.pooling] [36m[0;39m: HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://192.168.1.100:3306/azurecanvas?serverTimezone=GMT%2B8]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 5.6.51
+	Default catalog/schema: azurecanvas/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+[02:38:00 [31mWARN[0;39m] [org.hibernate.orm.deprecation] [36m[0;39m: HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.neonangellock.azurecanvas.model.Like.createdAt.
+[02:38:00 [31mWARN[0;39m] [org.hibernate.orm.deprecation] [36m[0;39m: HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.neonangellock.azurecanvas.model.Post.createdAt.
+[02:38:00 [31mWARN[0;39m] [org.hibernate.orm.deprecation] [36m[0;39m: HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.neonangellock.azurecanvas.model.Post.updatedAt.
+[02:38:00 [31mWARN[0;39m] [org.hibernate.orm.deprecation] [36m[0;39m: HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.neonangellock.azurecanvas.model.Reply.createdAt.
+[02:38:00 [31mWARN[0;39m] [org.hibernate.orm.deprecation] [36m[0;39m: HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.neonangellock.azurecanvas.model.Reply.updatedAt.
+[02:38:00 [31mWARN[0;39m] [org.hibernate.orm.deprecation] [36m[0;39m: HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.neonangellock.azurecanvas.model.RobotConfig.createdAt.
+[02:38:00 [31mWARN[0;39m] [org.hibernate.orm.deprecation] [36m[0;39m: HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.neonangellock.azurecanvas.model.RobotConfig.updatedAt.
+[02:38:00 [31mWARN[0;39m] [org.hibernate.orm.deprecation] [36m[0;39m: HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.neonangellock.azurecanvas.model.Section.createdAt.
+[02:38:00 [31mWARN[0;39m] [org.hibernate.orm.deprecation] [36m[0;39m: HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.neonangellock.azurecanvas.model.Section.updatedAt.
+[02:38:00 [31mWARN[0;39m] [org.hibernate.orm.deprecation] [36m[0;39m: HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.neonangellock.azurecanvas.model.TreeholeComment.createdAt.
+[02:38:00 [31mWARN[0;39m] [org.hibernate.orm.deprecation] [36m[0;39m: HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.neonangellock.azurecanvas.model.TreeholePost.createdAt.
+[02:38:00 [31mWARN[0;39m] [org.hibernate.orm.deprecation] [36m[0;39m: HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.neonangellock.azurecanvas.model.TreeholePost.updatedAt.
+[02:38:01 [34mINFO[0;39m] [org.hibernate.orm.core] [36m[0;39m: HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[02:38:02 [34mINFO[0;39m] [o.s.o.j.LocalContainerEntityManagerFactoryBean] [36mCOMMONS-LOGGING[0;39m: Initialized JPA EntityManagerFactory for persistence unit 'default'
+[02:38:02 [34mINFO[0;39m] [o.s.d.j.r.q.QueryEnhancerFactories] [36mCOMMONS-LOGGING[0;39m: Hibernate is in classpath; If applicable, HQL parser will be used.
+[02:38:02 [31mWARN[0;39m] [o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration] [36mCOMMONS-LOGGING[0;39m: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[02:38:02 [34mINFO[0;39m] [o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer] [36mCOMMONS-LOGGING[0;39m: Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+[02:38:03 [31mWARN[0;39m] [o.s.d.e.c.m.SimpleElasticsearchPersistentProperty] [36mCOMMONS-LOGGING[0;39m: Unsupported type 'class java.lang.String' for date property 'createdAt'.
+[02:38:04 [34mINFO[0;39m] [o.s.b.w.a.WelcomePageHandlerMapping] [36mCOMMONS-LOGGING[0;39m: Adding welcome page: class path resource [static/index.html]
+[02:38:04 [31mWARN[0;39m] [o.s.b.t.a.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration] [36mCOMMONS-LOGGING[0;39m: Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+[02:38:04 [34mINFO[0;39m] [o.a.coyote.http11.Http11NioProtocol] [36m[0;39m: Starting ProtocolHandler ["http-nio-8088"]
+[02:38:04 [34mINFO[0;39m] [o.s.boot.tomcat.TomcatWebServer] [36mCOMMONS-LOGGING[0;39m: Tomcat started on port 8088 (http) with context path '/'
+[02:38:04 [34mINFO[0;39m] [o.n.a.AzureCanvasApplication] [36mCOMMONS-LOGGING[0;39m: Started AzureCanvasApplication in 6.725 seconds (process running for 7.298)
+[02:38:04 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[02:38:04 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 333ms
+[02:38:04 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778179084945] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[02:38:04 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778179084945] 数据库中共有 1 条树洞帖子待同步
+[02:38:05 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778179084945] 全量同步完成: 总计 1 条，耗时 109ms，累计同步 1 次/1 条
+[02:38:05 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 95ms
+[02:38:47 [34mINFO[0;39m] [o.a.coyote.http11.Http11Processor] [36m[0;39m: Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+java.lang.IllegalArgumentException: Invalid character found in method name [0x160x030x010x060xb20x010x000x060xae0x030x03(%NZl0x190xfc=)0xc7K0xdf0xa4k0xd50xb9 ]. HTTP method names must be tokens
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:391)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:270)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1779)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+[02:38:47 [34mINFO[0;39m] [o.a.coyote.http11.Http11Processor] [36m[0;39m: Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+java.lang.IllegalArgumentException: Invalid character found in method name [0x160x030x010x060xd20x010x000x060xce0x030x030x040xaa0x950x0d0xf70xc10x0b~0xe20xfb0x0d<0xb20x100xc90xc50x060xa20xf50x850x8b0xea0x800x09FA0x01RF`0x060x01 ]. HTTP method names must be tokens
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:391)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:270)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1779)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+[02:39:07 [34mINFO[0;39m] [o.a.c.c.C.[Tomcat].[localhost].[/]] [36m[0;39m: Initializing Spring DispatcherServlet 'dispatcherServlet'
+[02:39:07 [34mINFO[0;39m] [o.s.web.servlet.DispatcherServlet] [36mCOMMONS-LOGGING[0;39m: Initializing Servlet 'dispatcherServlet'
+[02:39:07 [34mINFO[0;39m] [o.s.web.servlet.DispatcherServlet] [36mCOMMONS-LOGGING[0;39m: Completed initialization in 3 ms
+[02:39:20 [34mINFO[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: 收到知识库搜索请求: keyword=hi, maxResults=3
+[02:39:20 [34mINFO[0;39m] [o.n.a.service.KnowledgeService] [36m[0;39m: 知识库未找到与 'hi' 相关的内容
+[02:39:20 [1;31mERROR[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: 知识库搜索接口异常: null
+java.lang.NullPointerException
+	at java.base/java.util.Objects.requireNonNull(Objects.java:233)
+	at java.base/java.util.ImmutableCollections$MapN.<init>(ImmutableCollections.java:1193)
+	at java.base/java.util.Map.of(Map.java:1431)
+	at org.neonangellock.azurecanvas.controller.KnowledgeController.searchKnowledge(KnowledgeController.java:40)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:252)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:184)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:934)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:853)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:86)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.neonangellock.azurecanvas.config.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:55)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:235)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:371)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:132)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:86)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:181)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:110)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:96)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:118)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:237)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:317)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:355)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:272)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1779)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+[02:39:21 [34mINFO[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: 📥 收到 Ollama 流式聊天请求
+[02:39:21 [34mINFO[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: 🚀 开始流式转发 Ollama API 响应，模型: qwen:4b，消息数量: 2
+[02:39:21 [34mINFO[0;39m] [o.n.a.service.OllamaService] [36m[0;39m: 正在调用 Ollama API (流式)，模型: qwen:4b，消息数量: 2
+[02:39:21 [1;31mERROR[0;39m] [o.n.a.service.OllamaService] [36m[0;39m: ❌ Ollama API call exception: Connection refused: getsockopt
+java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592)
+	at java.base/java.net.Socket.connect(Socket.java:751)
+	at java.base/sun.net.NetworkClient.doConnect(NetworkClient.java:178)
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:531)
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:636)
+	at java.base/sun.net.www.http.HttpClient.<init>(HttpClient.java:280)
+	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:386)
+	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:408)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:1319)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1252)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1138)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:1067)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getOutputStream0(HttpURLConnection.java:1461)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getOutputStream(HttpURLConnection.java:1432)
+	at org.neonangellock.azurecanvas.service.OllamaService.lambda$chatCompletionStream$0(OllamaService.java:49)
+	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:72)
+	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:28)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+[02:39:21 [34mINFO[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: 📤 转发SSE事件: {"error": "Ollama API error: Connection refused: g...
+[02:39:21 [34mINFO[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: ✅ Controller 流式响应完成
+[02:40:48 [34mINFO[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: 收到知识库搜索请求: keyword=hi, maxResults=3
+[02:40:48 [34mINFO[0;39m] [o.n.a.service.KnowledgeService] [36m[0;39m: 知识库未找到与 'hi' 相关的内容
+[02:40:48 [1;31mERROR[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: 知识库搜索接口异常: null
+java.lang.NullPointerException
+	at java.base/java.util.Objects.requireNonNull(Objects.java:233)
+	at java.base/java.util.ImmutableCollections$MapN.<init>(ImmutableCollections.java:1193)
+	at java.base/java.util.Map.of(Map.java:1431)
+	at org.neonangellock.azurecanvas.controller.KnowledgeController.searchKnowledge(KnowledgeController.java:40)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:252)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:184)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:934)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:853)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:86)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.neonangellock.azurecanvas.config.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:55)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:235)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:371)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:132)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:86)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:181)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:110)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:96)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:118)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:237)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:317)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:355)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:272)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1779)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+[02:40:48 [34mINFO[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: 📥 收到 Ollama 流式聊天请求
+[02:40:48 [34mINFO[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: 🚀 开始流式转发 Ollama API 响应，模型: qwen:4b，消息数量: 4
+[02:40:48 [34mINFO[0;39m] [o.n.a.service.OllamaService] [36m[0;39m: 正在调用 Ollama API (流式)，模型: qwen:4b，消息数量: 4
+[02:40:48 [1;31mERROR[0;39m] [o.n.a.service.OllamaService] [36m[0;39m: ❌ Ollama API call exception: Connection refused: getsockopt
+java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592)
+	at java.base/java.net.Socket.connect(Socket.java:751)
+	at java.base/sun.net.NetworkClient.doConnect(NetworkClient.java:178)
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:531)
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:636)
+	at java.base/sun.net.www.http.HttpClient.<init>(HttpClient.java:280)
+	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:386)
+	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:408)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:1319)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1252)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1138)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:1067)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getOutputStream0(HttpURLConnection.java:1461)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getOutputStream(HttpURLConnection.java:1432)
+	at org.neonangellock.azurecanvas.service.OllamaService.lambda$chatCompletionStream$0(OllamaService.java:49)
+	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:72)
+	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:28)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+[02:40:48 [34mINFO[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: 📤 转发SSE事件: {"error": "Ollama API error: Connection refused: g...
+[02:40:48 [34mINFO[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: ✅ Controller 流式响应完成
+[02:40:53 [34mINFO[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: 收到知识库搜索请求: keyword=hi', maxResults=3
+[02:40:53 [34mINFO[0;39m] [o.n.a.service.KnowledgeService] [36m[0;39m: 知识库未找到与 'hi'' 相关的内容
+[02:40:53 [1;31mERROR[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: 知识库搜索接口异常: null
+java.lang.NullPointerException
+	at java.base/java.util.Objects.requireNonNull(Objects.java:233)
+	at java.base/java.util.ImmutableCollections$MapN.<init>(ImmutableCollections.java:1193)
+	at java.base/java.util.Map.of(Map.java:1431)
+	at org.neonangellock.azurecanvas.controller.KnowledgeController.searchKnowledge(KnowledgeController.java:40)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:252)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:184)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:934)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:853)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:86)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.neonangellock.azurecanvas.config.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:55)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:235)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:371)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:132)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:86)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:181)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:110)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:96)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:118)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:237)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:317)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:355)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:272)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1779)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+[02:40:53 [34mINFO[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: 📥 收到 Ollama 流式聊天请求
+[02:40:53 [34mINFO[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: 🚀 开始流式转发 Ollama API 响应，模型: qwen:4b，消息数量: 6
+[02:40:53 [34mINFO[0;39m] [o.n.a.service.OllamaService] [36m[0;39m: 正在调用 Ollama API (流式)，模型: qwen:4b，消息数量: 6
+[02:40:53 [1;31mERROR[0;39m] [o.n.a.service.OllamaService] [36m[0;39m: ❌ Ollama API call exception: Connection refused: getsockopt
+java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592)
+	at java.base/java.net.Socket.connect(Socket.java:751)
+	at java.base/sun.net.NetworkClient.doConnect(NetworkClient.java:178)
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:531)
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:636)
+	at java.base/sun.net.www.http.HttpClient.<init>(HttpClient.java:280)
+	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:386)
+	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:408)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:1319)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1252)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1138)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:1067)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getOutputStream0(HttpURLConnection.java:1461)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getOutputStream(HttpURLConnection.java:1432)
+	at org.neonangellock.azurecanvas.service.OllamaService.lambda$chatCompletionStream$0(OllamaService.java:49)
+	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:72)
+	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:28)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+[02:40:53 [34mINFO[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: 📤 转发SSE事件: {"error": "Ollama API error: Connection refused: g...
+[02:40:53 [34mINFO[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: ✅ Controller 流式响应完成
+[02:41:32 [34mINFO[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: 收到知识库搜索请求: keyword=hi', maxResults=3
+[02:41:32 [34mINFO[0;39m] [o.n.a.service.KnowledgeService] [36m[0;39m: 知识库未找到与 'hi'' 相关的内容
+[02:41:32 [1;31mERROR[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: 知识库搜索接口异常: null
+java.lang.NullPointerException
+	at java.base/java.util.Objects.requireNonNull(Objects.java:233)
+	at java.base/java.util.ImmutableCollections$MapN.<init>(ImmutableCollections.java:1193)
+	at java.base/java.util.Map.of(Map.java:1431)
+	at org.neonangellock.azurecanvas.controller.KnowledgeController.searchKnowledge(KnowledgeController.java:40)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:252)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:184)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:934)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:853)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:86)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.neonangellock.azurecanvas.config.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:55)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:235)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:371)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:132)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:86)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:181)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:110)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:96)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:118)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:237)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:317)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:355)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:272)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1779)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+[02:41:32 [34mINFO[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: 📥 收到 DeepSeek 流式聊天请求
+[02:41:32 [34mINFO[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: 🚀 开始流式转发 DeepSeek API 响应，消息数量: 8
+[02:41:32 [34mINFO[0;39m] [o.n.a.service.DeepSeekService] [36m[0;39m: 正在调用 DeepSeek API (流式)，消息数量：8
+[02:41:33 [34mINFO[0;39m] [o.n.a.service.DeepSeekService] [36m[0;39m: DeepSeek API 响应码: 402
+[02:41:33 [1;31mERROR[0;39m] [o.n.a.service.DeepSeekService] [36m[0;39m: DeepSeek API 错误响应: {"error":{"message":"Insufficient Balance","type":"unknown_error","param":null,"code":"invalid_request_error"}}
+[02:41:33 [34mINFO[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: 📤 转发SSE事件: {"error": "HTTP 402
+{"error":{"message":"Insuffici...
+[02:41:33 [34mINFO[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: ✅ Controller 流式响应完成
+[02:42:06 [34mINFO[0;39m] [o.s.boot.tomcat.GracefulShutdown] [36mCOMMONS-LOGGING[0;39m: Commencing graceful shutdown. Waiting for active requests to complete
+[02:42:06 [34mINFO[0;39m] [o.s.boot.tomcat.GracefulShutdown] [36mCOMMONS-LOGGING[0;39m: Graceful shutdown complete
+[02:42:07 [34mINFO[0;39m] [o.s.o.j.LocalContainerEntityManagerFactoryBean] [36mCOMMONS-LOGGING[0;39m: Closing JPA EntityManagerFactory for persistence unit 'default'
+[02:42:07 [34mINFO[0;39m] [com.zaxxer.hikari.HikariDataSource] [36m[0;39m: HikariPool-1 - Shutdown initiated...
+[02:42:07 [34mINFO[0;39m] [com.zaxxer.hikari.HikariDataSource] [36m[0;39m: HikariPool-1 - Shutdown completed.
+[02:42:12 [34mINFO[0;39m] [o.n.a.AzureCanvasApplication] [36mCOMMONS-LOGGING[0;39m: Starting AzureCanvasApplication using Java 21.0.7.0.7 with PID 57400 (E:\X19\Development\Web\AzureCanvas\target\classes started by AngelTerminator in E:\X19\Development\Web\AzureCanvas)
+[02:42:12 [34mINFO[0;39m] [o.n.a.AzureCanvasApplication] [36mCOMMONS-LOGGING[0;39m: No active profile set, falling back to 1 default profile: "default"
+[02:42:12 [34mINFO[0;39m] [o.h.validator.internal.util.Version] [36m[0;39m: HV000001: Hibernate Validator 9.0.1.Final
+[02:42:13 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationDelegate] [36mCOMMONS-LOGGING[0;39m: Multiple Spring Data modules found, entering strict repository configuration mode
+[02:42:13 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationDelegate] [36mCOMMONS-LOGGING[0;39m: Bootstrapping Spring Data Reactive Elasticsearch repositories in DEFAULT mode.
+[02:42:13 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Reactive Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.ItemCategoryRepository; If you want this repository to be a Reactive Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ReactiveElasticsearchRepository
+[02:42:13 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Reactive Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.ItemCommentRepository; If you want this repository to be a Reactive Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ReactiveElasticsearchRepository
+[02:42:13 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Reactive Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.ItemImageRepository; If you want this repository to be a Reactive Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ReactiveElasticsearchRepository
+[02:42:13 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Reactive Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.ItemRepository; If you want this repository to be a Reactive Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ReactiveElasticsearchRepository
+[02:42:13 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Reactive Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.ItemReviewRepository; If you want this repository to be a Reactive Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ReactiveElasticsearchRepository
+[02:42:13 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Reactive Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.StoryMapCombinedRepository; If you want this repository to be a Reactive Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ReactiveElasticsearchRepository
+[02:42:13 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Reactive Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.TreeholeImageRepository; If you want this repository to be a Reactive Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ReactiveElasticsearchRepository
+[02:42:13 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Reactive Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.UserInterestRepository; If you want this repository to be a Reactive Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ReactiveElasticsearchRepository
+[02:42:13 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Reactive Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.UserRepository; If you want this repository to be a Reactive Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ReactiveElasticsearchRepository
+[02:42:13 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationDelegate] [36mCOMMONS-LOGGING[0;39m: Finished Spring Data repository scanning in 109 ms. Found 0 Reactive Elasticsearch repository interfaces.
+[02:42:13 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationDelegate] [36mCOMMONS-LOGGING[0;39m: Multiple Spring Data modules found, entering strict repository configuration mode
+[02:42:13 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationDelegate] [36mCOMMONS-LOGGING[0;39m: Bootstrapping Spring Data Elasticsearch repositories in DEFAULT mode.
+[02:42:13 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.ItemCategoryRepository; If you want this repository to be a Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ElasticsearchRepository
+[02:42:13 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.ItemCommentRepository; If you want this repository to be a Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ElasticsearchRepository
+[02:42:13 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.ItemImageRepository; If you want this repository to be a Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ElasticsearchRepository
+[02:42:13 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.ItemRepository; If you want this repository to be a Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ElasticsearchRepository
+[02:42:13 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.ItemReviewRepository; If you want this repository to be a Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ElasticsearchRepository
+[02:42:13 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.StoryMapCombinedRepository; If you want this repository to be a Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ElasticsearchRepository
+[02:42:13 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.TreeholeImageRepository; If you want this repository to be a Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ElasticsearchRepository
+[02:42:13 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.UserInterestRepository; If you want this repository to be a Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ElasticsearchRepository
+[02:42:13 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data Elasticsearch - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.UserRepository; If you want this repository to be a Elasticsearch repository, consider annotating your entities with one of these annotations: org.springframework.data.elasticsearch.annotations.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.elasticsearch.repository.ElasticsearchRepository
+[02:42:13 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationDelegate] [36mCOMMONS-LOGGING[0;39m: Finished Spring Data repository scanning in 27 ms. Found 4 Elasticsearch repository interfaces.
+[02:42:13 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationDelegate] [36mCOMMONS-LOGGING[0;39m: Multiple Spring Data modules found, entering strict repository configuration mode
+[02:42:13 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationDelegate] [36mCOMMONS-LOGGING[0;39m: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[02:42:13 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data JPA - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.EsKnowledgeRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+[02:42:13 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data JPA - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.es.EsItemRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+[02:42:13 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data JPA - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.es.EsStoryMapRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+[02:42:13 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationExtensionSupport] [36mCOMMONS-LOGGING[0;39m: Spring Data JPA - Could not safely identify store assignment for repository candidate interface org.neonangellock.azurecanvas.repository.es.EsTreeHoleRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+[02:42:13 [34mINFO[0;39m] [o.s.d.r.c.RepositoryConfigurationDelegate] [36mCOMMONS-LOGGING[0;39m: Finished Spring Data repository scanning in 28 ms. Found 9 JPA repository interfaces.
+[02:42:14 [34mINFO[0;39m] [o.s.boot.tomcat.TomcatWebServer] [36mCOMMONS-LOGGING[0;39m: Tomcat initialized with port 8088 (http)
+[02:42:14 [34mINFO[0;39m] [o.a.coyote.http11.Http11NioProtocol] [36m[0;39m: Initializing ProtocolHandler ["http-nio-8088"]
+[02:42:14 [34mINFO[0;39m] [o.a.catalina.core.StandardService] [36m[0;39m: Starting service [Tomcat]
+[02:42:14 [34mINFO[0;39m] [o.a.catalina.core.StandardEngine] [36m[0;39m: Starting Servlet engine: [Apache Tomcat/11.0.20]
+[02:42:14 [34mINFO[0;39m] [o.s.b.w.c.s.WebApplicationContextInitializer] [36mCOMMONS-LOGGING[0;39m: Root WebApplicationContext: initialization completed in 1734 ms
+[02:42:14 [34mINFO[0;39m] [org.hibernate.orm.jpa] [36m[0;39m: HHH008540: Processing PersistenceUnitInfo [name: default]
+[02:42:14 [34mINFO[0;39m] [org.hibernate.orm.core] [36m[0;39m: HHH000001: Hibernate ORM core version 7.2.7.Final
+[02:42:14 [34mINFO[0;39m] [o.s.o.j.p.SpringPersistenceUnitInfo] [36mCOMMONS-LOGGING[0;39m: No LoadTimeWeaver setup: ignoring JPA class transformer
+[02:42:14 [34mINFO[0;39m] [com.zaxxer.hikari.HikariDataSource] [36m[0;39m: HikariPool-1 - Starting...
+[02:42:15 [34mINFO[0;39m] [com.zaxxer.hikari.pool.HikariPool] [36m[0;39m: HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2823b7c5
+[02:42:15 [34mINFO[0;39m] [com.zaxxer.hikari.HikariDataSource] [36m[0;39m: HikariPool-1 - Start completed.
+[02:42:15 [31mWARN[0;39m] [org.hibernate.orm.core] [36m[0;39m: HHH000511: The 5.6.51 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly.The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+[02:42:15 [31mWARN[0;39m] [org.hibernate.orm.deprecation] [36m[0;39m: HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[02:42:15 [34mINFO[0;39m] [o.hibernate.orm.connections.pooling] [36m[0;39m: HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://192.168.1.100:3306/azurecanvas?serverTimezone=GMT%2B8]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 5.6.51
+	Default catalog/schema: azurecanvas/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+[02:42:15 [31mWARN[0;39m] [org.hibernate.orm.deprecation] [36m[0;39m: HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.neonangellock.azurecanvas.model.Like.createdAt.
+[02:42:15 [31mWARN[0;39m] [org.hibernate.orm.deprecation] [36m[0;39m: HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.neonangellock.azurecanvas.model.Post.createdAt.
+[02:42:15 [31mWARN[0;39m] [org.hibernate.orm.deprecation] [36m[0;39m: HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.neonangellock.azurecanvas.model.Post.updatedAt.
+[02:42:15 [31mWARN[0;39m] [org.hibernate.orm.deprecation] [36m[0;39m: HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.neonangellock.azurecanvas.model.Reply.createdAt.
+[02:42:15 [31mWARN[0;39m] [org.hibernate.orm.deprecation] [36m[0;39m: HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.neonangellock.azurecanvas.model.Reply.updatedAt.
+[02:42:15 [31mWARN[0;39m] [org.hibernate.orm.deprecation] [36m[0;39m: HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.neonangellock.azurecanvas.model.RobotConfig.createdAt.
+[02:42:15 [31mWARN[0;39m] [org.hibernate.orm.deprecation] [36m[0;39m: HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.neonangellock.azurecanvas.model.RobotConfig.updatedAt.
+[02:42:15 [31mWARN[0;39m] [org.hibernate.orm.deprecation] [36m[0;39m: HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.neonangellock.azurecanvas.model.Section.createdAt.
+[02:42:15 [31mWARN[0;39m] [org.hibernate.orm.deprecation] [36m[0;39m: HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.neonangellock.azurecanvas.model.Section.updatedAt.
+[02:42:15 [31mWARN[0;39m] [org.hibernate.orm.deprecation] [36m[0;39m: HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.neonangellock.azurecanvas.model.TreeholeComment.createdAt.
+[02:42:15 [31mWARN[0;39m] [org.hibernate.orm.deprecation] [36m[0;39m: HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.neonangellock.azurecanvas.model.TreeholePost.createdAt.
+[02:42:15 [31mWARN[0;39m] [org.hibernate.orm.deprecation] [36m[0;39m: HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.neonangellock.azurecanvas.model.TreeholePost.updatedAt.
+[02:42:16 [34mINFO[0;39m] [org.hibernate.orm.core] [36m[0;39m: HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[02:42:16 [34mINFO[0;39m] [o.s.o.j.LocalContainerEntityManagerFactoryBean] [36mCOMMONS-LOGGING[0;39m: Initialized JPA EntityManagerFactory for persistence unit 'default'
+[02:42:17 [34mINFO[0;39m] [o.s.d.j.r.q.QueryEnhancerFactories] [36mCOMMONS-LOGGING[0;39m: Hibernate is in classpath; If applicable, HQL parser will be used.
+[02:42:17 [31mWARN[0;39m] [o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration] [36mCOMMONS-LOGGING[0;39m: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[02:42:17 [34mINFO[0;39m] [o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer] [36mCOMMONS-LOGGING[0;39m: Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+[02:42:18 [31mWARN[0;39m] [o.s.d.e.c.m.SimpleElasticsearchPersistentProperty] [36mCOMMONS-LOGGING[0;39m: Unsupported type 'class java.lang.String' for date property 'createdAt'.
+[02:42:19 [34mINFO[0;39m] [o.s.b.w.a.WelcomePageHandlerMapping] [36mCOMMONS-LOGGING[0;39m: Adding welcome page: class path resource [static/index.html]
+[02:42:19 [31mWARN[0;39m] [o.s.b.t.a.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration] [36mCOMMONS-LOGGING[0;39m: Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+[02:42:19 [34mINFO[0;39m] [o.a.coyote.http11.Http11NioProtocol] [36m[0;39m: Starting ProtocolHandler ["http-nio-8088"]
+[02:42:19 [34mINFO[0;39m] [o.s.boot.tomcat.TomcatWebServer] [36mCOMMONS-LOGGING[0;39m: Tomcat started on port 8088 (http) with context path '/'
+[02:42:19 [34mINFO[0;39m] [o.n.a.AzureCanvasApplication] [36mCOMMONS-LOGGING[0;39m: Started AzureCanvasApplication in 7.571 seconds (process running for 8.161)
+[02:42:19 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[02:42:20 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 340ms
+[02:42:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778179340139] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[02:42:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778179340139] 数据库中共有 1 条树洞帖子待同步
+[02:42:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778179340139] 全量同步完成: 总计 1 条，耗时 105ms，累计同步 1 次/1 条
+[02:42:20 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 87ms
+[02:42:21 [34mINFO[0;39m] [o.a.c.c.C.[Tomcat].[localhost].[/]] [36m[0;39m: Initializing Spring DispatcherServlet 'dispatcherServlet'
+[02:42:21 [34mINFO[0;39m] [o.s.web.servlet.DispatcherServlet] [36mCOMMONS-LOGGING[0;39m: Initializing Servlet 'dispatcherServlet'
+[02:42:21 [34mINFO[0;39m] [o.s.web.servlet.DispatcherServlet] [36mCOMMONS-LOGGING[0;39m: Completed initialization in 3 ms
+[02:42:21 [34mINFO[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: 收到知识库搜索请求: keyword=hi, maxResults=3
+[02:42:21 [34mINFO[0;39m] [o.n.a.service.KnowledgeService] [36m[0;39m: 知识库未找到与 'hi' 相关的内容
+[02:42:21 [1;31mERROR[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: 知识库搜索接口异常: null
+java.lang.NullPointerException
+	at java.base/java.util.Objects.requireNonNull(Objects.java:233)
+	at java.base/java.util.ImmutableCollections$MapN.<init>(ImmutableCollections.java:1193)
+	at java.base/java.util.Map.of(Map.java:1431)
+	at org.neonangellock.azurecanvas.controller.KnowledgeController.searchKnowledge(KnowledgeController.java:40)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:252)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:184)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:934)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:853)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:86)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.neonangellock.azurecanvas.config.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:55)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:235)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:371)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:132)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:86)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:181)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:110)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:96)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:118)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:237)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:317)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:355)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:272)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1779)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+[02:42:21 [34mINFO[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: 📥 收到 Ollama 流式聊天请求
+[02:42:21 [34mINFO[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: 🚀 开始流式转发 Ollama API 响应，模型: qwen:4b，消息数量: 10
+[02:42:21 [34mINFO[0;39m] [o.n.a.service.OllamaService] [36m[0;39m: 正在调用 Ollama API (流式)，模型: qwen:4b，消息数量: 10
+[02:42:32 [34mINFO[0;39m] [o.n.a.service.OllamaService] [36m[0;39m: Ollama API 响应码: 200
+[02:42:32 [34mINFO[0;39m] [o.n.a.service.OllamaService] [36m[0;39m: ✅ 发送数据到前端: Hello...
+[02:42:32 [34mINFO[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: 📤 转发SSE事件: Hello...
+[02:42:33 [34mINFO[0;39m] [o.n.a.service.OllamaService] [36m[0;39m: ✅ 发送数据到前端: !...
+[02:42:33 [34mINFO[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: 📤 转发SSE事件: !...
+[02:42:33 [34mINFO[0;39m] [o.n.a.service.OllamaService] [36m[0;39m: ✅ 发送数据到前端:  How...
+[02:42:33 [34mINFO[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: 📤 转发SSE事件:  How...
+[02:42:33 [34mINFO[0;39m] [o.n.a.service.OllamaService] [36m[0;39m: ✅ 发送数据到前端:  can...
+[02:42:33 [34mINFO[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: 📤 转发SSE事件:  can...
+[02:42:33 [34mINFO[0;39m] [o.n.a.service.OllamaService] [36m[0;39m: ✅ 发送数据到前端:  I...
+[02:42:33 [34mINFO[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: 📤 转发SSE事件:  I...
+[02:42:33 [34mINFO[0;39m] [o.n.a.service.OllamaService] [36m[0;39m: ✅ 发送数据到前端:  help...
+[02:42:33 [34mINFO[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: 📤 转发SSE事件:  help...
+[02:42:33 [34mINFO[0;39m] [o.n.a.service.OllamaService] [36m[0;39m: ✅ 发送数据到前端:  you...
+[02:42:33 [34mINFO[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: 📤 转发SSE事件:  you...
+[02:42:34 [34mINFO[0;39m] [o.n.a.service.OllamaService] [36m[0;39m: ✅ 发送数据到前端:  today...
+[02:42:34 [34mINFO[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: 📤 转发SSE事件:  today...
+[02:42:34 [34mINFO[0;39m] [o.n.a.service.OllamaService] [36m[0;39m: ✅ 发送数据到前端: ?...
+[02:42:34 [34mINFO[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: 📤 转发SSE事件: ?...
+[02:42:34 [34mINFO[0;39m] [o.n.a.service.OllamaService] [36m[0;39m: 🏁 收到 done 结束标记
+[02:42:34 [34mINFO[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: 🏁 转发结束标记
+[02:42:34 [34mINFO[0;39m] [o.n.a.service.OllamaService] [36m[0;39m: ✅ 读取完成，共 10 行
+[02:42:34 [34mINFO[0;39m] [o.n.a.controller.KnowledgeController] [36m[0;39m: ✅ Controller 流式响应完成
+[02:45:00 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting incremental item sync since 2026-05-08T02:42:20.120789300+08:00
+[02:45:00 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed incremental item sync: 0 items in 73ms
+[02:45:00 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][INC-1778179500094] 开始增量同步树洞数据 (cron: 0 */15 * * * *)
+[02:45:00 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][INC-1778179500094] 发现 0 条增量更新数据 (自 Fri May 08 02:42:20 CST 2026 起)
+[02:45:00 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][INC-1778179500094] 无增量更新数据
+[02:45:00 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][INC-1778179500094] 增量同步完成: 同步 0 条，耗时 13ms
+[02:47:19 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[02:47:20 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 260ms
+[02:47:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778179640059] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[02:47:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778179640059] 数据库中共有 1 条树洞帖子待同步
+[02:47:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778179640059] 全量同步完成: 总计 1 条，耗时 78ms，累计同步 3 次/2 条
+[02:52:19 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[02:52:20 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 270ms
+[02:52:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778179940055] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[02:52:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778179940055] 数据库中共有 1 条树洞帖子待同步
+[02:52:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778179940055] 全量同步完成: 总计 1 条，耗时 56ms，累计同步 4 次/3 条
+[02:52:20 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 58ms
+[02:57:19 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[02:57:19 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 221ms
+[02:57:19 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778180239998] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[02:57:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778180239998] 数据库中共有 1 条树洞帖子待同步
+[02:57:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778180239998] 全量同步完成: 总计 1 条，耗时 82ms，累计同步 5 次/4 条
+[03:00:00 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][INC-1778180400022] 开始增量同步树洞数据 (cron: 0 */15 * * * *)
+[03:00:00 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][INC-1778180400022] 发现 0 条增量更新数据 (自 Fri May 08 02:57:20 CST 2026 起)
+[03:00:00 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][INC-1778180400022] 无增量更新数据
+[03:00:00 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][INC-1778180400022] 增量同步完成: 同步 0 条，耗时 25ms
+[03:00:00 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Starting incremental storymap sync since 2026-05-08T02:52:20.192085900+08:00
+[03:00:00 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed incremental storymap sync: 0 items in 17ms
+[03:00:00 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting incremental item sync since 2026-05-08T02:57:19.992764300+08:00
+[03:00:00 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed incremental item sync: 0 items in 51ms
+[03:02:19 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[03:02:19 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 161ms
+[03:02:19 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778180539944] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[03:02:19 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778180539944] 数据库中共有 1 条树洞帖子待同步
+[03:02:19 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778180539944] 全量同步完成: 总计 1 条，耗时 55ms，累计同步 7 次/5 条
+[03:02:20 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 62ms
+[03:07:19 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[03:07:19 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 216ms
+[03:07:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778180840003] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[03:07:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778180840003] 数据库中共有 1 条树洞帖子待同步
+[03:07:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778180840003] 全量同步完成: 总计 1 条，耗时 75ms，累计同步 8 次/6 条
+[03:12:19 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[03:12:20 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 245ms
+[03:12:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778181140029] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[03:12:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778181140029] 数据库中共有 1 条树洞帖子待同步
+[03:12:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778181140029] 全量同步完成: 总计 1 条，耗时 54ms，累计同步 9 次/7 条
+[03:12:20 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 53ms
+[03:15:00 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][INC-1778181300002] 开始增量同步树洞数据 (cron: 0 */15 * * * *)
+[03:15:00 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][INC-1778181300002] 发现 0 条增量更新数据 (自 Fri May 08 03:12:20 CST 2026 起)
+[03:15:00 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][INC-1778181300002] 无增量更新数据
+[03:15:00 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][INC-1778181300002] 增量同步完成: 同步 0 条，耗时 49ms
+[03:15:00 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting incremental item sync since 2026-05-08T03:12:20.021212+08:00
+[03:15:00 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed incremental item sync: 0 items in 130ms
+[03:17:19 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[03:17:19 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 211ms
+[03:17:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778181440002] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[03:17:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778181440002] 数据库中共有 1 条树洞帖子待同步
+[03:17:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778181440002] 全量同步完成: 总计 1 条，耗时 59ms，累计同步 11 次/8 条
+[03:22:19 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[03:22:19 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 179ms
+[03:22:19 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778181739970] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[03:22:19 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778181739970] 数据库中共有 1 条树洞帖子待同步
+[03:22:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778181739970] 全量同步完成: 总计 1 条，耗时 84ms，累计同步 12 次/9 条
+[03:22:20 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 54ms
+[03:27:19 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[03:27:19 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 184ms
+[03:27:19 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778182039961] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[03:27:19 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778182039961] 数据库中共有 1 条树洞帖子待同步
+[03:27:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778182039961] 全量同步完成: 总计 1 条，耗时 60ms，累计同步 13 次/10 条
+[03:30:00 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting incremental item sync since 2026-05-08T03:27:19.955102700+08:00
+[03:30:00 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed incremental item sync: 0 items in 54ms
+[03:30:00 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][INC-1778182200079] 开始增量同步树洞数据 (cron: 0 */15 * * * *)
+[03:30:00 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][INC-1778182200079] 发现 0 条增量更新数据 (自 Fri May 08 03:27:20 CST 2026 起)
+[03:30:00 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][INC-1778182200079] 无增量更新数据
+[03:30:00 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][INC-1778182200079] 增量同步完成: 同步 0 条，耗时 12ms
+[03:30:00 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Starting incremental storymap sync since 2026-05-08T03:22:20.119627300+08:00
+[03:30:00 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed incremental storymap sync: 0 items in 6ms
+[03:32:19 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[03:32:19 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 178ms
+[03:32:19 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778182339961] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[03:32:19 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778182339961] 数据库中共有 1 条树洞帖子待同步
+[03:32:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778182339961] 全量同步完成: 总计 1 条，耗时 63ms，累计同步 15 次/11 条
+[03:32:20 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 52ms
+[03:37:20 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[03:37:20 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 223ms
+[03:37:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778182640998] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[03:37:21 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778182640998] 数据库中共有 1 条树洞帖子待同步
+[03:37:21 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778182640998] 全量同步完成: 总计 1 条，耗时 51ms，累计同步 16 次/12 条
+[03:42:19 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[03:42:20 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 245ms
+[03:42:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778182940108] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[03:42:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778182940108] 数据库中共有 1 条树洞帖子待同步
+[03:42:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778182940108] 全量同步完成: 总计 1 条，耗时 86ms，累计同步 17 次/13 条
+[03:42:20 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 59ms
+[03:45:00 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][INC-1778183100003] 开始增量同步树洞数据 (cron: 0 */15 * * * *)
+[03:45:00 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][INC-1778183100003] 发现 0 条增量更新数据 (自 Fri May 08 03:42:20 CST 2026 起)
+[03:45:00 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][INC-1778183100003] 无增量更新数据
+[03:45:00 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][INC-1778183100003] 增量同步完成: 同步 0 条，耗时 10ms
+[03:45:00 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting incremental item sync since 2026-05-08T03:42:20.092337700+08:00
+[03:45:00 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed incremental item sync: 0 items in 53ms
+[03:47:19 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[03:47:20 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 227ms
+[03:47:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778183240051] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[03:47:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778183240051] 数据库中共有 1 条树洞帖子待同步
+[03:47:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778183240051] 全量同步完成: 总计 1 条，耗时 60ms，累计同步 19 次/14 条
+[03:52:19 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[03:52:20 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 228ms
+[03:52:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778183540021] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[03:52:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778183540021] 数据库中共有 1 条树洞帖子待同步
+[03:52:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778183540021] 全量同步完成: 总计 1 条，耗时 54ms，累计同步 20 次/15 条
+[03:52:20 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed full storymap sync: 2 items in 76ms
+[03:57:19 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting scheduled item sync from database
+[03:57:19 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed full item sync: 102 items in 216ms
+[03:57:19 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778183839995] 开始全量同步树洞数据到ES (配置间隔: 300000ms)
+[03:57:19 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778183839995] 数据库中共有 1 条树洞帖子待同步
+[03:57:20 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][FULL-1778183839995] 全量同步完成: 总计 1 条，耗时 46ms，累计同步 21 次/16 条
+[04:00:01 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Starting incremental storymap sync since 2026-05-08T03:52:20.161736+08:00
+[04:00:01 [34mINFO[0;39m] [o.n.a.s.impl.EsStoryMapServiceImpl] [36m[0;39m: Completed incremental storymap sync: 0 items in 32ms
+[04:00:01 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Starting incremental item sync since 2026-05-08T03:57:19.990413100+08:00
+[04:00:01 [34mINFO[0;39m] [o.n.a.service.impl.EsItemServiceImpl] [36m[0;39m: Completed incremental item sync: 0 items in 14ms
+[04:00:01 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][INC-1778184001108] 开始增量同步树洞数据 (cron: 0 */15 * * * *)
+[04:00:01 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][INC-1778184001108] 发现 0 条增量更新数据 (自 Fri May 08 03:57:20 CST 2026 起)
+[04:00:01 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][INC-1778184001108] 无增量更新数据
+[04:00:01 [34mINFO[0;39m] [o.n.a.s.impl.EsTreeHoleServiceImpl] [36m[0;39m: [ES-Sync][INC-1778184001108] 增量同步完成: 同步 0 条，耗时 9ms
+[11:36:23 [31mWARN[0;39m] [com.zaxxer.hikari.pool.HikariPool] [36m[0;39m: HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=7h36m37s53ms687µs100ns).
+[11:36:23 [31mWARN[0;39m] [com.zaxxer.hikari.pool.PoolBase] [36m[0;39m: HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@53f95c6 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+[11:36:23 [31mWARN[0;39m] [com.zaxxer.hikari.pool.PoolBase] [36m[0;39m: HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@100ed585 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+[11:36:23 [31mWARN[0;39m] [com.zaxxer.hikari.pool.PoolBase] [36m[0;39m: HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@61ce7d9c (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+[11:36:23 [31mWARN[0;39m] [com.zaxxer.hikari.pool.PoolBase] [36m[0;39m: HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@316eb69a (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+[11:36:23 [31mWARN[0;39m] [com.zaxxer.hikari.pool.PoolBase] [36m[0;39m: HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@7df9a063 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+[11:36:23 [31mWARN[0;39m] [com.zaxxer.hikari.pool.PoolBase] [36m[0;39m: HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@39d5f545 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+[11:36:23 [31mWARN[0;39m] [com.zaxxer.hikari.pool.PoolBase] [36m[0;39m: HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@2ee52420 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+[11:36:23 [31mWARN[0;39m] [com.zaxxer.hikari.pool.PoolBase] [36m[0;39m: HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@1f503f05 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+[11:36:23 [31mWARN[0;39m] [com.zaxxer.hikari.pool.PoolBase] [36m[0;39m: HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@7d70c096 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.

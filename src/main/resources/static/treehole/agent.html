@@ -277,6 +277,7 @@
       line-height: 1.7;
       color: var(--text);
       word-break: break-word;
+      white-space: pre-wrap;
     }
 
     .msg-bubble-user {
@@ -967,14 +968,25 @@
       });
     }
 
-    const response = await fetch(`${OLLAMA_CONFIG.host}/api/chat`, {
+    console.log('[Agent] 🚀 Calling Ollama API via backend...');
+    console.log('[Agent] 📤 Request URL:', `${KNOWLEDGE_API_BASE}/ollama/chat`);
+    console.log('[Agent] 📝 Message count:', ollamaMessages.length);
+
+    const response = await fetch(`${KNOWLEDGE_API_BASE}/ollama/chat`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       signal: abortController.signal,
       body: JSON.stringify(requestBody)
     });
 
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    console.log('[Agent] 📥 Response status:', response.status);
+    console.log('[Agent] 📋 Content-Type:', response.headers.get('content-type'));
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('[Agent] ❌ Ollama API Error:', errorText);
+      throw new Error(`Ollama API ${response.status}: ${errorText}`);
+    }
 
     hideAILoading();
     const tempId = 'msg-' + Date.now();
@@ -983,19 +995,69 @@
     const reader = response.body.getReader();
     const decoder = new TextDecoder();
     let aiReply = '';
+    let buffer = '';
+    let chunkCount = 0;
+
+    console.log('[Agent] ⏳ Starting stream read...');
 
     while (true) {
       const { done, value } = await reader.read();
-      if (done) break;
-      const chunk = decoder.decode(value, { stream: true });
-      for (const line of chunk.split('\n').filter(l => l.trim())) {
-        try {
-          const data = JSON.parse(line);
-          if (data.done) continue;
-          const delta = data.message?.content;
-          if (delta) { aiReply += delta; updateMessage(tempId, aiReply); }
-        } catch (e) {}
+      if (done) {
+        console.log('[Agent] ✅ Stream read complete');
+        break;
       }
+
+      chunkCount++;
+      const chunk = decoder.decode(value, { stream: true });
+      console.log(`[Agent] 📦 Chunk #${chunkCount}:`, chunk.length > 100 ? chunk.substring(0, 100) + '...' : chunk);
+
+      buffer += chunk;
+
+      const lines = buffer.split('\n');
+      buffer = lines.pop() || '';
+
+      for (const line of lines) {
+        const trimmedLine = line.trim();
+
+        if (!trimmedLine) continue;
+
+        console.log(`[Agent] 🔍 Processing line:`, trimmedLine.length > 80 ? trimmedLine.substring(0, 80) + '...' : trimmedLine);
+
+        if (trimmedLine === 'data:[DONE]' || trimmedLine === 'data: [DONE]') {
+          console.log('[Agent] 🏁 Received end marker');
+          continue;
+        }
+
+        if (trimmedLine.startsWith('data:')) {
+          const data = trimmedLine.substring(5).trim();
+          console.log('[Agent] 📄 Data:', data.length > 80 ? data.substring(0, 80) + '...' : data);
+
+          if (data === '[DONE]') {
+            console.log('[Agent] 🏁 Received [DONE]');
+            continue;
+          }
+
+          try {
+            const jsonData = JSON.parse(data);
+            if (jsonData.error) {
+              console.error('[Agent] ❌ API returned error:', jsonData.error);
+              aiReply += `\n\n❌ Error: ${jsonData.error}`;
+              updateMessage(tempId, aiReply);
+              continue;
+            }
+          } catch (e) {
+            // 不是 JSON，直接作为文本内容处理
+          }
+
+          aiReply += data;
+          updateMessage(tempId, aiReply);
+          console.log('[Agent] ✍️ Cumulative reply length:', aiReply.length);
+        }
+      }
+    }
+
+    if (buffer.trim()) {
+      console.log('[Agent] 📝 Processing remaining buffer:', buffer);
     }
 
     session.messages.push({ role: 'assistant', content: aiReply });

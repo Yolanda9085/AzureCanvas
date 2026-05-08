@@ -578,8 +578,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.toggle("night-mode", on);
     if (nightBtn) {
       nightBtn.innerHTML = on
-        ? '<i class="fas fa-sun"></i> 白天模式'
-        : '<i class="fas fa-moon"></i> 深夜模式';
+        ? '<i class="fas fa-sun"></i> Day Mode'
+        : '<i class="fas fa-moon"></i> Night Mode';
     }
   }
   applyNightMode(isNightMode);

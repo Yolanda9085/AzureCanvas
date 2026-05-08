@@ -121,6 +121,44 @@ body.immersive-about {
     display: none;
 }
 
+/* --- FOLLOW US 大标题 --- */
+.follow-us-title {
+    font-family: 'Aeonik', 'Inter', sans-serif;
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    text-align: center;
+    margin: 120px 0 60px;
+    color: #ffffff;
+    position: relative;
+    z-index: 2;
+    /* 清爽发光效果 */
+    text-shadow:
+        0 0 10px rgba(0, 242, 255, 0.4),
+        0 0 30px rgba(0, 242, 255, 0.3),
+        0 0 60px rgba(0, 98, 255, 0.2),
+        0 0 100px rgba(0, 98, 255, 0.1);
+    animation: follow-us-glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes follow-us-glow {
+    0% {
+        text-shadow:
+            0 0 10px rgba(0, 242, 255, 0.4),
+            0 0 30px rgba(0, 242, 255, 0.3),
+            0 0 60px rgba(0, 98, 255, 0.2),
+            0 0 100px rgba(0, 98, 255, 0.1);
+    }
+    100% {
+        text-shadow:
+            0 0 20px rgba(0, 242, 255, 0.6),
+            0 0 50px rgba(0, 242, 255, 0.4),
+            0 0 90px rgba(0, 98, 255, 0.3),
+            0 0 140px rgba(0, 98, 255, 0.15);
+    }
+}
+
 /* --- 团队卡牌样式 --- */
 .team-section {
     display: flex;

@@ -437,7 +437,7 @@ editForm.addEventListener('submit', async function(e) {
         var res = await fetch(API + '/api/market/items/' + itemId, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            credentials: API ? 'omit' : 'include',
+            credentials:  'include',
             body: JSON.stringify(data)
         });
         if (res.ok) {

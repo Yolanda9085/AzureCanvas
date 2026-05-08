@@ -569,7 +569,7 @@ Feel free to message anytime, fast replies.
         try {
             var response = await fetch(API + '/api/market/items/' + itemId, {
                 method: 'GET',
-                credentials: API ? 'omit' : 'include'
+                credentials: 'include'
             });
 
             if (!response.ok) {
@@ -601,7 +601,7 @@ Feel free to message anytime, fast replies.
                 renderCategoryTag(product.category);
             }
 
-            fetch(API + '/api/market/items/' + itemId + '/view', { method: 'POST', credentials: API ? 'omit' : 'include' })
+            fetch(API + '/api/market/items/' + itemId + '/view', { method: 'POST', credentials: 'include' })
                 .then(function(r) { return r.json(); })
                 .then(function(d) { if (d.views) document.getElementById('product-views').textContent = d.views; })
                 .catch(function() {});
@@ -781,7 +781,7 @@ Feel free to message anytime, fast replies.
         
         fetch(API + '/api/market/items/favorite?itemId=' + encodeURIComponent(pid), {
             method: 'POST',
-            credentials: API ? 'omit' : 'include'
+            credentials: 'include'
         }).catch(function(err) { console.warn('Favorites API call failed:', err); });
 
         var titleEl = document.getElementById('product-title');
@@ -856,7 +856,7 @@ Feel free to message anytime, fast replies.
         if (currentSellerId && pid) {
             fetch(API + '/api/market/' + encodeURIComponent(currentSellerId) + '/contact', {
                 method: 'POST',
-                credentials: API ? 'omit' : 'include',
+                credentials:  'include',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ message: 'Hi, I\'m interested in this item', itemId: pid })
             }).catch(function(err) { console.warn('Contact seller API failed:', err); });
@@ -949,7 +949,7 @@ Feel free to message anytime, fast replies.
 
     async function loadComments(itemId) {
         try {
-            var res = await fetch(API + '/api/market/items/' + itemId + '/comments', { credentials: API ? 'omit' : 'include' });
+            var res = await fetch(API + '/api/market/items/' + itemId + '/comments', { credentials:  'include' });
             if (!res.ok) return;
             var comments = await res.json();
             var commentList = document.getElementById('comment-list');
@@ -1002,7 +1002,7 @@ Feel free to message anytime, fast replies.
             fetch(API + '/api/market/items/' + itemId + '/comments', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                credentials: API ? 'omit' : 'include',
+                credentials:  'include',
                 body: JSON.stringify({ content: text })
             }).catch(function() {});
         }
@@ -1051,7 +1051,7 @@ Feel free to message anytime, fast replies.
                 numSpan.textContent = num + 1;
                 var cid = likeBtn.getAttribute('data-cid');
                 if (cid) {
-                    fetch(API + '/api/market/items/comments/' + cid + '/like', { method: 'POST', credentials: API ? 'omit' : 'include' }).catch(function() {});
+                    fetch(API + '/api/market/items/comments/' + cid + '/like', { method: 'POST', credentials:  'include' }).catch(function() {});
                 }
             }
         }

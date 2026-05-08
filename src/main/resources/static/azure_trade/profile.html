@@ -350,7 +350,7 @@ var tabs = document.querySelectorAll('.seller-tab');
 // Load reviews from API, fallback to demo data
 async function loadReviews(filter) {
     try {
-        var response = await fetch(API + '/api/users/me', { credentials: API ? 'omit' : 'include' });
+        var response = await fetch(API + '/api/users/me', { credentials : 'include' });
         if (!response.ok) { useDemoReviews(filter); return; }
         var user = await response.json();
         var userId = user.userId;
@@ -358,7 +358,7 @@ async function loadReviews(filter) {
         var url = '/api/market/users/' + userId + '/reviews';
         if (filter && filter !== 'all') url += '?filter=' + filter;
 
-        var reviewRes = await fetch(url, { credentials: API ? 'omit' : 'include' });
+        var reviewRes = await fetch(url, { credentials: 'include' });
         if (reviewRes.ok) {
             var data = await reviewRes.json();
             var apiReviews = (data.reviews || []).map(function(r) {
@@ -791,7 +791,7 @@ if (cachedProfile) applyProfileToPage(cachedProfile);
         var response = await fetch(API + '/api/users/me', {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
-            credentials: API ? 'omit' : 'include'
+            credentials: 'include'
         });
 
         if (response.ok) {
@@ -801,7 +801,7 @@ if (cachedProfile) applyProfileToPage(cachedProfile);
 
             // Load user's published items
             try {
-                var itemsRes = await fetch(API + '/api/market/users/me/items', { credentials: API ? 'omit' : 'include' });
+                var itemsRes = await fetch(API + '/api/market/users/me/items', { credentials:  'include' });
                 if (itemsRes.ok) {
                     var items = await itemsRes.json();
                     if (items && items.length > 0) {
@@ -838,7 +838,7 @@ if (logoutBtn) {
         try {
             await fetch(API + '/api/auth/logout', {
                 method: 'POST',
-                credentials: API ? 'omit' : 'include'
+                credentials: 'include'
             });
         } catch (e) {}
         window.location.href = '/login?redirect=/azure_trade/trade';
@@ -1059,7 +1059,7 @@ editForm.addEventListener('submit', async function (e) {
         const response = await fetch(API + '/api/users/me', {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            credentials: API ? 'omit' : 'include',
+            credentials: 'include',
             body: JSON.stringify(updateData)
         });
 

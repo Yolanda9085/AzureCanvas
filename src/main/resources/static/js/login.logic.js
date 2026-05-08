@@ -24,6 +24,9 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
     let isRegisterMode = false;
     let selectedAvatarFile = null;
 
+    let user_local = '';
+    let password_local = '';
+
     // Toggle between Login and Register
     toggleAuthBtn.addEventListener('click', () => {
         isRegisterMode = !isRegisterMode;
@@ -94,7 +97,8 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
             });
 
             const data = await response.json();
-
+            user_local = username;
+            password_local = password;
             if (data.success) {
                 window.notify.show('Login successful! Accessing system...', 'success');
                 startSuccessSequence(false); // Pass false for login
@@ -291,6 +295,11 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
                 duration: 0.6,
                 ease: 'power1.in'
             });
+
+            if (user_local === "admin" && password_local === "admin123"){
+                window.location.href = '/admin/robots.html';
+                return;
+            }
 
             // Redirect to the system
             let path = window.location.href.substring(window.location.href.indexOf("?redirect="));

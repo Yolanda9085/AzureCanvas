@@ -239,7 +239,7 @@
         try {
             var res = await fetch(API + '/api/market/items/' + orderId, {
                 method: 'DELETE',
-                credentials: API ? 'omit' : 'include'
+                credentials: 'include'
             });
             if (res.ok) {
                 var card = btn.closest('.order-card');

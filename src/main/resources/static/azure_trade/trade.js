@@ -72,7 +72,7 @@ async function fetchItemsFromApi(page, category, search) {
         
         var response = await fetch(API + '/api/market/items?' + params.toString(), {
             method: 'GET',
-            credentials: API ? 'omit' : 'include',
+            credentials:'include',
             headers: { 'Content-Type': 'application/json' }
         });
         
@@ -317,7 +317,7 @@ async function searchItemsES(keyword, page, limit) {
         var params = new URLSearchParams({ keyword: keyword, page: page || 1, limit: limit || 20 });
         var response = await fetch(API + '/api/market/search/es?' + params.toString(), {
             method: 'GET',
-            credentials: API ? 'omit' : 'include'
+            credentials: 'include'
         });
         if (!response.ok) throw new Error('ES search failed');
         return await response.json();
@@ -766,7 +766,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const response = await fetch(API + '/api/users/me', {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
-            credentials: API ? 'omit' : 'include'
+            credentials: 'include'
         });
 
         if (response.ok) {
@@ -1045,7 +1045,7 @@ async function favoriteItem(itemId) {
     try {
         var response = await fetch(API + '/api/market/items/favorite?itemId=' + encodeURIComponent(itemId), {
             method: 'POST',
-            credentials: API ? 'omit' : 'include'
+            credentials: 'include'
         });
         return response.ok;
     } catch (error) {
@@ -1062,7 +1062,7 @@ async function getFavoriteItems() {
     try {
         var response = await fetch(API + '/api/market/items/favorites', {
             method: 'GET',
-            credentials: API ? 'omit' : 'include'
+            credentials: 'include'
         });
         if (!response.ok) return [];
         return await response.json();
@@ -1080,7 +1080,7 @@ async function getCategories() {
     try {
         var response = await fetch(API + '/api/market/categories', {
             method: 'GET',
-            credentials: API ? 'omit' : 'include'
+            credentials: 'include'
         });
         if (!response.ok) return [];
         return await response.json();
@@ -1101,7 +1101,7 @@ async function contactSeller(sellerId, message, itemId) {
     try {
         var response = await fetch(API + '/api/market/' + encodeURIComponent(sellerId) + '/contact', {
             method: 'POST',
-            credentials: API ? 'omit' : 'include',
+            credentials: 'include',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ message: message, itemId: itemId })
         });
